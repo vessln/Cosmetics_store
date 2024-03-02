@@ -11,15 +11,15 @@
 // Create SCSS variables
 $white: #ffffff;
 $black: #000000;
-$primary: #3b5d50;
-$secondary: #f9bf29;
+$primary: #de5d83;
+$secondary: #de5d83;
 $dark: #2f2f2f;
 $light: #dce5e4;
 $lighter: #eff2f1;
 $body_color: #6a6a6a;
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
+$sm: 650px;
+$md: 850px;
+$lg: 1000px;
 $xl: 1200px;
 $xxl: 1400px;
 
@@ -35,15 +35,14 @@ body {
 	font-weight: 400;
 	line-height: 28px;
 	color: $body_color;
-	font-size: 14px;
-	background-color: $lighter;
+	font-size: 16px;
+	background-color: $white;
 }
 
 a {
 	text-decoration: none;
 	transition: .3s all ease;
 	color: $dark;
-	text-decoration: underline;
 	&:hover {
 		color: $dark;
 		text-decoration: none;
@@ -61,7 +60,7 @@ a {
 		font-size: 32px;
 		font-weight: 600;
 		> span {
-			opacity: .4;
+			opacity: .8;
 		}
 	}
 	.navbar-toggler {
@@ -79,8 +78,9 @@ a {
 			}
 			a {
 				font-weight: 500;
+				font-size: 16px;
 				color: $white!important;
-				opacity: .5;
+				opacity: .7;
 				transition: .3s all ease;
 				position: relative;
 				&:before {
@@ -122,8 +122,8 @@ a {
 			margin-left: 40px!important;
 		}
 		li {
-			margin-left: 0px;
-			margin-right: 0px;
+			margin-left: 0;
+			margin-right: 0;
 			&:first-child {
 				margin-right: 20px;
 			}
@@ -131,10 +131,13 @@ a {
 	}
 }
 
+.dropdown-toggle::after {
+    display: none !important;}
+
 // Hero 
 .hero {
 	background: $primary;
-	padding: calc(4rem - 30px) 0 0rem 0;
+	padding: calc(4rem - 30px) 0 0 0;
 	@media (min-width: $md) {
 		padding: calc(4rem - 30px) 0 4rem 0;
 	}
@@ -152,7 +155,7 @@ a {
 	}
 	h1 {
 		font-weight: 700;
-		color: $white;
+		color: $black;
 		margin-bottom: 30px;
 
 		@media (min-width: $xxl) {
@@ -160,31 +163,32 @@ a {
 		}
 	}
 	p {
-		color: rgba($white, .5);
-		margin-botom: 30px;
+		color: $black;
+		font-size: 20px;
+		margin-bottom: 30px;
 	}
 	.hero-img-wrap {
 		position: relative;
 		img {
 			position: relative;
-			top: 0px;
-			right: 0px;
+			top: 0;
+			right: 0;
 			z-index: 2;
 			max-width: 780px;
 			left: -20px;
 			@media (min-width: $md) {
-				right: 0px;
+				right: 0;
 				left: -100px;
 
 			}
 			@media (min-width: $lg) {
-				left: 0px;
+				left: 0;
 				top: -80px;
 				position: absolute;
 				right: -50px;
 			}
 			@media (min-width: $xl) {
-				left: 0px;
+				left: 0;
 				top: -80px;
 		
 				right: -100px;
@@ -196,7 +200,6 @@ a {
 			position: absolute;
 			width: 255px;
 			height: 217px;
-			background-image: url('../images/dots-light.svg');
 			background-size: contain;
 			background-repeat: no-repeat;
 			right: -100px;
@@ -314,7 +317,7 @@ a {
 			position: absolute;
 			content: "";
 			background: $light;
-			height: 0%;
+			height: 0;
 			z-index: -1;
 			border-radius: 10px;
 			transition: .3s all ease;
@@ -347,7 +350,6 @@ a {
 			content: "";
 			width: 255px;
 			height: 217px;
-			background-image: url('../images/dots-yellow.svg');
 			background-repeat: no-repeat;
 			background-size: contain;
 			transform: translate(-40%, -40%);
@@ -401,7 +403,6 @@ a {
 			content: "";
 			width: 255px;
 			height: 217px;
-			background-image: url('../images/dots-green.svg');
 			background-size: contain;
 			background-repeat: no-repeat;
 			transform: translate(-40%, -40%);
@@ -668,7 +669,7 @@ a {
 		z-index: 2;
 		margin-top: 100px;
 		@media (min-width: $lg) {
-			margin-top: 0px;
+			margin-top: 0;
 			margin-bottom: 80px;
 		}
 		h3 {
@@ -682,7 +683,6 @@ a {
 			font-family: $font-family;
 			&:active, &:focus {
 				outline: none;
-				box-shadow: none;
 				border-color: $primary;
 				box-shadow: 0 1px 4px 0 rgba($black, .2);
 			}
@@ -715,7 +715,7 @@ a {
 	}
 
 	.links-wrap {
-		margin-top: 0px;
+		margin-top: 0;
 		@media (min-width: $lg) {
 			margin-top: 54px;
 		}
@@ -743,7 +743,7 @@ a {
 				text-align: center;
 				line-height: 40px;
 				display: inline-block;
-				background: $light;
+				background: $white;
 				color: $primary;
 				border-radius: 50%;
 				&:hover {
@@ -754,7 +754,7 @@ a {
 		}
 	}
 	.border-top {
-		border-color: $light;
+		border-color: $white;
 		&.copyright {
 			font-size: 14px!important;
 		}
@@ -824,7 +824,7 @@ textarea {
 		th {
 			padding: 30px;
 			text-align: center;
-			border-width: 0px!important;
+			border-width: 0!important;
 			vertical-align: middle;
 			color: rgba($black, .8);
 			font-size: 18px;
