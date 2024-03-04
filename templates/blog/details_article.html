@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main_content %}
+
+    <div class="container mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="article-text">
+                    <h1 class="article-title">Article Title</h1>
+                    <p>Published: January 1, 2023</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget felis in justo consequat
+                        dapibus sit amet ac elit. Fusce eget consequat arcu. Donec tempor aliquet lacus, sit amet
+                        blandit est vehicula at.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="article-image">
+                    <img src="{% static 'images/sofa.png' %}" class="img-fluid" alt="Article Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

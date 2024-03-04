@@ -181,6 +181,13 @@ a {
         .hero .hero-img-wrap:after {
           top: -40px; } }
 
+.article-text {
+  padding-top: 20px;
+  .article-title {
+    padding-bottom: 10px;
+  }
+}
+
 .btn {
   font-weight: 600;
   padding: 12px 20px;
@@ -602,13 +609,6 @@ a {
         font-size: 14px; }
     .footer-section .subscription-form .btn {
       border-radius: 10px !important; }
-  .footer-section .sofa-img {
-    position: absolute;
-    top: -200px;
-    z-index: 1;
-    right: 0; }
-    .footer-section .sofa-img img {
-      max-width: 380px; }
   .footer-section .links-wrap {
     margin-top: 0; }
     @media (min-width: 992px) {
@@ -616,6 +616,8 @@ a {
         margin-top: 54px; } }
     .footer-section .links-wrap ul li {
       margin-bottom: 10px; }
+  .footer-section .footer-logo-wrap {
+    padding-top: 16px;  }
   .footer-section .footer-logo-wrap .footer-logo {
     font-size: 32px;
     font-weight: 500;

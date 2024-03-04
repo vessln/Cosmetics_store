@@ -274,6 +274,13 @@ a {
 	}
 }
 
+.article-text {
+	padding-top: 20px;
+	  .article-title {
+    padding-bottom: 10px;
+  }
+}
+
 // Product Section
 .section-title {
 	color: $dark;
@@ -722,15 +729,6 @@ a {
 		}
 	}
 
-	.sofa-img {
-		position: absolute;
-		top: -200px;
-		z-index: 1;
-		right: 0;
-		img {
-			max-width: 380px;
-		}
-	}
 
 	.links-wrap {
 		margin-top: 0;
@@ -743,7 +741,9 @@ a {
 			}
 		}
 	}
+
 	.footer-logo-wrap {
+		padding-top: 16px;
 		.footer-logo {
 			font-size: 32px;
 			font-weight: 500;

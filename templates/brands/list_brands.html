@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main_content %}
+
+    <div class="why-choose-section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="article-text">
+                        <div class="icon">
+                            <img src="{% static 'images/cosmetics-svgrepo-com.svg' %}" alt="Image" class="imf-fluid">
+                        </div>
+                        <h1 class="article-title">Brands:</h1>
+                    </div>
+                </div>
+            </div>
+
+            {# brands ordered alphabetically #}
+
+            <div class="row my-5">
+                <div class="col-6 col-md-6 col-lg-3 mb-4">
+                    <div class="feature">
+                        <h3> <a href="#"></a>brand name</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
