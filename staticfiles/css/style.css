@@ -98,6 +98,20 @@ a {
       .custom-navbar .custom-navbar-cta li:first-child {
         margin-right: 20px; }
 
+.dropdown-item {
+	color: #de5d83 ;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+	background-color: #fad9da;
+}
+
+.dropdown-menu {
+    min-width: 7rem;
+  	text-align: center;
+}
+
 .dropdown-toggle::after {
     display: none !important; }
 
@@ -109,7 +123,10 @@ a {
       padding: calc(4rem - 30px) 0 4rem 0; } }
   @media (min-width: 992px) {
     .hero {
-      padding: calc(8rem - 30px) 0 8rem 0; } }
+      padding: calc(8rem - 30px) 0 4rem 0; } }
+  @media (min-width: 1200px) {
+    .hero {
+      padding: calc(12rem - 30px) 0 12rem 0; } }
   .hero .intro-excerpt {
     position: relative;
     z-index: 4; }
@@ -122,7 +139,7 @@ a {
     margin-bottom: 30px; }
     @media (min-width: 1400px) {
       .hero h1 {
-        font-size: 54px; } }
+        font-size: 56px; } }
   .hero p {
     color: #2f2f2f;
     font-size: 20px;
@@ -143,13 +160,13 @@ a {
       @media (min-width: 992px) {
         .hero .hero-img-wrap img {
           left: 0;
-          top: -80px;
+          top: -70px;
           position: absolute;
           right: -50px; } }
       @media (min-width: 1200px) {
         .hero .hero-img-wrap img {
           left: 0;
-          top: -80px;
+          top: -95px;
           right: -100px; } }
     .hero .hero-img-wrap:after {
       content: "";
@@ -166,7 +183,7 @@ a {
 
 .btn {
   font-weight: 600;
-  padding: 12px 30px;
+  padding: 12px 20px;
   border-radius: 30px;
   color: #ffffff;
   background: #2f2f2f;
@@ -190,15 +207,16 @@ a {
     background: #de5d83;
     border-color: #de5d83; }
     .btn.btn-secondary:hover {
-      background: #de5d83;
-      border-color: #de5d83; }
+      background: rgba(222,93,131, 0.7);
+      border-color: rgba(222,93,131, 0.7); }
   .btn.btn-white-outline {
+    color: #de5d83;
     background: transparent;
     border-width: 2px;
-    border-color: rgba(255, 255, 255, 0.3); }
+    border-color: rgba(222,93,131, 0.6); }
     .btn.btn-white-outline:hover {
-      border-color: white;
-      color: #ffffff; }
+      border-color: #de5d83;
+      color: #de5d83; }
 
 .section-title {
   color: #2f2f2f; }
@@ -612,14 +630,14 @@ a {
       text-align: center;
       line-height: 40px;
       display: inline-block;
-      background: #dce5e4;
+      background: #fad9da;
       color: #de5d83;
       border-radius: 50%; }
       .footer-section .custom-social li a:hover {
         background: #de5d83;
         color: #ffffff; }
   .footer-section .border-top {
-    border-color: #dce5e4; }
+    border-color: #fad9da; }
     .footer-section .border-top.copyright {
       font-size: 14px !important; }
 

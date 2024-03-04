@@ -6,7 +6,7 @@ def home_page(request):
         "title": "home_page"
     }
 
-    return render(request, "common/index.html", context)
+    return render(request, "common/home_page.html", context)
 
 
 def about(request):
