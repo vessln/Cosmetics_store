@@ -182,11 +182,17 @@ a {
           top: -40px; } }
 
 .article-text {
-  padding-top: 20px;
+  padding-top: 15px;
   .article-title {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 }
+
+img {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 
 .btn {
   font-weight: 600;
@@ -539,6 +545,9 @@ a {
 
 .blog-section {
   padding: 7rem 0 12rem 0; }
+  .articles {
+    padding-left: 8%;
+  	padding-bottom: 3%; }
   .blog-section .post-entry a {
     text-decoration: none; }
   .blog-section .post-entry .post-thumbnail {

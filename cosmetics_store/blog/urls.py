@@ -1,8 +1,18 @@
-from django.urls import path
+from django.urls import path, include
 
-from cosmetics_store.blog.views import blog_view, article_view
+from cosmetics_store.blog.views import ListArticlesView, CreateArticleView, EditArticleView, DetailsArticleView, \
+    DeleteArticleView
+
 
 urlpatterns = (
-    path("all_articles/", blog_view, name="blog all articles"),
-    path("article/", article_view, name="article"),
+    path("articles/", ListArticlesView.as_view(), name="list articles"),
+    path("create/article/", CreateArticleView.as_view(), name="create article"),
+    path("<int:pk>/article/",
+         include([
+             path("edit/", EditArticleView.as_view(), name="edit article"),
+             path("details/", DetailsArticleView.as_view(), name="details article"),
+             path("delete/", DeleteArticleView.as_view(), name="delete article"),
+             ]),
+         ),
+
 )

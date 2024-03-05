@@ -1,13 +1,26 @@
 from django.shortcuts import render
+from django.views import generic as generic_views
+
+from cosmetics_store.blog.models import Article
 
 
-def blog_view(request):
-    context = {}
-
-    return render(request, "blog/list_articles.html")
+class CreateArticleView(generic_views.CreateView):
+    pass
 
 
-def article_view(request):
-    context = {}
+class EditArticleView(generic_views.UpdateView):
+    pass
 
-    return render(request, "blog/details_article.html")
+
+class DetailsArticleView(generic_views.DetailView):
+    queryset = Article.objects.all()
+    template_name = "blog/details_article.html"
+
+
+class DeleteArticleView(generic_views.DeleteView):
+    pass
+
+
+class ListArticlesView(generic_views.ListView):
+    queryset = Article.objects.order_by("-published_at")
+    template_name = "blog/list_articles.html"

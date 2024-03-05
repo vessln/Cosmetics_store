@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'cosmetics_store.common',
+    'cosmetics_store.accounts',
+    'cosmetics_store.blog',
+    'cosmetics_store.products',
+    'cosmetics_store.orders',
+
 ]
 
 MIDDLEWARE = [
@@ -122,6 +129,11 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "staticfiles/"
 ]
+
+MEDIA_ROOT = BASE_DIR / "mediafiles"
+
+MEDIA_URL = "/media/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
