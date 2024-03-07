@@ -1,16 +1,16 @@
 from django.db import models
 
 
-# PRODUCTS_CATEGORIES = [
-#     ("Make-up", "Make-up"),
-#     ("Skin care", "Skin care"),
-#     ("Hair care", "Hair care"),
-#     ("Other", "Other"),
-# ]
-#
-# MAX_DESCRIPTION_LENGTH = 500
-#
-#
+PRODUCTS_CATEGORIES = [
+    ("Make-up", "Make-up"),
+    ("Skin care", "Skin care"),
+    ("Hair care", "Hair care"),
+    ("Other", "Other"),
+]
+
+MAX_DESCRIPTION_LENGTH = 500
+
+
 # class Ingredient(models.Model):
 #     MAX_NAME_LENGTH = 30
 #
@@ -20,8 +20,8 @@ from django.db import models
 #     description = models.TextField(
 #         max_length=MAX_DESCRIPTION_LENGTH,
 #     )
-#
-#
+
+
 # class Product(models.Model):
 #     MAX_TITLE_LENGTH = 30
 #     MAX_TYPE_LENGTH = 25
@@ -66,5 +66,4 @@ from django.db import models
 #         on_delete=models.DO_NOTHING,
 #         related_name="created_products",
 #     )
-#
 

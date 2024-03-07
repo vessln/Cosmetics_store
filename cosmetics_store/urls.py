@@ -9,7 +9,7 @@ urlpatterns = [
     path("", include("cosmetics_store.common.urls")),
     path("accounts/", include("cosmetics_store.accounts.urls")),
     path("blog/", include("cosmetics_store.blog.urls")),
-    path("products/", include("cosmetics_store.products.urls")),
+    path("shop/", include("cosmetics_store.products.urls")),
     path("orders/", include("cosmetics_store.orders.urls")),
 
 ]
