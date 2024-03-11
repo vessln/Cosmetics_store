@@ -13,7 +13,6 @@ urlpatterns = (
              path("delete/", DeleteProductView.as_view(), name="delete product"),
                 ]),
          ),
-
     path("products/", ListProductsView.as_view(), name="list products"),
     path("brands/", ListBrandsView.as_view(), name="list brands"),
 

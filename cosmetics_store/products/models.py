@@ -22,6 +22,17 @@ MAX_DESCRIPTION_LENGTH = 500
 #     )
 
 
+# class Brand(models.Model):
+#     MAX_NAME_LENGTH = 20
+#
+#     name = models.CharField(
+#         max_length=MAX_NAME_LENGTH
+#     )
+#
+#     class Meta:
+#         ordering = ("name", )  #  the default ordering of Brand's records from DB should be based on the name field
+
+
 # class Product(models.Model):
 #     MAX_TITLE_LENGTH = 30
 #     MAX_TYPE_LENGTH = 25
@@ -49,8 +60,9 @@ MAX_DESCRIPTION_LENGTH = 500
 #         max_length=MAX_DESCRIPTION_LENGTH,
 #     )
 #
-#     brand = models.CharField(
-#         max_length=MAX_BRAND_LENGTH,
+#     brand = models.ForeignKey(
+#         Brand,
+#         on_delete=models.DO_NOTHING,
 #     )
 #
 #     slug = models.SlugField()
@@ -58,7 +70,6 @@ MAX_DESCRIPTION_LENGTH = 500
 #     ingredients = models.ManyToManyField(
 #         Ingredient,
 #         on_delete=models.DO_NOTHING,
-#         related_name="products_ingredients",
 #     )
 #
 #     creator = models.ForeignKey(
