@@ -56,12 +56,12 @@
                         <a class="nav-link" href="#"><img src="{% static 'images/user.svg' %}" alt="user"></a>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Register</a>
-                        <a class="dropdown-item" href="#">Login</a>
+                        <a class="dropdown-item" href="{% url 'register user' %}">Register</a>
+                        <a class="dropdown-item" href="{% url 'login user' %}">Login</a>
                         {# if user is authenticated: #}
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">My cart</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{% url 'login user' %}">Logout</a>
                     </ul>
                 </div>
             </div>

@@ -5,24 +5,30 @@ UserModel = get_user_model()
 
 
 class RegisterUserForm(auth_forms.UserCreationForm):
+    password2 = forms.CharField(
+        label="Confirm Password",
+        help_text="",
+    )
+
     class Meta:
         model = UserModel
         fields = ("email", "username", "date_of_birth", "phone", "password1", "password2",)
 
-    labels = {
-        "email": "Your email",
-        "date_of_birth": "Birth date",
-        "password1": "Password",
-        "password2": "Confirm password",
+        labels = {
+            "email": "Your email",
+            "date_of_birth": "Birth date",
+            "phone": "Phone number",
+            }
+
+        widgets = {
+            "date_of_birth": forms.DateInput(attrs={"placeholder": "YYYY-MM-DD"}),
+            "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
         }
 
-    widgets = {
-        "email": forms.EmailInput(attrs={"placeholder": "Email"}),
-        "username": forms.TextInput(attrs={"placeholder": "Username"}),
-        "date_of_birth": forms.DateInput(attrs={"placeholder": "YYYY-MM-DD"}),
-        "password1": forms.PasswordInput(attrs={"placeholder": "Password"}),
-        "password2": forms.PasswordInput(attrs={"placeholder": "Confirm password"}),
-    }
+        help_texts = {
+            "username": "",
+            "password2": "",
+        }
 
 
 class LoginUserForm(auth_forms.AuthenticationForm):
