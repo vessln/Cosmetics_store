@@ -7,18 +7,19 @@ UserModel = get_user_model()
 class RegisterUserForm(auth_forms.UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["password1"].widget.attrs['placeholder'] = "Password"
-        self.fields["password2"].widget.attrs['placeholder'] = "Confirm password"
+        self.fields["password1"].widget.attrs["placeholder"] = "Password"
+        self.fields["password2"].widget.attrs["placeholder"] = "Confirm password"
 
     class Meta:
         model = UserModel
-        fields = ("username", "email", "date_of_birth", "phone", "password1", "password2",)
+        fields = ("username", "email", "date_of_birth", "gender", "phone", "password1", "password2",)
 
         widgets = {
             "username": forms.TextInput(attrs={"placeholder": "Username"}),
             "email": forms.EmailInput(attrs={"placeholder": "Email address"}),
-            "date_of_birth": forms.DateInput(attrs={"placeholder": "YYYY-MM-DD"}),
+            "date_of_birth": forms.DateInput(attrs={"placeholder": "Birth date: YYYY-MM-DD"}),
             "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
+            "gender": forms.RadioSelect(choices=UserModel.GENDER_CHOICES, attrs={"class": "form-control"}),
         }
 
 

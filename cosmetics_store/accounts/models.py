@@ -9,6 +9,11 @@ from cosmetics_store.accounts.validators import validator_check_only_letters_das
 
 
 class StoreUserModel(auth_models.AbstractUser):
+    GENDER_CHOICES = [
+        ("Male", "Male"),
+        ("Female", "Female"),
+    ]
+
     MAX_FIRST_NAME_LENGTH = 20
     MAX_LAST_NAME_LENGTH = 30
     MIN_NAME_LENGTH = 3
@@ -55,6 +60,12 @@ class StoreUserModel(auth_models.AbstractUser):
         ],
         error_messages="Please enter your date of birth: YYYY-MM-DD."
     )
+
+    gender = models.CharField(
+        max_length=8,
+        choices=GENDER_CHOICES,
+    )
+
 
     # @property
     # def current_age(self):

@@ -57,6 +57,16 @@ span.input-group-text {
   border-radius: 0 !important;
 }
 
+.input-group {
+    justify-content: center;}
+
+.form-select.my-form {
+    border-radius: 0;
+    border: 2px solid black;
+    flex: none;
+    width: 35%;
+}
+
 .custom-navbar {
 	background: $primary!important;
 	padding-top: 20px;
