@@ -17,6 +17,11 @@ body {
   font-size: 16px;
   background-color: #ffffff; }
 
+span.input-group-text {
+  padding: 1rem 0.8rem !important;
+  border-radius: 0 !important;
+}
+
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;
@@ -737,4 +742,52 @@ textarea {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(59, 93, 80, 0.2); }
+    background: rgba(59, 93, 80, 0.2);
+  }
+
+
+.border-md {
+    border-width: 2px;
+}
+
+.btn-facebook {
+    background: #405D9D;
+    border: none;
+}
+
+.btn-facebook:hover, .btn-facebook:focus {
+    background: #314879;
+}
+
+.btn-twitter {
+    background: #42AEEC;
+    border: none;
+}
+
+.btn-twitter:hover, .btn-twitter:focus {
+    background: #1799e4;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+

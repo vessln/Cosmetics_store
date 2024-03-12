@@ -5,34 +5,25 @@ UserModel = get_user_model()
 
 
 class RegisterUserForm(auth_forms.UserCreationForm):
-    password2 = forms.CharField(
-        label="Confirm Password",
-        help_text="",
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password1"].widget.attrs['placeholder'] = "Password"
+        self.fields["password2"].widget.attrs['placeholder'] = "Confirm password"
 
     class Meta:
         model = UserModel
-        fields = ("email", "username", "date_of_birth", "phone", "password1", "password2",)
-
-        labels = {
-            "email": "Your email",
-            "date_of_birth": "Birth date",
-            "phone": "Phone number",
-            }
+        fields = ("username", "email", "date_of_birth", "phone", "password1", "password2",)
 
         widgets = {
+            "username": forms.TextInput(attrs={"placeholder": "Username"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email address"}),
             "date_of_birth": forms.DateInput(attrs={"placeholder": "YYYY-MM-DD"}),
             "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
         }
 
-        help_texts = {
-            "username": "",
-            "password2": "",
-        }
-
 
 class LoginUserForm(auth_forms.AuthenticationForm):
-    widgets = {
-        "username": forms.TextInput(attrs={"placeholder": "Username"}),
-        "password": forms.PasswordInput(attrs={"placeholder": "Password"}),
-    }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs["placeholder"] = "Username"
+        self.fields["password"].widget.attrs["placeholder"] = "Password"

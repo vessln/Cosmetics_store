@@ -4,64 +4,114 @@
 
 {% block main_content %}
 
-    <div class="untree_co-section">
-      <div class="container">
-
-        <div class="block">
-          <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-8 pb-4">
-                <h3>Registration:</h3>
-
-                    <form action="{% url 'register user' %}" method="post">
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="form-group">
-
-                                {{ form.as_p }}
-                                <button type="submit" class="btn btn-primary-hover-outline">Register</button>
-                                {% csrf_token %}
-
-                            </div>
-                          </div>
-                        </div>
-                    </form>
-
-{#              <form>#}
-{#                <div class="row">#}
-{#                  <div class="col-6">#}
-{#                    <div class="form-group">#}
-{#                      <label class="text-black" for="fname">First name</label>#}
-{#                      <input type="text" class="form-control" id="fname">#}
-{#                    </div>#}
-{#                  </div>#}
-{#                  <div class="col-6">#}
-{#                    <div class="form-group">#}
-{#                      <label class="text-black" for="lname">Last name</label>#}
-{#                      <input type="text" class="form-control" id="lname">#}
-{#                    </div>#}
-{#                  </div>#}
-{#                </div>#}
-{#                <div class="form-group">#}
-{#                  <label class="text-black" for="email">Email address</label>#}
-{#                  <input type="email" class="form-control" id="email">#}
-{#                </div>#}
-{##}
-{#                <div class="form-group mb-5">#}
-{#                  <label class="text-black" for="message">Message</label>#}
-{#                  <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>#}
-{#                </div>#}
-{##}
-{#                <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>#}
-{#              </form>#}
-
+    <div class="container">
+        <div class="row py-4 mt-4 align-items-center">
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <img width="90%" src="{% static 'images/login_grl.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
+                <h1>Create an Account</h1>
             </div>
 
-          </div>
+            <div class="col-md-7 col-lg-6 ml-auto">
 
+                <form action="{% url 'login user' %}" method="post">
+                    <div class="row">
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-user text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.username }}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-envelope text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.email }}
+                        </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-calendar text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.date_of_birth }}
+                        </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-phone-square text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.phone }}
+                        </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-lock text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.password1 }}
+                        </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-lock text-muted"></i>
+                                </span>
+                            </div>
+                        {{ form.password2 }}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-lg-12 mx-auto mb-3">
+                        <button type="submit" class="btn btn-primary btn-block py-2">Register</button>
+                        {% csrf_token %}
+                    </div>
+                </form>
+
+                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                    <div class="border-bottom w-100 ml-5"></div>
+                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                    <div class="border-bottom w-100 mr-5"></div>
+                </div>
+
+                <div class="text-center w-100">
+                    <p class="text-muted font-weight-bold">Already Registered? <a href="{% url 'login user' %}" class="text-primary ml-2">Login</a></p>
+                </div>
+
+            </div>
         </div>
-
-      </div>
 
     </div>
 
 {% endblock %}
+
+
+{##}
+{#                        <div class="input-group col-lg-6 mb-4">#}
+{#                            <div class="input-group-prepend">#}
+{#                                <span class="input-group-text bg-white px-4 border-md border-right-0">#}
+{#                                    <i class="fa fa-lock text-muted"></i>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                            <input id="password1" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">#}
+{#                        </div>#}
+{##}
+{#                        <div class="input-group col-lg-6 mb-4">#}
+{#                            <div class="input-group-prepend">#}
+{#                                <span class="input-group-text bg-white px-4 border-md border-right-0">#}
+{#                                    <i class="fa fa-lock text-muted"></i>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                            <input id="password2" type="password" name="password" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">#}
+{#                        </div>#}
+
+
