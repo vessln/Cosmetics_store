@@ -4,122 +4,276 @@
 
 {% block main_content %}
 
-    <div class="why-choose-section">
-        <div class="container">
+    <div class="container my-5">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="article-text">
-                        <div class="icon">
-                            <img src="{% static 'images/cosmetics-svgrepo-com.svg' %}" alt="Image" class="imf-fluid">
-                        </div>
-                        <h1 class="article-title">Brands:</h1>
-                    </div>
-                </div>
+        <div class="container p-4">
+            <h1>Brands A-Z</h1>
+            <hr>
+          <div class="row mt-4">
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">A</h4>
+              <ul class="list-unstyled mb-0">
+{#                  {{ for brand in list_brands }} #}
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand1 }}</a>
+                </li>
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand2 }}</a>
+                </li>
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand2 }}</a>
+                </li>
+              </ul>
             </div>
 
-{#      <div class="why-choose-section">#}
-{#			<div class="container">#}
-{#                #}
-{#				<div class="row my-5">#}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/truck.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Fast &amp; Free Shipping</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/bag.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Easy to Shop</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/support.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>24/7 Support</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/return.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Hassle Free Returns</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/truck.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Fast &amp; Free Shipping</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/bag.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Easy to Shop</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/support.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>24/7 Support</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#					<div class="col-6 col-md-6 col-lg-3 mb-4">#}
-{#						<div class="feature">#}
-{#							<div class="icon">#}
-{#								<img src="images/return.svg" alt="Image" class="imf-fluid">#}
-{#							</div>#}
-{#							<h3>Hassle Free Returns</h3>#}
-{#							<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>#}
-{#						</div>#}
-{#					</div>#}
-{##}
-{#				</div>#}
-{#			#}
-{#			</div>#}
-{#		</div>#}
-		<!-- End Why Choose Us Section -->
-
-            {# brands ordered alphabetically #}
-
-            <div class="row my-5">
-                <div class="col-6 col-md-6 col-lg-3 mb-4">
-                    <div class="feature">
-                        <h3> <a href="#"></a>brand name</h3>
-                    </div>
-                </div>
-
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">B</h4>
+{#                {% if brand|first == "B" %}#}
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
             </div>
 
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">C</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand4 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">D</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand4 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">E</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">F</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">G</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">H</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">I</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">G</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">K</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">L</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">M</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">N</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">O</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">P</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">Q</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">R</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">S</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">T</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">U</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">V</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">W</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">X</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <hr>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">Y</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h4 class="text-uppercase">Z</h4>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
+                </li>
+                <li>
+                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
         </div>
+
     </div>
 
 {% endblock %}

@@ -24,7 +24,8 @@ class RegisterUserView(generic_views.CreateView):
 class LoginUserView(auth_views.LoginView):
     template_name = "accounts/login_user.html"
     form_class = LoginUserForm
-    success_url = reverse_lazy("home page")
+
+# TODO make redirect logic !!!
 
 
 def logout_user(request):

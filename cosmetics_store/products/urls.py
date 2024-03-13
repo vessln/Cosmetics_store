@@ -1,8 +1,7 @@
 from django.urls import path, include
 
 from cosmetics_store.products.views import CreateProductView, EditProductView, DetailsProductView, DeleteProductView, \
-    ListProductsView, ListBrandsView
-
+    ListProductsView, ListBrandsView, list_brands
 
 urlpatterns = (
     path("product/create/", CreateProductView.as_view(), name="create product"),
@@ -14,6 +13,8 @@ urlpatterns = (
                 ]),
          ),
     path("products/", ListProductsView.as_view(), name="list products"),
-    path("brands/", ListBrandsView.as_view(), name="list brands"),
+    # path("brands/", ListBrandsView.as_view(), name="list brands"),
+
+    path("brands/", list_brands, name="list brands"),
 
 )
