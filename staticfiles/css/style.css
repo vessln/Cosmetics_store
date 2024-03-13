@@ -40,6 +40,10 @@ span.input-group-text {
     margin-bottom: 0;
 }
 
+.h1profile {
+  margin-top: -5rem
+}
+
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;

@@ -40,3 +40,22 @@ class LoginUserForm(auth_forms.AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs["placeholder"] = "Username"
         self.fields["password"].widget.attrs["placeholder"] = "Password"
+
+
+class UpdateUserForm(auth_forms.UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs["readonly"] = "readonly"
+        self.fields["email"].widget.attrs["readonly"] = "readonly"
+        self.fields["date_of_birth"].widget.attrs["readonly"] = "readonly"
+
+    class Meta(auth_forms.UserChangeForm.Meta):
+        model = UserModel
+        fields = ("username", "email", "date_of_birth", "first_name", "last_name", "phone",)
+
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "Enter your first name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Enter your last name"}),
+        }
+
+
