@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block main_content %}
+
+
+    <div class="untree_co-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center pt-5">
+                    <span class="display-3 thankyou-icon text-primary">
+                        <img src="{% static 'images/garbage-trash-svgrepo-com.svg' %}" alt="garbage">
+                    </span>
+
+                    <form action="{% url 'delete user' pk=request.user.pk %}" method="post">
+                        <h3 class="display-3 text-black">Delete Profile</h3>
+                        <p class="lead mb-5">Are you sure you want to delete your profile, {{ object.username }}?
+                            This action cannot be undone. Deleting your profile will permanently remove all associated
+                            data and cannot be recovered.
+                        </p>
+                        <button class="btn btn-sm btn-outline-black">Delete</button>
+                        {% csrf_token %}
+                    </form>
+                    <div class="my-5"></div>
+                    <p><a href="{% url 'home page' %}" class="btn btn-sm btn-outline-black">Back to shop</a></p>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

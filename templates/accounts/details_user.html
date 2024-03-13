@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <button type="submit" class="btn btn-primary btn-block py-2">Edit</button>
+                    <a href="{% url 'edit user' pk=request.user.pk %}" class="btn btn-primary btn-block py-2">Edit</a>
                 </div>
 
                 <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <button type="submit" class="btn btn-primary btn-block py-2">Delete</button>
+                    <a  href="{% url 'delete user' pk=request.user.pk %}" class="btn btn-primary btn-block py-2">Delete</a>
                 </div>
 
             </div>

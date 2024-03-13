@@ -44,5 +44,6 @@ class UpdateUserView(generic_views.UpdateView):
 
 
 class DeleteUserView(generic_views.DeleteView):
-    template_name = "accounts/edit_user.html"
+    model = UserModel
+    template_name = "accounts/delete_user.html"
     success_url = reverse_lazy("home page")
