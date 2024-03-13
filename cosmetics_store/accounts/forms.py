@@ -22,6 +22,18 @@ class RegisterUserForm(auth_forms.UserCreationForm):
             "gender": forms.RadioSelect(choices=UserModel.GENDER_CHOICES, attrs={"class": "form-control"}),
         }
 
+        error_messages = {
+            "email": {
+                "invalid": "Please, enter a valid email address in the format `john@email.com`",
+            },
+            "date_of_birth": {
+                "invalid": "Please, enter a valid date in the format `YYYY-MM-DD`.",
+            },
+            "gender": {
+                "required": "Please, select your gender. This field is required.",
+            },
+        }
+
 
 class LoginUserForm(auth_forms.AuthenticationForm):
     def __init__(self, *args, **kwargs):

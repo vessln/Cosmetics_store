@@ -4,6 +4,7 @@
 
 {% block main_content %}
 
+
     <div class="container">
         <div class="row py-4 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
@@ -14,14 +15,25 @@
             <div class="col-md-7 col-lg-6 ml-auto">
 
                 <form action="{% url 'register user' %}" method="post">
+
                     <div class="row">
+
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-user text-muted"></i>
                                 </span>
                             </div>
+
                         {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.username.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             {% endif %}
                         </div>
 
@@ -31,19 +43,39 @@
                                     <i class="fa fa-envelope text-muted"></i>
                                 </span>
                             </div>
+
                         {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.email.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
 
-                        <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-calendar-alt text-muted"></i>
                                 </span>
                             </div>
+
                         {{ form.date_of_birth }}
+                            {% if form.date_of_birth.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.date_of_birth.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
 
-                        <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group col-lg-12 mb-4">
 
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -51,45 +83,89 @@
                                         <i class="fa fa-venus-mars text-muted"></i>
                                     </span>
                                 </div>
-                                <select class="form-select my-form">
-                                    {% for key, value in form.fields.gender.choices %}
-                                        <option value="{{ key }}" {% if form.initial.gender == key %}selected{% endif %}>{{ value }}</option>
-                                    {% endfor %}
+
+                                <label for="{{ form.gender.id_for_label }}" class="input-group-text bg-white border-md border-left-0 text-muted">
+                                    Gender:
+                                </label>
+                                <select id="{{ form.gender.id_for_label }}" name="{{ form.gender.html_name }}" class="form-select my-form">
+                                {% for value, label in form.gender.field.choices %}
+                                    <option value="{{ value }}" {% if value == form.gender.value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
                                 </select>
+
+                                {% if form.gender.errors %}
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            {% for error in form.gender.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
                             </div>
 
                         </div>
 
-                        <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-phone-square text-muted"></i>
                                 </span>
                             </div>
+
                         {{ form.phone }}
+                            {% if form.phone.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.phone.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
 
-                        <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-lock text-muted"></i>
                                 </span>
                             </div>
-                        {{ form.password1 }}
+
+                            {{ form.password1 }}
+                            {% if form.password1.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.password1.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
 
-                        <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-lock text-muted"></i>
                                 </span>
                             </div>
-                        {{ form.password2 }}
+
+                            {{ form.password2 }}
+                            {% if form.password2.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.password2.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         </div>
 
                     </div>
 
-                    <div class="form-group col-lg-12 mx-auto mb-3">
+                    <div class="form-group col-lg-2 mx-auto mb-3">
                         <button type="submit" class="btn btn-primary btn-block py-2">Register</button>
                         {% csrf_token %}
                     </div>
@@ -111,5 +187,6 @@
     </div>
 
 {% endblock %}
+
 
 

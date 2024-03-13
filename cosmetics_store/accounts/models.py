@@ -58,7 +58,6 @@ class StoreUserModel(auth_models.AbstractUser):
         validators=[
             MinValueValidator(limit_value=date(1900, 1, 1))
         ],
-        error_messages="Please enter your date of birth: YYYY-MM-DD."
     )
 
     gender = models.CharField(

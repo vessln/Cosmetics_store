@@ -11,4 +11,4 @@ def validator_check_only_letters_dashes_in_name(value):
 def validator_check_valid_phone_number(value):
     match = re.match(r"^0\d{9}$", value)
     if not match:
-        raise ValidationError("Please, enter valid phone number e.t. 0*********!")
+        raise ValidationError("Please, enter a valid phone number in the format 0********* .")
