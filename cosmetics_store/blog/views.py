@@ -1,16 +1,22 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import generic as generic_views
 
+from cosmetics_store.blog.forms import CreateArticleForm, UpdateArticleForm
 from cosmetics_store.blog.models import ArticleModel
 
 
 class CreateArticleView(generic_views.CreateView):
-    pass
+    model = ArticleModel
+    form_class = CreateArticleForm
+    template_name = "blog/create_article.html"
 
 
 class UpdateArticleView(generic_views.UpdateView):
     model = ArticleModel
+    form_class = UpdateArticleForm
+    template_name = "blog/create_article.html"
 
 
 class DetailsArticleView(generic_views.DetailView):
@@ -21,6 +27,7 @@ class DetailsArticleView(generic_views.DetailView):
 class DeleteArticleView(generic_views.DeleteView):
     model = ArticleModel
     template_name = "blog/delete_article.html"
+    success_url = reverse_lazy("list articles")
 
 
 class ListArticlesView(generic_views.ListView):

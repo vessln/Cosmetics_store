@@ -4,6 +4,85 @@
 
 {% block main_content %}
 
-    <h1>create article</h1>
+
+    <div class="container">
+        <div class="row py-4 mt-4 align-items-center">
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-4">
+                <img width="90%" src="{% static 'images/create_article_img.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
+                <h1>Create new article</h1>
+            </div>
+
+            <div class="col-md-7 col-lg-6 ml-auto">
+
+                <form action="{% url 'create article' %}" method="post">
+
+                    <div class="row">
+
+                        <div class="input-group col-lg-12 mb-4">
+                        {{ form.title }}
+                            {% if form.title.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.username.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+{#                    <div class="form-group">#}
+{#                    <label for="exampleFormControlSelect2">Example multiple select</label>#}
+{#                    <select multiple class="form-control" id="exampleFormControlSelect2">#}
+{#                      <option>1</option>#}
+{#                      <option>2</option>#}
+{#                      <option>3</option>#}
+{#                      <option>4</option>#}
+{#                      <option>5</option>#}
+{#                    </select>#}
+{#                  </div>#}
+
+                        <div class="input-group col-lg-12 mb-4">
+                                {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.description.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                        {{ form.article_image }}
+                            {% if form.article_image.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.article_image.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-lg-2 mx-auto mb-3">
+                        <button type="submit" class="btn btn-primary btn-block py-3">Create</button>
+                        {% csrf_token %}
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}
+
+
+

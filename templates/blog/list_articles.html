@@ -15,6 +15,11 @@
                             Discover expert Tips and Trends. Elevate your routine with the best beauty practices
                             and products.
                         </p>
+{#                        {% if user.is_staff %}#}
+                            <p>
+                                <a href="{% url 'create article' %}" class="btn btn-secondary me-2">Create Article</a>
+                            </p>
+{#                        {% endif %}#}
                     </div>
                 </div>
                 <div class="col-lg-7">
