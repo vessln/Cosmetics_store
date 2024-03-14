@@ -15,14 +15,14 @@
                     <form action="{% url 'delete article' pk=object.pk %}" method="post">
                         <h3 class="display-3 text-black">Delete Article</h3>
                         <p class="lead mb-5">
-                            Are you sure you want to delete the article "<strong>{{ article.title }}</strong>"?
+                            Are you sure you want to delete the article "{{ object.title }}"?
                         </p>
                         <button class="btn btn-sm btn-outline-black">Delete</button>
                         {% csrf_token %}
                     </form>
 
                     <div class="my-5"></div>
-                    <p><a href="{% url 'list articles' %}" class="btn btn-sm btn-outline-black">Cancel</a></p>
+                    <p><a href="{% url 'details article' pk=object.pk %}" class="btn btn-sm btn-outline-black">Cancel</a></p>
                 </div>
 
                 </div>

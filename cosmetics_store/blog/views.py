@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 
 from cosmetics_store.blog.forms import CreateArticleForm, UpdateArticleForm
@@ -12,15 +12,23 @@ class CreateArticleView(generic_views.CreateView):
     form_class = CreateArticleForm
     template_name = "blog/create_article.html"
 
-    success_url = reverse_lazy("details article")
+    def form_valid(self, form):  # set currently authenticated user to `author`
+        form = super().form_valid(form)
+        self.object.author = self.request.user
+        self.object.save()
+        return form
+
+    def get_success_url(self):
+        return reverse("details article", kwargs={"pk": self.object.pk})
 
 
 class UpdateArticleView(generic_views.UpdateView):
     model = ArticleModel
     form_class = UpdateArticleForm
-    template_name = "blog/create_article.html"
+    template_name = "blog/edit_article.html"
 
-    success_url = reverse_lazy("edit article")
+    def get_success_url(self):
+        return reverse("details article", kwargs={"pk": self.object.pk})
 
 
 class DetailsArticleView(generic_views.DetailView):
@@ -59,16 +67,7 @@ class ListArticlesView(generic_views.ListView):
 
         return queryset
 
-    # def get(self, request, *args, **kwargs):
-    #     if self.searched_word:
-    #         queryset = self.get_queryset()
-    #
-    #         if queryset.exists():
-    #             pk_article = self.queryset.first().pk
-    #
-    #             return redirect(request.META.get("HTTP_REFERER") + f"#article-{pk_article}")
-    #
-    #     return super().get(request, *args, **kwargs)
+
 
 
 

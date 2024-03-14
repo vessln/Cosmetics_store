@@ -10,8 +10,11 @@
                 <div class="article-text">
                     <h2 class="article-title">{{ object.title }}</h2>
                     <p>{{ object.description }}</p>
-                     <div class="meta">
+                     <div class="meta text-muted">
                          <span>Published at: {{ object.published_at|date:"d F o" }}</span>
+                     </div>
+                     <div class="meta text-muted">
+                         <span>Author: {{ object.author.username }}</span>
                      </div>
                 </div>
             </div>

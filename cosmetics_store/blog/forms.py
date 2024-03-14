@@ -13,6 +13,7 @@ class CustomBaseArticleForm(forms.ModelForm):
 
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "Article title"}),
+            "author": forms.HiddenInput(),
 
             "description": forms.Textarea(attrs={
                 "placeholder": "Write the content here...",
@@ -41,3 +42,7 @@ class CreateArticleForm(CustomBaseArticleForm):
 
 class UpdateArticleForm(CustomBaseArticleForm):
     CustomBaseArticleForm.Meta.exclude = ("article_image", "author")
+
+    # class Meta:
+    #     model = ArticleModel
+    #     fields = ("title", "description",)
