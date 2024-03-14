@@ -10,24 +10,24 @@
                 <div class="article-text">
                     <h2 class="article-title">{{ object.title }}</h2>
                     <p>{{ object.description }}</p>
-                     <div class="meta text-muted">
-                         <span>Published at: {{ object.published_at|date:"d F o" }}</span>
-                     </div>
-                     <div class="meta text-muted">
-                         <span>Author: {{ object.author.username }}</span>
-                     </div>
+                    <div class="mt-4">
+                        <div class="meta text-muted">
+                            <p>Published at: {{ object.published_at|date:"d F o" }}</p>
+                            <p>Author: {{ object.author.username }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="article-image">
+                <div class="article-image mt-3 mb-5">
                     <img src="{{ object.article_image.url }}" class="img-fluid" alt="Article Image">
                 </div>
             </div>
         </div>
 
 {#    {% if request.user.is_staff or request.user.is_superuser %}#}
-        <p>
+        <p class="mb-5">
             <a href="{% url 'edit article' pk=object.pk %}" class="btn btn-secondary me-2">Edit article</a>
             <a href="{% url 'delete article' pk=object.pk %}" class="btn btn-white-outline">Delete article</a>
         </p>

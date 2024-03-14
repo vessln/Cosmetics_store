@@ -12,7 +12,7 @@ class CreateArticleView(generic_views.CreateView):
     form_class = CreateArticleForm
     template_name = "blog/create_article.html"
 
-    def form_valid(self, form):  # set currently authenticated user to `author`
+    def form_valid(self, form):  # set currently authenticated user who create the article to `author`
         form = super().form_valid(form)
         self.object.author = self.request.user
         self.object.save()
