@@ -12,15 +12,19 @@ class CreateArticleView(generic_views.CreateView):
     form_class = CreateArticleForm
     template_name = "blog/create_article.html"
 
+    success_url = reverse_lazy("details article")
+
 
 class UpdateArticleView(generic_views.UpdateView):
     model = ArticleModel
     form_class = UpdateArticleForm
     template_name = "blog/create_article.html"
 
+    success_url = reverse_lazy("edit article")
+
 
 class DetailsArticleView(generic_views.DetailView):
-    model = ArticleModel.objects.all()
+    model = ArticleModel
     template_name = "blog/details_article.html"
 
 

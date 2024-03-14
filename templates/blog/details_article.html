@@ -22,6 +22,14 @@
                 </div>
             </div>
         </div>
+
+{#    {% if request.user.is_staff or request.user.is_superuser %}#}
+        <p>
+            <a href="{% url 'edit article' pk=object.pk %}" class="btn btn-secondary me-2">Edit article</a>
+            <a href="{% url 'delete article' pk=object.pk %}" class="btn btn-white-outline">Delete article</a>
+        </p>
+{#    {% endif %}#}
+
     </div>
 
 {% endblock %}
