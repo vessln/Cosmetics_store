@@ -25,7 +25,7 @@ class LoginUserView(auth_views.LoginView):
     template_name = "accounts/login_user.html"
     form_class = LoginUserForm
 
-# TODO make redirect logic !!!
+# TODO - make success url logic !!!
 
 
 def logout_user(request):
@@ -52,12 +52,12 @@ class UpdateUserView(generic_views.UpdateView):
     def get_success_url(self):
         return reverse("details user", kwargs={"pk": self.object.pk})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = self.form_class(instance=self.object)
-        context["form"] = form
-
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     form = self.form_class(instance=self.object)
+    #     context["form"] = form
+    #
+    #     return context
 
 
 class DeleteUserView(generic_views.DeleteView):

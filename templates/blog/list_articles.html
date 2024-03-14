@@ -26,24 +26,28 @@
         </div>
     </div>
 
-{#    <div class="row">#}
-{#        <div class="col-lg-8">#}
-{#            <div class="subscription-form">#}
-{#                <h3 class="d-flex align-items-center"><span>Subscribe to Newsletter</span></h3>#}
-{#                <form action="#" class="row g-3">#}
-{#                    <div class="col-auto">#}
-{#                        <input type="text" class="form-control" placeholder="Search">#}
-{#                    </div>#}
-{#                    <div class="col-auto">#}
-{#                        <button class="btn btn-primary">#}
-{#                            <span class="fa fa-search"></span>#}
-{#                        </button>#}
-{#                    </div>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="subscription-form">
+                    <h3 class="d-flex align-items-center"><span>Search article</span></h3>
 
+                    <form action="{% url 'list articles' %}" class="row g-3" method="get">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" placeholder="Search"
+                                   name="searched_word" value="{{ searched_word }}">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="blog-section">
 
@@ -52,7 +56,6 @@
             <p>There is no articles.</p>
 
         {% else %}
-
 
             <div class="container">
                 <div class="row mb-5">
@@ -68,9 +71,7 @@
                 </div>
             </div>
 
-
             <div class="container">
-
                 <div class="row">
 
                 {% for article in object_list %}
@@ -95,6 +96,24 @@
             </div>
 
         {% endif %}
+
+{#        <h3 class="text-center">#}
+{#            {% if paginator.num_pages > 1 %}#}
+{#                {% if page_obj.has_previous %}#}
+{#                    <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>#}
+{#                {% else %}#}
+{#                    <a>&lt;</a>#}
+{#                {% endif %}#}
+{##}
+{#                {{ page_obj.number }} / {{ paginator.num_pages }}#}
+{##}
+{#                {% if page_obj.has_next %}#}
+{#                    <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">&gt;</a>#}
+{#                {% else %}#}
+{#                    <a>&gt;</a>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#        </h3>#}
 
     </div>
 

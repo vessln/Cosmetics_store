@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from cosmetics_store.blog.models import Article
+from cosmetics_store.blog.models import ArticleModel
 
 
-@admin.register(Article)
+@admin.register(ArticleModel)
 class ArticleAdmin(admin.ModelAdmin):
     pass
 

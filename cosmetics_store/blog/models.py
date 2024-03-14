@@ -1,8 +1,12 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 
-class Article(models.Model):
+UserModel = get_user_model()
+
+
+class ArticleModel(models.Model):
     MAX_TITLE_LENGTH = 50
     MIN_TITLE_LENGTH = 3
 
@@ -37,9 +41,10 @@ class Article(models.Model):
         auto_now_add=True,
     )
 
-    # author = models.ForeignKey(
-    #     Manager - user,
-    #     on_delete=models.CASCADE,
-    #     related_name=articles,
-    # )
+    author = models.ForeignKey(
+        UserModel,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+    )
 
