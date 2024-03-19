@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from cosmetics_store.products.models import ProductModel
+
+
+@admin.register(ProductModel)
+class ProductAdmin(admin.ModelAdmin):
+    pass

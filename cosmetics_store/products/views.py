@@ -1,39 +1,48 @@
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
+
+from cosmetics_store.products.models import ProductModel
 
 
 class CreateProductView(generic_views.CreateView):
-    pass
+    model = ProductModel
+    # form_class = CreateProductForm
+    template_name = "products/create_product.html"
+
+    def get_success_url(self):
+        return reverse("details product", kwargs={"pk": self.object.pk})
 
 
-class EditProductView(generic_views.UpdateView):
-    pass
+class UpdateProductView(generic_views.UpdateView):
+    model = ProductModel
+    # form_class = UpdateProductForm
+    template_name = "products/edit_product.html"
+
+    def get_success_url(self):
+        return reverse("details product", kwargs={"pk": self.object.pk})
 
 
 class DetailsProductView(generic_views.DetailView):
-    pass
+    model = ProductModel
+    template_name = "products/details_product.html"
 
 
 class DeleteProductView(generic_views.DeleteView):
-    pass
+    model = ProductModel
+    template_name = "products/delete_product.html"
+    success_url = reverse_lazy("list products")
 
 
 class ListProductsView(generic_views.ListView):
-    pass
+    queryset = ProductModel.objects.all()
+    template_name = "products/list_products.html"
 
 
 class ListBrandsView(generic_views.ListView):
-    pass
+    # return flat list of unique values of the brand field:
+    queryset = ProductModel.objects.order_by("brand").values_list("brand", flat=True).distinct()
+    template_name = "products/list_brands.html"
 
 
-def list_brands(request):
-    context = {
-        "brand1": "Asdfsfs",
-        "brand2": "Agolkl rhtrt",
-        "brand3": "Brascfaa as",
-        "brand4": "Csakgsd",
-        "brand5": "Dhasfija",
-    }
-
-    return render(request, "products/list_brands.html", context)
 

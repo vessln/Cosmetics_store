@@ -9,269 +9,362 @@
         <div class="container p-4">
             <h1>Brands A-Z</h1>
             <hr>
-          <div class="row mt-4">
 
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">A</h4>
-              <ul class="list-unstyled mb-0">
-{#                  {{ for brand in list_brands }} #}
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand1 }}</a>
-                </li>
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand2 }}</a>
-                </li>
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand2 }}</a>
-                </li>
-              </ul>
+            {% for brand in object_list %}
+
+                <div class="row mt-4">
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">A</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "A" %}
+                        <li>
+                            <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                        </li>
+                        {% endif %}
+                  </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">B</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "B" %}
+                        <li>
+                            <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">C</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "C" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">D</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "D" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">E</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "E" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">F</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "F" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">G</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "G" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">H</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "H" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">I</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "I" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">G</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "G" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">K</h4>
+                    <ul class="list-unstyled">
+
+                        {% if brand|first == "K" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">L</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "L" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">M</h4>
+                    <ul class="list-unstyled mb-0">
+                        {% if brand|first == "M" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">N</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "N" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">O</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "O" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">P</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "P" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">Q</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "Q" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">R</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "R" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">S</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "S" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">T</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "T" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">U</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "U" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">V</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "V" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">W</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "W" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">X</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "X" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <hr>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">Y</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "Y" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">Z</h4>
+                    <ul class="list-unstyled mb-0">
+
+                        {% if brand|first == "Z" %}
+                            <li>
+                                <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">B</h4>
-{#                {% if brand|first == "B" %}#}
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
+            {% endfor %}
 
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">C</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand4 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">D</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand4 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">E</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">F</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">G</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">H</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">I</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">G</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">K</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">L</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">M</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">N</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">O</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">P</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">Q</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">R</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">S</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">T</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">U</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">V</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">W</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">X</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <hr>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">Y</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h4 class="text-uppercase">Z</h4>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand3 }}</a>
-                </li>
-                <li>
-                  <a href="#" class="text-black"><i class="fa-regular fa-star"></i> {{ brand5 }}</a>
-                </li>
-              </ul>
-            </div>
-
-          </div>
         </div>
 
     </div>
