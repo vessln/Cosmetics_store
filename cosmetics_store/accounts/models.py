@@ -53,8 +53,8 @@ class StoreUserModel(auth_models.AbstractUser):
     )
 
     date_of_birth = models.DateField(
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         validators=[
             MinValueValidator(limit_value=date(1900, 1, 1))
         ],

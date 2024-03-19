@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.text import slugify
 
 UserModel = get_user_model()
 
@@ -61,14 +62,14 @@ class ProductModel(models.Model):
     )
 
     price = models.DecimalField(
-        max_digits=3,
+        max_digits=6,
         decimal_places=2,
         null=False,
         blank=False,
     )
 
     image_product = models.ImageField(
-        upload_to="",
+        upload_to="products_image/",
         null=False,
         blank=False,
     )
@@ -79,7 +80,12 @@ class ProductModel(models.Model):
         blank=False,
     )
 
-    slug = models.SlugField()
+    slug = models.SlugField(
+        unique=True,
+        null=True,
+        blank=True,
+        editable=False,
+    )
 
     manager = models.ForeignKey(
         UserModel,
@@ -88,8 +94,20 @@ class ProductModel(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return self.title_product
+
     # ingredients = models.ManyToManyField(
     #     Ingredient,
     #     on_delete=models.DO_NOTHING,
     # )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if not self.slug:
+            self.slug = slugify(f"{self.brand}-{self.title_product}-{self.pk}")
+            # slugify(f"nyx"-"glam palette"-"3") -> "nyx-glam-palette-3"
+
+        super().save(*args, **kwargs)
 

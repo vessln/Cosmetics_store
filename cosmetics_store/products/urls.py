@@ -5,7 +5,7 @@ from cosmetics_store.products.views import CreateProductView, UpdateProductView,
 
 urlpatterns = (
     path("product/create/", CreateProductView.as_view(), name="create product"),
-    path("product/<int:pk>/",
+    path("product/<slug:slug>/",
          include([
              path("edit/", UpdateProductView.as_view(), name="edit product"),
              path("details/", DetailsProductView.as_view(), name="details product"),
