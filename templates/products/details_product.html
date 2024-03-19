@@ -10,18 +10,20 @@
 
             <div class="col-md-6">
                 <div class="article-image mt-3 mb-5">
-                    <img src="{{ object.product_image.url }}" class="img-fluid" alt="Product image">
+                    <img src="{{ object.image_product.url }}" class="img-fluid" alt="Product image">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="article-text">
-                    <h2 class="article-title">{{ object.title }}</h2>
-                    <p>{{ object.description }}</p>
+                    <h2 class="article-title"><b>{{ object.brand }}</b> {{ object.title_product }}</h2>
+                    <h4 class="article-title text-muted">Category: {{ object.category }}</h4>
+                    <p class="mb-5">
+                        <a href="#" class="btn btn-secondary me-2">Add to cart</a>
+                    </p>
                     <div class="mt-4">
                         <div class="meta text-muted">
-                            <p>Published at: {{ object.published_at|date:"d F o" }}</p>
-                            <p>Author: {{ object.author.username }}</p>
+                            <p>Description: {{ object.description }}</p>
                         </div>
                     </div>
                 </div>
@@ -31,8 +33,8 @@
 
 {#    {% if request.user.is_staff or request.user.is_superuser %}#}
         <p class="mb-5">
-            <a href="{% url 'edit product' pk=object.pk %}" class="btn btn-secondary me-2">Edit product</a>
-            <a href="{% url 'delete product' pk=object.pk %}" class="btn btn-white-outline">Delete product</a>
+            <a href="{% url 'edit product' slug=object.slug %}" class="btn btn-secondary me-2">Edit product</a>
+            <a href="{% url 'delete product' slug=object.slug %}" class="btn btn-white-outline">Delete product</a>
         </p>
 {#    {% endif %}#}
 

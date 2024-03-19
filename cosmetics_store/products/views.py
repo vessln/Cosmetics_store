@@ -11,7 +11,7 @@ class CreateProductView(generic_views.CreateView):
     template_name = "products/create_product.html"
 
     def get_success_url(self):
-        return reverse("details product", kwargs={"pk": self.object.pk})
+        return reverse("details product", kwargs={"slug": self.object.slug})
 
 
 class UpdateProductView(generic_views.UpdateView):
@@ -26,8 +26,6 @@ class UpdateProductView(generic_views.UpdateView):
 class DetailsProductView(generic_views.DetailView):
     model = ProductModel
     template_name = "products/details_product.html"
-
-    slug_url_kwarg = "product_slug"
 
 
 class DeleteProductView(generic_views.DeleteView):
