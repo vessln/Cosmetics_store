@@ -43,7 +43,7 @@
 	        for (var i = 0; i < quantity.length; i++ ) {
 						createBindings(quantity[i]);
 	        }
-	    };
+	    }
 
 	    function increaseValue(event, quantityAmount) {
 	        value = parseInt(quantityAmount.value, 10);

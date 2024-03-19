@@ -71,3 +71,5 @@ class ListArticlesView(generic_views.ListView):
 
 
 
+
+

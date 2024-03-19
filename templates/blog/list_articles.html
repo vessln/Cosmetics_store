@@ -44,11 +44,11 @@
 
                         <form action="{% url 'list articles' %}" class="row g-3" method="get">
                             <div class="col-md-10">
-                                <input type="text" class="form-control" placeholder="Search"
+                                <input id="search-bar" type="text" class="form-control" placeholder="Search"
                                        name="searched_word" value="{{ searched_word }}">
                             </div>
                             <div class="col-auto">
-                                <button class="btn btn-primary">
+                                <button id="search-button" class="btn btn-primary">
                                     <span class="fa fa-search"></span>
                                 </button>
                             </div>
