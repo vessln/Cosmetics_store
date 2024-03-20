@@ -32,6 +32,7 @@ class CreateProductForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
 
+        # makes brand's name UPPERCASE
         instance.brand = self.cleaned_data["brand"].upper()
 
         image = self.cleaned_data["image_product"]
@@ -39,13 +40,13 @@ class CreateProductForm(forms.ModelForm):
         # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
         img.thumbnail((400, 300))
 
-        # create temporary object for the image, which is stored in memory, not on disk
+        # creates temporary object for the image, which is stored in memory, not on disk
         buffer = BytesIO()
         img.save(buffer, format="JPEG")
         # ensures that all data from the Beginning of the buffer will be ridden (pointer is moved to the beginning):
         buffer.seek(0)
 
-        # update the instance's image field with the new resized image
+        # updates the instance's image field with the new resized image
         instance.image_product = InMemoryUploadedFile(
             buffer,
             None,
@@ -61,8 +62,22 @@ class CreateProductForm(forms.ModelForm):
 
 
 class UpdateProductForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["title_product"].widget.attrs["readonly"] = "readonly"
+        self.fields["brand"].widget.attrs["readonly"] = "readonly"
+
     class Meta:
         model = ProductModel
-        fields = ("title_product", "category", "brand", "price", "image_product", "description",)
+        fields = ("title_product", "brand", "price", "description",)
+
+        error_messages = {
+            "price": {
+                "required": "Please, enter a price. This field is required.",
+            },
+            "description": {
+                "required": "Please, write a product description. This field is required.",
+            },
+        }
 
 

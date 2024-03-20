@@ -4,6 +4,76 @@
 
 {% block main_content %}
 
-<h1>edit product</h1>
+    <div class="container">
+        <div class="row py-4 mt-4 align-items-center">
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <h1 class=" pb-0">Edit product details</h1>
+                <img width="80%" src="{% static 'images/login_grl.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
+            </div>
+
+            <div class="col-md-7 col-lg-6 ml-auto">
+
+                <form action="{% url 'edit product' slug=object.slug  %}" method="post">
+
+                    <div class="row">
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.title_product }}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.brand }}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.price.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.description.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="text-center w-100">
+                        <button type="submit" class="btn btn-primary btn-block py-2">Edit</button>
+                    </div>
+
+                    {% csrf_token %}
+                </form>
+
+                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-3">
+                    <div class="border-bottom w-100 ml-5"></div>
+                </div>
+
+                <div class="text-center w-100">
+                    <a  href="{% url 'details product' slug=object.slug %}" class="btn btn-primary btn-block py-2">Go back</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}
+
+
+
