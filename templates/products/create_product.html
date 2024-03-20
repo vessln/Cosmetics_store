@@ -4,6 +4,129 @@
 
 {% block main_content %}
 
-<h1>create product</h1>
+    <div class="container">
+        <div class="row py-4 mt-4 align-items-center">
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-4">
+                <h1 class="text-center pb-3">Add new product</h1>
+                <img src="{% static 'images/product-1.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
+            </div>
+
+            <div class="col-md-7 col-lg-6 ml-auto">
+
+                <form action="{% url 'create product' %}" method="post" enctype="multipart/form-data">
+
+                    <div class="row">
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.title_product }}
+
+                            {% if form.title_product.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.title_product.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="form-group input-group">
+
+                                <label for="{{ form.category.id_for_label }}" class="input-group-text bg-white border-md border-left-0 text-muted">
+                                    Category:
+                                </label>
+                                <select id="{{ form.category.id_for_label }}" name="{{ form.category.html_name }}" class="form-select my-form">
+                                {% for value, label in form.category.field.choices %}
+                                    <option value="{{ value }}" {% if value == form.category.value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                                </select>
+
+                                {% if form.category.errors %}
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            {% for error in form.category.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.brand }}
+
+                            {% if form.brand.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.brand.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.price }}
+
+                            {% if form.price.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.price.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.image_product }}
+
+                            {% if form.image_product.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.image_product.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="input-group col-lg-12 mb-4">
+                            {{ form.description }}
+
+                            {% if form.description.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in form.description.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-lg-2 mx-auto mb-3">
+                        <button type="submit" class="btn btn-primary btn-block py-3">Add</button>
+                        {% csrf_token %}
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}
+
+
+

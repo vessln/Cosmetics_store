@@ -12,13 +12,13 @@ class CustomBaseArticleForm(forms.ModelForm):
         fields = ("title", "description", "article_image", "author")
 
         widgets = {
-            "title": forms.TextInput(attrs={"placeholder": "Article title"}),
+            "title": forms.TextInput(attrs={"placeholder": "Title of the article"}),
             "author": forms.HiddenInput(),
 
             "description": forms.Textarea(attrs={
                 "placeholder": "Write the content here...",
                 "rows": 10,
-                "cols": 60,
+                "cols": 65,
             }),
 
         }

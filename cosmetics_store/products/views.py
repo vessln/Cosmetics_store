@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
 
-from cosmetics_store.products.forms import UpdateProductForm
+from cosmetics_store.products.forms import CreateProductForm, UpdateProductForm
 from cosmetics_store.products.models import ProductModel
 
 
 class CreateProductView(generic_views.CreateView):
     model = ProductModel
-    # form_class = CreateProductForm
+    form_class = CreateProductForm
     template_name = "products/create_product.html"
 
     def get_success_url(self):

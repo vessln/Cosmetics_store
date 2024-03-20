@@ -5,13 +5,6 @@ from django.utils.text import slugify
 UserModel = get_user_model()
 
 
-PRODUCTS_CATEGORIES = [
-    ("Make-up", "Make-up"),
-    ("Skin care", "Skin care"),
-    ("Hair care", "Hair care"),
-    ("Personal Care", "Personal Care"),
-]
-
 MAX_DESCRIPTION_LENGTH = 500
 
 
@@ -38,6 +31,13 @@ MAX_DESCRIPTION_LENGTH = 500
 
 
 class ProductModel(models.Model):
+    PRODUCTS_CATEGORIES = [
+        ("Make-up", "Make-up"),
+        ("Skin care", "Skin care"),
+        ("Hair care", "Hair care"),
+        ("Personal Care", "Personal Care"),
+    ]
+
     MAX_TITLE_LENGTH = 30
     MAX_TYPE_LENGTH = 25
     MAX_BRAND_LENGTH = 20
