@@ -18,12 +18,13 @@
                 <div class="article-text">
                     <h2 class="article-title"><b>{{ object.brand }}</b> {{ object.title_product }}</h2>
                     <h4 class="article-title text-muted">Category: {{ object.category }}</h4>
+                    <h5 class="article-title">{{ object.price }}$</h5>
                     <p class="mb-5">
                         <a href="#" class="btn btn-secondary me-2">Add to cart</a>
                     </p>
                     <div class="mt-4">
-                        <div class="meta text-muted">
-                            <p>Description: {{ object.description }}</p>
+                        <div class="meta ">
+                            <p><b>Description:</b> {{ object.description }}</p>
                         </div>
                     </div>
                 </div>
