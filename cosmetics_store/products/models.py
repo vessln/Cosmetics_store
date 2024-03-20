@@ -5,9 +5,6 @@ from django.utils.text import slugify
 UserModel = get_user_model()
 
 
-MAX_DESCRIPTION_LENGTH = 500
-
-
 # class Ingredient(models.Model):
 #     MAX_NAME_LENGTH = 30
 #
@@ -17,17 +14,6 @@ MAX_DESCRIPTION_LENGTH = 500
 #     description = models.TextField(
 #         max_length=MAX_DESCRIPTION_LENGTH,
 #     )
-
-
-# class Brand(models.Model):
-#     MAX_NAME_LENGTH = 20
-#
-#     name = models.CharField(
-#         max_length=MAX_NAME_LENGTH
-#     )
-#
-#     class Meta:
-#         ordering = ("name", )  #  the default ordering of Brand's records from DB should be based on the name field
 
 
 class ProductModel(models.Model):
@@ -41,6 +27,8 @@ class ProductModel(models.Model):
     MAX_TITLE_LENGTH = 30
     MAX_TYPE_LENGTH = 25
     MAX_BRAND_LENGTH = 20
+    MAX_DESCRIPTION_LENGTH = 800
+    MAX_INGREDIENTS_LENGTH = 300
 
     title_product = models.CharField(
         max_length=MAX_TITLE_LENGTH,
@@ -79,6 +67,13 @@ class ProductModel(models.Model):
         null=False,
         blank=False,
     )
+
+# TODO: make ingredients logic
+    # ingredients = models.TextField(
+    #     max_length=MAX_INGREDIENTS_LENGTH,
+    #     null=False,
+    #     blank=False,
+    # )
 
     slug = models.SlugField(
         unique=True,

@@ -14,6 +14,12 @@ class CreateProductView(generic_views.CreateView):
     def get_success_url(self):
         return reverse("details product", kwargs={"slug": self.object.slug})
 
+    def form_valid(self, form):  # set currently authenticated user who create the product to `manager`
+        form = super().form_valid(form)
+        self.object.manager = self.request.user
+        self.object.save()
+        return form
+
 
 class UpdateProductView(generic_views.UpdateView):
     model = ProductModel

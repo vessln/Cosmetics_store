@@ -15,7 +15,7 @@ class CreateProductForm(forms.ModelForm):
             "title_product": forms.TextInput(attrs={"placeholder": "Title of the product"}),
             "category": forms.RadioSelect(choices=ProductModel.PRODUCTS_CATEGORIES, attrs={"class": "form-control"}),
             "brand": forms.TextInput(attrs={"placeholder": "Brand of the product"}),
-            "price": forms.NumberInput(attrs={"placeholder": "Price:  0.00"}),
+            "price": forms.NumberInput(attrs={"placeholder": "Price:  00.00"}),
             "description": forms.Textarea(attrs={
                 "placeholder": "Write a product description...",
                 "rows": 8,
