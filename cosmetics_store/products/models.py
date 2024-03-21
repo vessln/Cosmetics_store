@@ -102,7 +102,7 @@ class ProductModel(models.Model):
 
         if not self.slug:
             self.slug = slugify(f"{self.brand}-{self.title_product}-{self.pk}")
-            # slugify(f"nyx"-"glam palette"-"3") -> "nyx-glam-palette-3"
+            # slugify(f"nyx"-"glam palette"-"3") -> slug = "nyx-glam-palette-3"
 
         super().save(*args, **kwargs)
 
