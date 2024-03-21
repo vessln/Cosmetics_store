@@ -21,6 +21,7 @@
                     <h5 class="article-title">{{ object.price }}$</h5>
                     <p class="mb-5">
                         <a href="{% url 'add to cart' slug=object.slug %}" class="btn btn-secondary me-2">Add to cart</a>
+                        <a href="{% url 'remove from cart' slug=object.slug %}" class="btn btn-secondary me-2">Remove from cart</a>
                     </p>
                     <div class="mt-4">
                         <div class="meta">

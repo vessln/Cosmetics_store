@@ -28,22 +28,14 @@ def add_product_to_cart(request, slug):
             messages.info(request, f"{product.title_product} +1")
         else:
             uncompleted_order.products.add(order_product)
+            return redirect("details product", slug=slug)
 
     else:
         new_order = OrderModel.objects.create(user=request.user, start_date=timezone.now())
         new_order.products.add(order_product)
         messages.info(request, "The product was added to your cart!")
 
-    return redirect("details product", kwargs={slug: slug})
-
-
-# {% if messages %}
-#     <ul class="messages">
-#         {% for message in messages %}
-#             <li>{{ message }}</li>
-#         {% endfor %}
-#     </ul>
-# {% endif %}
+    return redirect("details product", slug=slug)
 
 
 def remove_product_from_cart(request, slug):
@@ -67,13 +59,13 @@ def remove_product_from_cart(request, slug):
             messages.info(request, "The product was removed from your cart!")
         else:
             messages.info(request, "This product wasn't in your cart.")
-            return redirect("details product", kwargs={slug: slug})
+            return redirect("details product", slug=slug)
 
     else:
         messages.info(request, "You dont have current order.")
-        return redirect("details product", kwargs={slug: slug})
+        return redirect("details product", slug=slug)
 
-    return redirect("details product", kwargs={slug: slug})
+    return redirect("details product", slug=slug)
 
 
 class MyCartView(generic_views.ListView):

@@ -65,6 +65,9 @@ class StoreUserModel(auth_models.AbstractUser):
         choices=GENDER_CHOICES,
     )
 
+    def __str__(self):
+        return f"User: {self.username}"
+
 
     # @property
     # def current_age(self):

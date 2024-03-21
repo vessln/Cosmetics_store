@@ -26,7 +26,7 @@ class OrderProductModel(models.Model):  # acts like a link between products and 
     )
 
     def __str__(self):
-        return f"product: {self.product.title_product} , count: {self.quantity}"
+        return f"product: {self.product.title_product}, count: {self.quantity}"
 
 
 class OrderModel(models.Model):  # this order store all the products that user was added in shopping card
@@ -46,3 +46,4 @@ class OrderModel(models.Model):  # this order store all the products that user w
     is_ordered = models.BooleanField(
         default=False,
     )
+

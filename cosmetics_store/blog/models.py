@@ -48,3 +48,6 @@ class ArticleModel(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return f"Article: {self.title}"
+

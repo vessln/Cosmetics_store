@@ -77,6 +77,16 @@
     </nav>
     <!-- End Header/Navigation -->
 
+    <div class="mt-1">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert" id="alert-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
 
     {% block main_content %}
     {% endblock %}
@@ -122,13 +132,11 @@
                     </div>
                 </div>
 
-
                 <div class="border-top copyright">
                     <div class="row pt-4">
                         <div class="col-lg-6">
                             <p class="mb-2 text-center text-lg-start">Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script>.
-                                All Rights Reserved. &mdash; By Veselina Serafimova
+                                2024 All Rights Reserved. &mdash; By Veselina Serafimova
                             </p>
                         </div>
 
@@ -143,7 +151,7 @@
                 </div>
 
             </div>
-        </div>
+            </div>
         </div>
     </footer>
 
@@ -154,6 +162,7 @@
     <script src="{% static 'js/custom.js' %}"></script>
     <script src="{% static 'js/custom-form.js' %}"></script>
     <script src="{% static 'js/scrolling-search.js' %}"></script>
+    <script src="{% static 'js/remove_alert_messages.js' %}"></script>
 
 </body>
 
