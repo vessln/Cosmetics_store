@@ -1,3 +1,4 @@
+from django.contrib.messages import views as messages_views
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
@@ -35,8 +36,9 @@ class DetailsProductView(generic_views.DetailView):
     template_name = "products/details_product.html"
 
 
-class DeleteProductView(generic_views.DeleteView):
+class DeleteProductView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ProductModel
+    success_message = "The product was successfully deleted!"
     template_name = "products/delete_product.html"
     success_url = reverse_lazy("list products")
 

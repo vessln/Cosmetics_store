@@ -1,3 +1,4 @@
+from django.contrib.messages import views as messages_views
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
@@ -36,8 +37,9 @@ class DetailsArticleView(generic_views.DetailView):
     template_name = "blog/details_article.html"
 
 
-class DeleteArticleView(generic_views.DeleteView):
+class DeleteArticleView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ArticleModel
+    success_message = "The article was successfully deleted!"
     template_name = "blog/delete_article.html"
     success_url = reverse_lazy("list articles")
 

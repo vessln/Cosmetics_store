@@ -28,6 +28,7 @@ def add_product_to_cart(request, slug):
             messages.info(request, f"{product.title_product} +1")
         else:
             uncompleted_order.products.add(order_product)
+            messages.info(request, "The product was added to your cart!")
             return redirect("details product", slug=slug)
 
     else:
@@ -58,7 +59,7 @@ def remove_product_from_cart(request, slug):
             order_product.delete()
             messages.info(request, "The product was removed from your cart!")
         else:
-            messages.info(request, "This product wasn't in your cart.")
+            messages.info(request, "This product is not in your cart.")
             return redirect("details product", slug=slug)
 
     else:

@@ -1,5 +1,6 @@
 from django.contrib.auth import views as auth_views, get_user_model, login, logout
 from django.contrib.auth import mixins as auth_mixins
+from django.contrib.messages import views as messages_views
 from django.shortcuts import redirect
 from django.views import generic as generic_views
 from django.urls import reverse_lazy, reverse
@@ -60,7 +61,8 @@ class UpdateUserView(generic_views.UpdateView):
     #     return context
 
 
-class DeleteUserView(generic_views.DeleteView):
+class DeleteUserView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = UserModel
+    success_message = "The profile was successfully deleted!"
     template_name = "accounts/delete_user.html"
     success_url = reverse_lazy("home page")
