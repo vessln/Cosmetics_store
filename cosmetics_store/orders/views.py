@@ -37,3 +37,45 @@ def add_product_to_cart(request, slug):
     return redirect("details product", kwargs={slug: slug})
 
 
+# {% if messages %}
+#     <ul class="messages">
+#         {% for message in messages %}
+#             <li>{{ message }}</li>
+#         {% endfor %}
+#     </ul>
+# {% endif %}
+
+
+def remove_product_from_cart(request, slug):
+    # get a product:
+    product = get_object_or_404(ProductModel, slug=slug)
+    # check if user has an order:
+    uncompleted_order_qs = OrderModel.objects.filter(user=request.user, is_ordered=False)
+
+    # if user have an order:
+    if uncompleted_order_qs.exists():
+        # get the order:
+        uncompleted_order = uncompleted_order_qs[0]
+        # if the ordered product is in the order:
+        if uncompleted_order.products.filter(product__slug=product.slug).exists():
+            order_product = OrderProductModel.objects.filter(
+                product=product,
+                user=request.user,
+                is_ordered=False
+            )[0]
+            order_product.delete()
+            messages.info(request, "The product was removed from your cart!")
+        else:
+            messages.info(request, "This product wasn't in your cart.")
+            return redirect("details product", kwargs={slug: slug})
+
+    else:
+        messages.info(request, "You dont have current order.")
+        return redirect("details product", kwargs={slug: slug})
+
+    return redirect("details product", kwargs={slug: slug})
+
+
+class MyCartView(generic_views.ListView):
+    pass
+
