@@ -65,6 +65,10 @@ class StoreUserModel(auth_models.AbstractUser):
         choices=GENDER_CHOICES,
     )
 
+    # total_orders = models.PositiveIntegerField(
+    #     default=0,
+    # )
+
     def __str__(self):
         return f"User: {self.username}"
 

@@ -39,6 +39,7 @@ def add_product_to_cart(request, slug):
     return redirect("details product", slug=slug)
 
 
+@login_required
 def remove_product_from_cart(request, slug):
     # get a product:
     product = get_object_or_404(ProductModel, slug=slug)
@@ -70,5 +71,10 @@ def remove_product_from_cart(request, slug):
 
 
 class MyCartView(generic_views.ListView):
-    pass
+    model = OrderModel
+    template_name = "orders/my_cart.html"
+
+    def get_queryset(self):
+        # Retrieve orders for the current user
+        return OrderModel.objects.filter(user=self.request.user, is_ordered=False)
 
