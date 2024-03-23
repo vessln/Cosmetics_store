@@ -702,7 +702,7 @@ img {
 .service {
   line-height: 1.5; }
   .service .service-icon {
-    border-radius: 10px;
+    border-radius: 30px;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 50px;
     flex: 0 0 50px;

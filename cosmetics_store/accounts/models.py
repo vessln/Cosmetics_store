@@ -65,19 +65,31 @@ class StoreUserModel(auth_models.AbstractUser):
         choices=GENDER_CHOICES,
     )
 
-    # total_orders = models.PositiveIntegerField(
-    #     default=0,
-    # )
-
     def __str__(self):
         return f"User: {self.username}"
 
 
-    # @property
-    # def current_age(self):
-    #     today = date.today()
-    #     age = relativedelta(today, self.date_of_birth).years
-    #     return age
+class CheckoutShippingAddressModel(models.Model):
+    MAX_COUNTRY_LENGTH = 30
+    MAX_CITY_LENGTH = 50
+    MAX_STREET_LENGTH = 30
+
+    user = models.ForeignKey(
+        StoreUserModel,
+        on_delete=models.CASCADE,
+    )
+    country = models.CharField(
+        max_length=MAX_COUNTRY_LENGTH
+    )
+    city = models.CharField(
+        max_length=MAX_CITY_LENGTH
+    )
+    street_address = models.CharField(
+        max_length=MAX_STREET_LENGTH
+    )
+
+    def __str__(self):
+        return self.user.username
 
 
 
