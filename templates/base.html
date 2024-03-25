@@ -65,6 +65,12 @@
                         {% if user.is_authenticated %}
                             <a class="dropdown-item" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
                             <a class="dropdown-item" href="{% url 'logout user' %}">Logout</a>
+
+                            {% if user.is_staff or user.is_superuser %}
+                                <a class="dropdown-item" href="{% url 'create article' %}">Create article</a>
+                                <a class="dropdown-item" href="{% url 'create product' %}">Create product</a>
+                            {% endif %}
+
                         {% else %}
                             <a class="dropdown-item" href="{% url 'register user' %}">Register</a>
                             <a class="dropdown-item" href="{% url 'login user' %}">Login</a>
@@ -83,7 +89,7 @@
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-danger" role="alert" id="alert-message">
-                    {{ message }}
+                    <span>{{ message }}</span>
                 </div>
             {% endfor %}
         {% endif %}

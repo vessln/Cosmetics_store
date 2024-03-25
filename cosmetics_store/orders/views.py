@@ -18,17 +18,17 @@ def add_product_to_cart(request, slug):
     order_product, created = OrderProductModel.objects.get_or_create(
         product=product,
         user=request.user,
-        is_ordered=False
+        is_ordered=False,
     )
 
     uncompleted_order_qs = OrderModel.objects.filter(user=request.user, is_ordered=False)
 
-    if uncompleted_order_qs.exists():  # make with try / except ?
-        uncompleted_order = uncompleted_order_qs[0]  # .first() ?
+    if uncompleted_order_qs.exists():
+        uncompleted_order = uncompleted_order_qs.first()
         if uncompleted_order.products.filter(product__slug=product.slug).exists():
             order_product.quantity += 1
             order_product.save()
-            messages.info(request, f"{product.title_product} +1")
+            messages.info(request, f"{product.title_product} + 1")
         else:
             uncompleted_order.products.add(order_product)
             messages.info(request, "The product was added to your cart!")
@@ -52,19 +52,19 @@ def remove_product_from_cart(request, slug):
     # if user have an order:
     if uncompleted_order_qs.exists():
         # get the order:
-        uncompleted_order = uncompleted_order_qs[0]
+        uncompleted_order = uncompleted_order_qs.first()
         # if the ordered product is in the order:
         if uncompleted_order.products.filter(product__slug=product.slug).exists():
             order_product = OrderProductModel.objects.filter(
                 product=product,
                 user=request.user,
                 is_ordered=False
-            )[0]
+            ).first()
             order_product.delete()
             messages.info(request, "The product was removed from your cart.")
-        else:
-            messages.info(request, "This product is not in your cart.")
-            return redirect("details product", slug=slug)
+        # else:
+        #     messages.info(request, "This product is not in your cart.")
+        #     return redirect("details product", slug=slug)
 
         # if order is empty -> remove it:
         if uncompleted_order.products.count() == 0:
@@ -74,7 +74,36 @@ def remove_product_from_cart(request, slug):
     #     messages.info(request, "You dont have current order.")
     #     return redirect("details product", slug=slug)
 
-    return redirect("details product", slug=slug)
+    return redirect("my cart", slug=slug)
+
+
+@login_required
+def decrease_product_quantity_in_cart(request, slug):
+    product = get_object_or_404(ProductModel, slug=slug)
+    uncompleted_order_qs = OrderModel.objects.filter(user=request.user, is_ordered=False)
+
+    if uncompleted_order_qs.exists():
+        uncompleted_order = uncompleted_order_qs.first()
+        if uncompleted_order.products.filter(product__slug=product.slug).exists():
+            order_product = OrderProductModel.objects.filter(
+                product=product,
+                user=request.user,
+                is_ordered=False,
+            ).first()
+
+            if order_product.quantity > 1:
+                order_product.quantity -= 1
+                order_product.save()
+                messages.info(request, f"The quantity of the product `{order_product.product.title_product}` was decreased.")
+            else:
+                order_product.delete()
+                messages.info(request, "The product was removed from your cart.")
+
+                # if order is empty -> remove it:
+                if uncompleted_order.products.count() == 0:
+                    uncompleted_order.delete()
+
+            return redirect("my cart")
 
 
 class MyCartView(auth_mixins.LoginRequiredMixin, View):

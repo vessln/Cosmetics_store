@@ -65,7 +65,7 @@
                               <td><h6>{{ order_product.product.price }} $</h6></td>
                               <td>
                                   <div class="input-group-append">
-                                      <a href="{% url 'remove from cart' slug=order_product.product.slug %}"><i class="fa-solid fa-minus"></i></a>
+                                      <a href="{% url 'decrease product quantity' slug=order_product.product.slug %}"><i class="fa-solid fa-minus"></i></a>
                                       <b><span class="px-2">{{ order_product.quantity }}</span></b>
                                       <a href="{% url 'add to cart' slug=order_product.product.slug %}"><i class="fa-solid fa-plus"></i></a>
                                   </div>

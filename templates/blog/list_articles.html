@@ -4,33 +4,6 @@
 
 {% block main_content %}
 
-
-    <div class="hero">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5">
-                    <div class="intro-excerpt">
-                        <h1>Blog</h1>
-                        <p class="mb-4">
-                            Discover expert Tips and Trends. Elevate your routine with the best beauty practices
-                            and products.
-                        </p>
-{#                        {% if user.is_staff %}#}
-                            <p>
-                                <a href="{% url 'create article' %}" class="btn btn-secondary me-2">Create Article</a>
-                            </p>
-{#                        {% endif %}#}
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img width=77% src="{% static 'images/blog.png' %}" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="blog-section">
 
         <div class="container">

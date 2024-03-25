@@ -9,8 +9,7 @@ register = template.Library()
 def count_products(user):
     order_qs = OrderModel.objects.filter(user=user, is_ordered=False)
     if order_qs.exists():
-        total_quantity = 0
-        total_quantity += sum([order_product.quantity for order_product in order_qs[0].products.all()])
+        total_quantity = sum([order_product.quantity for order_product in order_qs.first().products.all()])
         return total_quantity
 
     return ""
