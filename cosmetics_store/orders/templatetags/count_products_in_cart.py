@@ -7,10 +7,13 @@ register = template.Library()
 
 @register.filter
 def count_products(user):
-    if user.is_authenticated:
-        order_qs = OrderModel.objects.filter(user=user, is_ordered=False)
-        if order_qs.exists():
-            return order_qs[0].products.count()
+    order_qs = OrderModel.objects.filter(user=user, is_ordered=False)
+    if order_qs.exists():
+        total_quantity = 0
+        total_quantity += sum([order_product.quantity for order_product in order_qs[0].products.all()])
+        return total_quantity
 
-    return 0
+    return ""
+
+
 

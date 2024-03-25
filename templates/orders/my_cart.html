@@ -11,7 +11,7 @@
               <div class="row mb-5 py-3 justify-content-center">
                 <div class="col-lg-3">
                   <div  class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
-                    <div class="service-icon color-1 mb-2 text-black"><i class="fas fa-check-circle"></i></div>
+                    <div class="service-icon color-1 mb-2"><i class="fas fa-check-circle"></i></div>
                     <div class="service-contents">
                       <h5><b>Order details</b></h5>
                     </div>
@@ -19,8 +19,8 @@
                 </div>
 
                 <div class="col-lg-3">
-                  <div  class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
-                    <div class="service-icon color-2 mb-2"><i class="fas fa-check-circle"></i></div>
+                  <div class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
+                    <div class="service-icon color-2 mb-2" style="background-color: #fad9da"><i class="fas fa-check-circle"></i></div>
                     <div class="service-contents">
                       <h5 class="text-muted"><b>Shipping</b></h5>
                     </div>
@@ -29,7 +29,7 @@
 
                 <div class="col-lg-3">
                   <div  class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
-                    <div class="service-icon color-1 mb-2"><i class="fas fa-check-circle"></i></div>
+                    <div class="service-icon color-1 mb-2" style="background-color: #fad9da"><i class="fas fa-check-circle"></i></div>
                     <div class="service-contents">
                       <h5 class="text-muted"><b>Payment</b></h5>
                     </div>
@@ -37,7 +37,9 @@
                 </div>
               </div>
 
-
+          {% if not object.products.all %}
+          <h3>Your cart is empty!</h3>
+          {% else %}
 {#            <form class="col-md-12" method="post">#}
               <div class="site-blocks-table">
                 <table class="table">
@@ -91,33 +93,34 @@
 {#            </form>#}
           </div>
 
-        <div class="col">
-          <div class="row justify-content-end">
-            <div class="col-md-4">
-              <div class="row">
-                <div class="col-md-12 text-right border-bottom mb-5">
-                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                </div>
-              </div>
-              <div class="row mb-5">
-                <div class="col-md-6">
-                  <span class="text-black">Total</span>
-                </div>
-                <div class="col-md-6 text-right">
-                  <strong class="text-black">{{ object.get_total_sum }} $</strong>
-                </div>
-              </div>
+            <div class="col">
+              <div class="row justify-content-end">
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-12 text-right border-bottom mb-5">
+                      <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                    <div class="col-lg-8">
+                      <span class="text-black">Total</span>
+                    </div>
+                    <div class="col-md-auto text-right">
+                      <h5><strong class="text-black">{{ object.get_total_sum }}$</strong></h5>
+                    </div>
+                  </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <button class="btn btn-black btn-block" href="#">Proceed To Checkout</button>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-black btn-block" href="#">Proceed To Checkout&nbsp; <i class="fa-solid fa-angle-right"></i></button>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-
             </div>
-          </div>
-        </div>
 
+          {% endif %}
       </div>
     </div>
 

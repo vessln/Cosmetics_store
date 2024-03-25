@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import mixins as auth_mixins
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -60,29 +61,32 @@ def remove_product_from_cart(request, slug):
                 is_ordered=False
             )[0]
             order_product.delete()
-            messages.info(request, "The product was removed from your cart!")
+            messages.info(request, "The product was removed from your cart.")
         else:
             messages.info(request, "This product is not in your cart.")
             return redirect("details product", slug=slug)
 
-    else:
-        messages.info(request, "You dont have current order.")
-        return redirect("details product", slug=slug)
+        # if order is empty -> remove it:
+        if uncompleted_order.products.count() == 0:
+            uncompleted_order.delete()
+
+    # else:
+    #     messages.info(request, "You dont have current order.")
+    #     return redirect("details product", slug=slug)
 
     return redirect("details product", slug=slug)
 
 
 class MyCartView(auth_mixins.LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
-        context = {
-            "object": current_order
-        }
+        try:
+            current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
+            context = {"object": current_order}
+            return render(self.request, "orders/my_cart.html", context)
 
-        return render(self.request, "orders/my_cart.html", context)
+        except ObjectDoesNotExist:
+            return render(self.request, "orders/my_cart.html")
 
-    # form_class = ProductQuantityForm
-    # success_url = reverse_lazy('my_cart')
 
     # def form_valid(self, form):
     #     # Get the product slug from the form or any other source
