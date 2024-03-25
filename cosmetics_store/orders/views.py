@@ -7,9 +7,14 @@ from django.utils import timezone
 
 from django.views import generic as generic_views, View
 
-from cosmetics_store.orders.forms import ProductQuantityForm
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
+
+
+# if order is empty -> remove it:
+def remove_empty_order(current_order):
+    if current_order.products.count() == 0:
+        current_order.delete()
 
 
 @login_required
@@ -28,16 +33,20 @@ def add_product_to_cart(request, slug):
         if uncompleted_order.products.filter(product__slug=product.slug).exists():
             order_product.quantity += 1
             order_product.save()
-            messages.info(request, f"{product.title_product} + 1")
+
+            if request.path.endswith("/add-to-cart/"):
+                messages.info(request, f"{order_product.product.title_product} was added to your cart.")
+                return redirect(request.META.get('HTTP_REFERER'))
+
         else:
             uncompleted_order.products.add(order_product)
-            messages.info(request, "The product was added to your cart!")
             return redirect("details product", slug=slug)
 
     else:
         new_order = OrderModel.objects.create(user=request.user, start_date=timezone.now())
         new_order.products.add(order_product)
-        messages.info(request, "The product was added to your cart!")
+
+    messages.info(request, f"{order_product.product.title_product} was added to your cart.")
 
     return redirect("details product", slug=slug)
 
@@ -66,13 +75,7 @@ def remove_product_from_cart(request, slug):
         #     messages.info(request, "This product is not in your cart.")
         #     return redirect("details product", slug=slug)
 
-        # if order is empty -> remove it:
-        if uncompleted_order.products.count() == 0:
-            uncompleted_order.delete()
-
-    # else:
-    #     messages.info(request, "You dont have current order.")
-    #     return redirect("details product", slug=slug)
+        remove_empty_order(uncompleted_order)
 
     return redirect("my cart", slug=slug)
 
@@ -94,14 +97,12 @@ def decrease_product_quantity_in_cart(request, slug):
             if order_product.quantity > 1:
                 order_product.quantity -= 1
                 order_product.save()
-                messages.info(request, f"The quantity of the product `{order_product.product.title_product}` was decreased.")
+                messages.info(request, f"The quantity of '{order_product.product.title_product}' was decreased.")
             else:
                 order_product.delete()
                 messages.info(request, "The product was removed from your cart.")
 
-                # if order is empty -> remove it:
-                if uncompleted_order.products.count() == 0:
-                    uncompleted_order.delete()
+                remove_empty_order(uncompleted_order)
 
             return redirect("my cart")
 
