@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{%  load static %}
+{% load static %}
 
 {% block main_content %}
 
@@ -13,7 +13,7 @@
                   <div  class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
                     <div class="service-icon color-1 mb-2 text-black"><i class="fas fa-check-circle"></i></div>
                     <div class="service-contents">
-                      <h5><b>Cart details</b></h5>
+                      <h5><b>Order details</b></h5>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
               </div>
 
 
-            <form class="col-md-12" method="post">
+{#            <form class="col-md-12" method="post">#}
               <div class="site-blocks-table">
                 <table class="table">
                   <thead>
@@ -52,97 +52,73 @@
                     </tr>
                   </thead>
 
-{#                    {{ for product in object }}#}
-
                   <tbody>
+                  {% for order_product in object.products.all %}
                     <tr>
                       <td class="product-thumbnail">
-                        <img src="images/product-1.png" alt="Image" class="img-fluid">
+                        <img width="40%" src="{{ order_product.product.image_product.url }}" alt="Image" class="img-fluid">
                       </td>
                       <td class="product-name">
-                        <h2 class="h5 text-black">Product 1</h2>
+                        <h3 class="h5 text-black">{{ order_product.product.title_product}}</h3>
                       </td>
-                      <td>$49.00</td>
+                      <td>{{ order_product.product.price }}$</td>
                       <td>
                         <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+
                           <div class="input-group-prepend">
-                            <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                            <button class="btn btn-outline-black decrease" type="button"
+                                    href="{% url 'remove from cart' slug=order_product.product.slug %}">&minus;
+                            </button>
                           </div>
-                          <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                          <input type="text" class="form-control text-center quantity-amount" value="{{ order_product.quantity }}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                           <div class="input-group-append">
-                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                            <button class="btn btn-outline-black increase" type="button"
+                                    href="{% url 'add to cart' slug=order_product.product.slug %}">&plus;</button>
                           </div>
                         </div>
 
                       </td>
-                      <td>$49.00</td>
-                      <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                      <td>{{ order_product.get_product_sum }}$</td>
+                      <td><a class="btn btn-black btn-sm" href="{% url 'remove from cart' slug=order_product.product.slug %}">
+                          <i class="fa-solid fa-xmark"></i></a>
+                      </td>
                     </tr>
-                  {#                    {{ endfor }}#}
-
+                   {% endfor %}
                   </tbody>
+
                 </table>
               </div>
-            </form>
+{#            </form>#}
           </div>
 
-          <div class="row">
-            <div class="col-md-6">
+        <div class="col">
+          <div class="row justify-content-end">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12 text-right border-bottom mb-5">
+                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                </div>
+              </div>
               <div class="row mb-5">
                 <div class="col-md-6">
-                  <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                  <span class="text-black">Total</span>
+                </div>
+                <div class="col-md-6 text-right">
+                  <strong class="text-black">{{ object.get_total_sum }} $</strong>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <label class="text-black h4" for="coupon">Coupon</label>
-                  <p>Enter your coupon code if you have one.</p>
-                </div>
-                <div class="col-md-8 mb-3 mb-md-0">
-                  <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-black">Apply Coupon</button>
+                  <button class="btn btn-black btn-block" href="#">Proceed To Checkout</button>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-6 pl-5">
-              <div class="row justify-content-end">
-                <div class="col-md-7">
-                  <div class="row">
-                    <div class="col-md-12 text-right border-bottom mb-5">
-                      <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <span class="text-black">Subtotal</span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <strong class="text-black">$230.00</strong>
-                    </div>
-                  </div>
-                  <div class="row mb-5">
-                    <div class="col-md-6">
-                      <span class="text-black">Total with shipping</span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <strong class="text-black">$240.00</strong>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <button class="btn btn-black btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
+
       </div>
+    </div>
 
 {% endblock %}

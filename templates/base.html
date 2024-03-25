@@ -1,12 +1,6 @@
 {% load static %}
 
-<!-- /*
-* Bootstrap 5
-* Template Name: Furni
-* Template Author: Untree.co
-* Template URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
+{% load count_products_in_cart %}
 
 <!doctype html>
 <html lang="en">
@@ -55,7 +49,9 @@
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                    <li><a class="nav-link" href="{% url 'my cart' %}"><img src="{% static 'images/cart.svg' %}" alt="cart"></a></li>
+                    <li><a style="color: white" class="nav-link" href="{% url 'my cart' %}">
+                        <i class="fas fa-shopping-cart"></i> {{ request.user|count_products }} </a>
+                    </li>
                 </ul>
 
                 <div class="dropdown">

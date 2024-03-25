@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import mixins as auth_mixins
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from django.views import generic as generic_views
+from django.views import generic as generic_views, View
 
+from cosmetics_store.orders.forms import ProductQuantityForm
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
 
@@ -70,11 +72,37 @@ def remove_product_from_cart(request, slug):
     return redirect("details product", slug=slug)
 
 
-class MyCartView(generic_views.ListView):
-    model = OrderModel
-    template_name = "orders/my_cart.html"
+class MyCartView(auth_mixins.LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
+        context = {
+            "object": current_order
+        }
 
-    def get_queryset(self):
-        # Retrieve orders for the current user
-        return OrderModel.objects.filter(user=self.request.user, is_ordered=False)
+        return render(self.request, "orders/my_cart.html", context)
+
+    # form_class = ProductQuantityForm
+    # success_url = reverse_lazy('my_cart')
+
+    # def form_valid(self, form):
+    #     # Get the product slug from the form or any other source
+    #     product_slug = form.cleaned_data["product_slug"]
+    #
+    #     # Retrieve the product object based on the slug
+    #     product = get_object_or_404(ProductModel, slug=product_slug)
+    #
+    #     # Retrieve the OrderProductModel instance based on the current user and product
+    #     order_product, created = OrderProductModel.objects.get_or_create(
+    #         user=self.request.user,
+    #         product=product,
+    #         defaults={'quantity': 0}  # Set a default value for quantity if the instance is newly created
+    #     )
+    #
+    #     # Update the quantity of the OrderProductModel instance
+    #     order_product.quantity += form.cleaned_data["quantity"]
+    #
+    #     # Save the updated OrderProductModel instance
+    #     order_product.save()
+
+
 
