@@ -4,8 +4,29 @@
 
 {% block main_content %}
 
-		<div class="untree_co-section">
+		<div class="untree_co-section before-footer-section">
 		    <div class="container">
+
+                <div class="row mb-3">
+                    <div class="row mb-5 py-3 justify-content-center">
+                        <div class="col-lg-3">
+                            <div  class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
+                                <div class="service-icon mb-2" style="background-color: #fad9da"><i class="fas fa-check-circle"></i></div>
+                                <div class="service-contents">
+                                    <h6 class="text-muted"><b>Order details</b></h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="service no-shadow align-items-center link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
+                                <div class="service-icon mb-2"><i class="fas fa-check-circle"></i></div>
+                                <div class="service-contents">
+                                    <h6><b>Shipping details</b></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 		      <div class="row">
 		        <div class="col-md-6 mb-5 mb-md-0">
@@ -74,12 +95,13 @@
                                 <div>{{ form.street_address }}</div>
                             </div>
 
-                            <div class="col-md-12 mb-3"><b>Order Notes: </b>
+                            <div class="col-md-12 mb-4"><b>Order Notes: </b>
                                 <div>{{ form.notes }}</div>
                             </div>
 
                             {% csrf_token %}
-                            <button type="submit">Place order</button>
+
+                            <button class="btn btn-black btn-block me-4 btn-lg" onclick="window.location='thankyou.html'">Place Order</button>
                         </form>
 
                       </div>
@@ -98,27 +120,26 @@
 		                    <th>Total</th>
 		                  </thead>
 		                  <tbody>
+
+                          {% for order_product in current_order.products.all %}
 		                    <tr>
-		                      <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-		                      <td>$250.00</td>
+		                      <td>{{ order_product.product.title_product }} <strong class="mx-2">x</strong> {{ order_product.quantity }}</td>
+		                      <td>${{ order_product.product.price }}</td>
 		                    </tr>
-		                    <tr>
-		                      <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-		                      <td>$100.00</td>
-		                    </tr>
-		                    <tr>
-		                      <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-		                      <td class="text-black">$350.00</td>
-		                    </tr>
+                          {% endfor %}
 		                    <tr>
 		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-		                      <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+		                      <td class="text-black font-weight-bold"><strong>${{ current_order.get_total_sum }}</strong></td>
 		                    </tr>
 		                  </tbody>
 		                </table>
 
 		                <div class="border p-3 mb-3">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct bank transfer</a></h3>
+		                  <h3 class="h6 mb-0">
+                              <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button"
+                                 aria-expanded="false" aria-controls="collapsebank">Direct bank transfer&nbsp;
+                              <i class="fa-solid fa-angle-down"></i></a>
+                          </h3>
 		                  <div class="collapse" id="collapsebank">
 		                    <div class="py-2">
 		                      <p class="mb-0">
@@ -130,7 +151,11 @@
 		                </div>
 
 		                <div class="border p-3 mb-3">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cash on delivery</a></h3>
+		                  <h3 class="h6 mb-0">
+                              <a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button"
+                                 aria-expanded="false" aria-controls="collapsecheque">Cash on delivery&nbsp;
+                                  <i class="fa-solid fa-angle-down"></i></a>
+                          </h3>
 		                  <div class="collapse" id="collapsecheque">
 		                    <div class="py-2">
 		                      <p class="mb-0">
@@ -142,10 +167,6 @@
 		                  </div>
 		                </div>
 
-		                <div class="form-group">
-		                  <button class="btn btn-secondary me-4 btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-		                </div>
-
 		              </div>
 		            </div>
 		          </div>
@@ -155,6 +176,7 @@
 		      <!-- </form> -->
 		    </div>
 		  </div>
+        </div>
 
 
 {% endblock %}

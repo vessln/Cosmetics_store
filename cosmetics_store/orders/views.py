@@ -15,7 +15,7 @@ from cosmetics_store.products.models import ProductModel
 
 # if order is empty -> remove it:
 def remove_empty_order(current_order):
-    if current_order.products.count() == 0:
+    if current_order.products.count() < 1:
         current_order.delete()
 
 
@@ -73,12 +73,11 @@ def remove_product_from_cart(request, slug):
             ).first()
             order_product.delete()
             messages.info(request, "The product was removed from your cart.")
+            remove_empty_order(uncompleted_order)
             return redirect("my cart")
         # else:
         #     messages.info(request, "This product is not in your cart.")
         #     return redirect("details product", slug=slug)
-
-        remove_empty_order(uncompleted_order)
 
     return redirect("my cart")
 
@@ -152,6 +151,18 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
 
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # get products and their quantity, which are in uncompleted user's order:
+        current_order = OrderModel.objects.filter(user=self.request.user, is_ordered=False
+                                                  ).prefetch_related("products__product").first()
+
+        if current_order:
+            context["current_order"] = current_order
+        return context
+
+
+# TODO: make custom mixin: users who havent active orders cannot access chechout page!
 
 
 
