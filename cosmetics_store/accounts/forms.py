@@ -64,6 +64,13 @@ class UpdateUserForm(auth_forms.UserChangeForm):
 class UserShippingAddressForm(forms.ModelForm):
     class Meta:
         model = UserShippingAddressModel
-        fields = ("country", "city", "street_address", )
+        fields = ("country", "city", "street_address", "notes", )
+
+        widgets = {
+            "country": forms.TextInput(attrs={"placeholder": "Country", "class": "form-control", }),
+            "city": forms.TextInput(attrs={"placeholder": "City", "class": "form-control", }),
+            "street_address": forms.TextInput(attrs={"placeholder": "Street, №", "class": "form-control",}),
+            "notes": forms.TextInput(attrs={"placeholder": "Write your notes...", "class": "form-control",}),
+        }
 
 

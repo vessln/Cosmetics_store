@@ -73,19 +73,32 @@ class UserShippingAddressModel(models.Model):
     MAX_COUNTRY_LENGTH = 30
     MAX_CITY_LENGTH = 50
     MAX_STREET_LENGTH = 30
+    MAX_NOTES_LENGTH = 100
 
     user = models.ForeignKey(
         StoreUserModel,
         on_delete=models.CASCADE,
     )
     country = models.CharField(
-        max_length=MAX_COUNTRY_LENGTH
+        max_length=MAX_COUNTRY_LENGTH,
+        null=False,
+        blank=False,
     )
     city = models.CharField(
-        max_length=MAX_CITY_LENGTH
+        max_length=MAX_CITY_LENGTH,
+        null=False,
+        blank=False,
     )
     street_address = models.CharField(
-        max_length=MAX_STREET_LENGTH
+        max_length=MAX_STREET_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    notes = models.TextField(
+        max_length=MAX_NOTES_LENGTH,
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

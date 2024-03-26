@@ -64,12 +64,6 @@ class OrderModel(models.Model):  # this order store all the products that user w
 
         return total_sum
 
-    # def get_quantity_of_all_products_in_order(self):
-    #     total_quantity = 0
-    #     total_quantity += sum([order_product.quantity for order_product in self.products.all()])
-    #
-    #     return total_quantity
-
 
 
 
