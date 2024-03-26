@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 
+from cosmetics_store.accounts.models import UserShippingAddressModel
+
 UserModel = get_user_model()
 
 
@@ -57,5 +59,11 @@ class UpdateUserForm(auth_forms.UserChangeForm):
             "first_name": forms.TextInput(attrs={"placeholder": "Enter your first name"}),
             "last_name": forms.TextInput(attrs={"placeholder": "Enter your last name"}),
         }
+
+
+class UserShippingAddressForm(forms.ModelForm):
+    class Meta:
+        model = UserShippingAddressModel
+        fields = ("country", "city", "street_address", )
 
 

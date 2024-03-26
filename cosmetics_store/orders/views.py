@@ -3,10 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import mixins as auth_mixins
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 from django.views import generic as generic_views, View
 
+from cosmetics_store.accounts.forms import UserShippingAddressForm
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
 
@@ -118,7 +120,6 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             return render(self.request, "orders/my_cart.html")
 
-
     # def form_valid(self, form):
     #     # Get the product slug from the form or any other source
     #     product_slug = form.cleaned_data["product_slug"]
@@ -138,6 +139,18 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
     #
     #     # Save the updated OrderProductModel instance
     #     order_product.save()
+
+
+class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
+    form_class = UserShippingAddressForm
+    template_name = "orders/checkout.html"
+    success_url = reverse_lazy("success_url_name")
+
+        # def form_valid(self, form):
+        #     form.instance.user = self.request.user
+        #     form.save()
+        #     return super().form_valid(form)
+
 
 
 

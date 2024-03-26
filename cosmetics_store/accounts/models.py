@@ -69,7 +69,7 @@ class StoreUserModel(auth_models.AbstractUser):
         return f"User: {self.username}"
 
 
-class CheckoutShippingAddressModel(models.Model):
+class UserShippingAddressModel(models.Model):
     MAX_COUNTRY_LENGTH = 30
     MAX_CITY_LENGTH = 50
     MAX_STREET_LENGTH = 30

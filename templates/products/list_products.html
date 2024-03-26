@@ -9,14 +9,14 @@
         <div class="container">
             <div class="row">
                 <div class="row mb-5">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <h1 class="section-title">Products</h1>
                     </div>
 
-                    <div class="col-md-6 text-start text-md-end">
+                    <div class="col-md-5 text-start text-md-end">
 
-                        <form action="{% url 'list products' %}" class="row g-3" method="get">
-                            <div class="col-md-10">
+                        <form action="{% url 'list products' %}" class="row g-2" method="get">
+                            <div class="col-9">
                                 <input id="search-bar" type="text" class="form-control" placeholder="Search"
                                        name="searched_word" value="{{ searched_word }}">
                             </div>
@@ -50,11 +50,9 @@
 
                                 {% for product in object_list %}
 
-                                <div class="col-12 col-md-4 col-lg-3 mb-5">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-5">
                                     <a class="product-item" href="{% url 'details product' slug=product.slug %}">
-                                        <div class="img-wrapper">
-                                            <img src="{{ product.image_product.url }}" class="img-fluid product-thumbnail" alt="product">
-                                        </div>
+                                        <img src="{{ product.image_product.url }}" class="img-fluid product-thumbnail" alt="product">
                                         <h3 class="product-title">{{ product.title_product }}</h3>
                                         <h4 class="product-title text-muted">{{ product.brand }}</h4>
                                         <strong class="product-price">{{ product.price }}$</strong>

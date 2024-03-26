@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from cosmetics_store.accounts.models import CheckoutShippingAddressModel
+from cosmetics_store.accounts.models import UserShippingAddressModel
 from cosmetics_store.products.models import ProductModel
 
 UserModel = get_user_model()
@@ -40,7 +40,7 @@ class OrderModel(models.Model):  # this order store all the products that user w
     )
 
     shipping_address = models.ForeignKey(
-        CheckoutShippingAddressModel,
+        UserShippingAddressModel,
         on_delete=models.CASCADE,
         null=True,
         blank=True,
