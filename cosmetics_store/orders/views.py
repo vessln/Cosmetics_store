@@ -71,13 +71,14 @@ def remove_product_from_cart(request, slug):
             ).first()
             order_product.delete()
             messages.info(request, "The product was removed from your cart.")
+            return redirect("my cart")
         # else:
         #     messages.info(request, "This product is not in your cart.")
         #     return redirect("details product", slug=slug)
 
         remove_empty_order(uncompleted_order)
 
-    return redirect("my cart", slug=slug)
+    return redirect("my cart")
 
 
 @login_required

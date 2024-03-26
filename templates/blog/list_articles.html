@@ -9,14 +9,14 @@
         <div class="container">
             <div class="row">
                 <div class="row mb-5">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <h1 class="section-title">Latest articles</h1>
                     </div>
 
-                    <div class="col-md-6 text-start text-md-end">
+                    <div class="col-md-5 text-start text-md-end">
 
-                        <form action="{% url 'list articles' %}" class="row g-3" method="get">
-                            <div class="col-md-10">
+                        <form action="{% url 'list articles' %}" class="row g-2" method="get">
+                            <div class="col-9">
                                 <input id="search-bar" type="text" class="form-control" placeholder="Search"
                                        name="searched_word" value="{{ searched_word }}">
                             </div>
@@ -33,7 +33,6 @@
             </div>
         </div>
 
-
         <div class="container">
             <div class="row">
 
@@ -48,7 +47,9 @@
                     <div class="col-12 col-sm-6 col-md-4 mb-5">
                         <div class="post-entry">
                             <a href="{% url 'details article' pk=article.pk %}" class="post-thumbnail">
-                                <img width="300px" src="{{ article.article_image.url }}" alt="article image" class="img-fluid">
+                                <div class="img-wrapper-article">
+                                    <img src="{{ article.article_image.url }}" alt="article image" class="img-fluid">
+                                </div>
                             </a>
                             <div class="post-content-entry">
                                 <h3><a href="{% url 'details article' pk=article.pk %}">{{ article.title }}</a></h3>

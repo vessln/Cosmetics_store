@@ -34,6 +34,8 @@ class CreateProductForm(forms.ModelForm):
 
         # makes brand's name UPPERCASE
         instance.brand = self.cleaned_data["brand"].upper()
+        # makes title_product's name UPPERCASE
+        instance.title_product = self.cleaned_data["title_product"].upper()
 
         image = self.cleaned_data["image_product"]
         img = Image.open(image)

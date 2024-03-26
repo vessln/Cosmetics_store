@@ -30,6 +30,37 @@
         </div>
     </div>
 
+
+{#    <style>#}
+{#        /* Add custom styles here */#}
+{#        .image-container {#}
+{#            width: 200px; /* Set the desired width for the image container */#}
+{#            height: 150px; /* Set the desired height for the image container */#}
+{#            background-color: transparent; /* Set white background color */#}
+{#            background-size: contain;#}
+{#            background-repeat: no-repeat;#}
+{#            background-position: center center;#}
+{#            overflow: hidden;#}
+{#        }#}
+{##}
+{#        .image-container img {#}
+{#            width: 100%; /* Ensure image fills the container horizontally */#}
+{#            height: auto; /* Allow browser to calculate height based on original aspect ratio */#}
+{#            display: none; /* Hide the actual image */#}
+{#        }#}
+{#    </style>#}
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="image-container" style="background-image: url({% static 'images/girl_homepage.png' %});"></div>
+                </div>
+                <!-- Add more image containers within columns as needed -->
+            </div>
+        </div>
+
+
+
 		<!-- Start Product Section -->
     <div class="product-section">
         <div class="container">

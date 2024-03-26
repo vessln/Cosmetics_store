@@ -62,7 +62,7 @@
                                   <img width="40%" src="{{ order_product.product.image_product.url }}" alt="Image" class="img-fluid">
                               </td>
                               <td><h6>{{ order_product.product.title_product}}</h6></td>
-                              <td><h6>{{ order_product.product.price }} $</h6></td>
+                              <td><h6>${{ order_product.product.price }}</h6></td>
                               <td>
                                   <div class="input-group-append">
                                       <a href="{% url 'decrease product quantity' slug=order_product.product.slug %}"><i class="fa-solid fa-minus"></i></a>
@@ -70,7 +70,7 @@
                                       <a href="{% url 'add to cart' slug=order_product.product.slug %}"><i class="fa-solid fa-plus"></i></a>
                                   </div>
                               </td>
-                              <td><h6>{{ order_product.get_product_sum }} $</h6></td>
+                              <td><h6>${{ order_product.get_product_sum }}</h6></td>
                               <td>
                                   <a class="btn btn-black btn-lg" href="{% url 'remove from cart' slug=order_product.product.slug %}">
                                   <i class="fa-solid fa-xmark"></i></a>
@@ -96,7 +96,7 @@
                                   <span class="text-black h5">Total</span>
                               </div>
                               <div class="col-md-auto text-right">
-                                  <h5><strong class="text-black">{{ object.get_total_sum }} $</strong></h5>
+                                  <h5><strong class="text-black">${{ object.get_total_sum }}</strong></h5>
                               </div>
                           </div>
                           <div class="row">
