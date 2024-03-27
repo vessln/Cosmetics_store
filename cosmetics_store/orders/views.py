@@ -145,9 +145,14 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
     template_name = "orders/checkout.html"
     success_url = reverse_lazy("success_url_name")
 
-    def form_valid(self, form):  # set current user who create the order and fill out the shipping details to `user`
+    def form_valid(self, form):
+        # set current user who create the order to `user` in UserShippingAddressModel
         form.instance.user = self.request.user
         form.save()
+        # set current order as completed:
+        current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
+        current_order.is_ordered = True
+        current_order.save()
 
         return super().form_valid(form)
 
