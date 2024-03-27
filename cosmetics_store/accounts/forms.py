@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 
 class RegisterUserForm(FormControlFieldsMixin, auth_forms.UserCreationForm):
-    form_control_fields = ("username", )
+    # form_control_fields = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -25,7 +25,7 @@ class RegisterUserForm(FormControlFieldsMixin, auth_forms.UserCreationForm):
             "email": forms.EmailInput(attrs={"placeholder": "Email address"}),
             "date_of_birth": forms.DateInput(attrs={"placeholder": "Birth date: YYYY-MM-DD"}),
             "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
-            "gender": forms.RadioSelect(choices=UserModel.GENDER_CHOICES, attrs={"class": "form-control"}),
+            "gender": forms.RadioSelect(choices=UserModel.GENDER_CHOICES, ),
         }
 
         error_messages = {

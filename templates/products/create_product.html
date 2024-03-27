@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row py-4 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-4">
-                <h1 class="text-center pb-3">Add new product</h1>
+                <h1 class="text-center pb-3">Add New Product</h1>
                 <img src="{% static 'images/product-1.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
             </div>
 
@@ -19,7 +19,7 @@
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.title_product }}
-
+                        </div>
                             {% if form.title_product.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -29,7 +29,6 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             <div class="form-group input-group">
@@ -42,6 +41,7 @@
                                     <option value="{{ value }}" {% if value == form.category.value %}selected{% endif %}>{{ label }}</option>
                                 {% endfor %}
                                 </select>
+                            </div>
 
                                 {% if form.category.errors %}
                                     <div class="alert alert-danger">
@@ -52,13 +52,11 @@
                                         </ul>
                                     </div>
                                 {% endif %}
-
-                            </div>
                         </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.brand }}
-
+                        </div>
                             {% if form.brand.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -68,11 +66,10 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.price }}
-
+                        </div>
                             {% if form.price.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -82,11 +79,10 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.image_product }}
-
+                        </div>
                             {% if form.image_product.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -96,11 +92,10 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.description }}
-
+                        </div>
                             {% if form.description.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -110,15 +105,14 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                     </div>
 
                     <div class="form-group col-lg-3 mx-auto mb-3">
                         <button type="submit" class="btn btn-primary btn-block py-3">Add Product</button>
-                        {% csrf_token %}
                     </div>
 
+                    {% csrf_token %}
                 </form>
 
             </div>

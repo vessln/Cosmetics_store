@@ -32,12 +32,10 @@ span.input-group-text {
     width: 8.2rem;
 }
 
-.alert {
-  margin: 1rem 1rem 0 1rem;
-}
-
 .alert-danger ul {
-    margin-bottom: 0;
+  list-style: none !important;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
 }
 
 .h1profile {

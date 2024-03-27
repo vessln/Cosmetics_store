@@ -2,11 +2,18 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 from cosmetics_store.blog.models import ArticleModel
+from cosmetics_store.core.mixins import FormControlFieldsMixin
 
 UserModel = get_user_model()
 
 
-class CustomBaseArticleForm(forms.ModelForm):
+class CustomBaseArticleForm(FormControlFieldsMixin, forms.ModelForm):
+    form_control_fields = ("username", )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._make_fields_form_control()
+
     class Meta:
         model = ArticleModel
         fields = ("title", "description", "article_image", "author")
