@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row py-4 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                <h1 class=" pb-0">Edit product details</h1>
+                <h1 class=" pb-0">Edit Product Details</h1>
                 <img width="80%" src="{{ object.image_product.url }}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
             </div>
 
@@ -27,6 +27,7 @@
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.price }}
+                        </div>
                             {% if form.price.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -36,10 +37,10 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             {{ form.description }}
+                        </div>
                             {% if form.description.errors %}
                                 <div class="alert alert-danger">
                                     <ul>
@@ -49,12 +50,11 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                        </div>
 
                     </div>
 
                     <div class="text-center w-100">
-                        <button type="submit" class="btn btn-primary btn-block py-2">Edit product</button>
+                        <button type="submit" class="btn btn-primary btn-block py-2">Edit Product</button>
                     </div>
 
                     {% csrf_token %}

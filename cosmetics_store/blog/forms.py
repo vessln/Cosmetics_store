@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 
 class CustomBaseArticleForm(FormControlFieldsMixin, forms.ModelForm):
-    form_control_fields = ("username", )
+    fields_requiring_form_control = ("title", "description",)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -76,12 +76,13 @@ span.input-group-text {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	.navbar-brand {
-		font-size: 32px;
+		font-size: 30px;
 		font-weight: 600;
 		> span {
 			opacity: .8;
 		}
 	}
+
 	.navbar-toggler {
 		border-color: transparent;
 		&:active, &:focus {

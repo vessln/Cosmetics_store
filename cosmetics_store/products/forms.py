@@ -3,17 +3,24 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
+from cosmetics_store.core.mixins import FormControlFieldsMixin
 from cosmetics_store.products.models import ProductModel
 
 
-class CreateProductForm(forms.ModelForm):
+class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
+    fields_requiring_form_control = ("title_product", "category", "brand", "price", "description", )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._make_fields_form_control()
+
     class Meta:
         model = ProductModel
         fields = ("title_product", "category", "brand", "price", "image_product", "description", )
 
         widgets = {
             "title_product": forms.TextInput(attrs={"placeholder": "Title of the product"}),
-            "category": forms.RadioSelect(choices=ProductModel.PRODUCTS_CATEGORIES, attrs={"class": "form-control"}),
+            "category": forms.RadioSelect(choices=ProductModel.PRODUCTS_CATEGORIES, ),
             "brand": forms.TextInput(attrs={"placeholder": "Brand of the product"}),
             "price": forms.NumberInput(attrs={"placeholder": "Price:  00.00"}),
             "description": forms.Textarea(attrs={
@@ -40,7 +47,7 @@ class CreateProductForm(forms.ModelForm):
         image = self.cleaned_data["image_product"]
         img = Image.open(image)
         # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
-        img.thumbnail((400, 300))
+        img.thumbnail((300, 300))
 
         # creates temporary object for the image, which is stored in memory, not on disk
         buffer = BytesIO()
@@ -63,9 +70,13 @@ class CreateProductForm(forms.ModelForm):
         return instance
 
 
-class UpdateProductForm(forms.ModelForm):
+class UpdateProductForm(FormControlFieldsMixin, forms.ModelForm):
+    fields_requiring_form_control = "__all__"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._make_fields_form_control()
+
         self.fields["title_product"].widget.attrs["readonly"] = "readonly"
         self.fields["brand"].widget.attrs["readonly"] = "readonly"
 

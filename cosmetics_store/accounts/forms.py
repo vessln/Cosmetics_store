@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 
 class RegisterUserForm(FormControlFieldsMixin, auth_forms.UserCreationForm):
-    # form_control_fields = "__all__"
+    fields_requiring_form_control = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -42,7 +42,7 @@ class RegisterUserForm(FormControlFieldsMixin, auth_forms.UserCreationForm):
 
 
 class LoginUserForm(FormControlFieldsMixin, auth_forms.AuthenticationForm):
-    form_control_fields = "__all__"
+    fields_requiring_form_control = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -53,7 +53,7 @@ class LoginUserForm(FormControlFieldsMixin, auth_forms.AuthenticationForm):
 
 
 class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
-    form_control_fields = "__all__"
+    fields_requiring_form_control = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -74,7 +74,7 @@ class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
 
 
 class UserShippingAddressForm(FormControlFieldsMixin, forms.ModelForm):
-    form_control_fields = "__all__"
+    fields_requiring_form_control = "__all__"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

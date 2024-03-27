@@ -86,7 +86,7 @@
                                 <label for="{{ form.gender.id_for_label }}" class="input-group-text bg-white border-md border-left-0 text-muted">
                                     Gender:
                                 </label>
-                                <select id="{{ form.gender.id_for_label }}" name="{{ form.gender.html_name }}" class="form-select my-form">
+                                <select id="{{ form.gender.id_for_label }}" name="{{ form.gender.html_name }}" class="form-select form-control">
                                 {% for value, label in form.gender.field.choices %}
                                     <option value="{{ value }}" {% if value == form.gender.value %}selected{% endif %}>{{ label }}</option>
                                 {% endfor %}
