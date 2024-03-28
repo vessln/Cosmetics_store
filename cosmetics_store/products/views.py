@@ -1,4 +1,5 @@
 from django.contrib.messages import views as messages_views
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
@@ -39,6 +40,7 @@ class DetailsProductView(generic_views.DetailView):
     template_name = "products/details_product.html"
 
 
+
 class DeleteProductView(ProductRestrictionMixin, messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ProductModel
     template_name = "products/delete_product.html"
@@ -49,6 +51,26 @@ class DeleteProductView(ProductRestrictionMixin, messages_views.SuccessMessageMi
 class ListProductsView(generic_views.ListView):
     queryset = ProductModel.objects.all()
     template_name = "products/list_products.html"
+
+    @property
+    def searched_word(self):
+        return self.request.GET.get("searched_word", None)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["searched_word"] = self.searched_word or ""
+
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.searched_word
+        if search:
+            queryset = ProductModel.objects.filter(
+                Q(title_product__icontains=search) | Q(description__icontains=search)
+            )
+
+        return queryset
 
 
 class ListBrandsView(generic_views.ListView):
