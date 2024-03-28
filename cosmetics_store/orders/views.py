@@ -2,8 +2,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import mixins as auth_mixins
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 
 from django.views import generic as generic_views, View
@@ -18,7 +19,7 @@ def remove_empty_order(current_order):
     if current_order.products.count() < 1:
         current_order.delete()
 
-
+from django.db.models import F
 
 
 @login_required
@@ -40,7 +41,7 @@ def add_product_to_cart(request, slug):
 
             if request.path.endswith("/add-to-cart/"):
                 messages.info(request, f"{order_product.product.title_product} was added to your cart.")
-                return redirect(request.META.get('HTTP_REFERER'))
+                return redirect(request.META.get("HTTP_REFERER"))
 
         else:
             uncompleted_order.products.add(order_product)
@@ -115,6 +116,8 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
+            current_order.total_sum = sum([order_product.get_product_sum() for order_product in current_order.products.all()])
+            current_order.save()
             context = {"object": current_order}
             return render(self.request, "orders/my_cart.html", context)
 
@@ -134,7 +137,7 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
     #         product=product,
     #         defaults={'quantity': 0}  # Set a default value for quantity if the instance is newly created
     #     )
-    #
+    #accounts_storeusermodel_user_permissions
     #     # Update the quantity of the OrderProductModel instance
     #     order_product.quantity += form.cleaned_data["quantity"]
     #
@@ -145,16 +148,20 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
 class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
     form_class = UserShippingAddressForm
     template_name = "orders/checkout.html"
-    success_url = reverse_lazy("success_url_name")
+
+    def get_success_url(self):
+        return reverse("thank you")
 
     def form_valid(self, form):
         # set current user who create the order to `user` in UserShippingAddressModel
         form.instance.user = self.request.user
-        form.save()
-        # set current order as completed:
-        current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
-        current_order.is_ordered = True
-        current_order.save()
+        shipping_address = form.save()
+
+        current_order = OrderModel.objects.filter(user=self.request.user, is_ordered=False).first()
+        if current_order:
+            current_order.shipping_address = shipping_address
+            current_order.is_ordered = True
+            current_order.save()
 
         return super().form_valid(form)
 
@@ -168,8 +175,26 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
             context["current_order"] = current_order
         return context
 
+    # def post(self, request, *args, **kwargs):
+    #     shipping_address_form = UserShippingAddressForm(request.POST, user_profile=request.user.profile)
+    #     # set current order as completed:
+    #     current_order = OrderModel.objects.filter(user=self.request.user, is_ordered=False)[0]
+    #     current_order.shipping_address = shipping_address_form
+    #     current_order.is_ordered = True
+    #     current_order.save()
+
 
 # TODO: make custom mixin: users who haven't active orders cannot access checkout page!
 
+def successful_purchase(request):
+    #TODO: Send an email
 
+    last_completed_order = OrderModel.objects.get(user=request.user, is_ordered=False)
+
+    # increase sales_count of the associated product by the quantity ordered:
+    for order_product in last_completed_order.products.all():
+        order_product.product.sales_count = F("sales_count") + order_product.quantity
+        order_product.product.save()
+
+    return redirect("home page")
 

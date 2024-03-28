@@ -56,13 +56,13 @@ class OrderModel(models.Model):  # this order store all the products that user w
 
     is_ordered = models.BooleanField(
         default=False,
+        null=False,
+        blank=False,
     )
 
-    def get_total_sum(self):
-        total_sum = 0
-        total_sum += sum([order_product.get_product_sum() for order_product in self.products.all()])
-
-        return total_sum
+    total_sum = models.FloatField(
+        default=0.0,
+    )
 
 
 
