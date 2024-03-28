@@ -1,17 +1,20 @@
+from django.contrib import messages
 from django.contrib.auth import views as auth_views, get_user_model, login, logout
 from django.contrib.auth import mixins as auth_mixins
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages import views as messages_views
 from django.shortcuts import redirect
 from django.views import generic as generic_views
 from django.urls import reverse_lazy, reverse
 
 from cosmetics_store.accounts.forms import LoginUserForm, RegisterUserForm, UpdateUserForm
+from cosmetics_store.core.user_mixins import RestrictedUserAccessMixin, RegistrationAccessMixin
 from cosmetics_store.orders.models import OrderModel
 
 UserModel = get_user_model()
 
 
-class RegisterUserView(generic_views.CreateView):
+class RegisterUserView(RegistrationAccessMixin, generic_views.CreateView):
     template_name = "accounts/register_user.html"
     form_class = RegisterUserForm
     success_url = reverse_lazy("home page")
@@ -30,12 +33,14 @@ class LoginUserView(auth_views.LoginView):
 # TODO - make success url logic !!!
 
 
+@login_required
 def logout_user(request):
     logout(request)
+    messages.info(request, "You were successfully logged out.")
     return redirect("home page")
 
 
-class DetailsUserView(auth_mixins.LoginRequiredMixin, generic_views.DetailView):
+class DetailsUserView(RestrictedUserAccessMixin, auth_mixins.LoginRequiredMixin, generic_views.DetailView):
     model = UserModel
     template_name = "accounts/details_user.html"
 
@@ -46,9 +51,10 @@ class DetailsUserView(auth_mixins.LoginRequiredMixin, generic_views.DetailView):
         return context
 
 
-class UpdateUserView(generic_views.UpdateView):
+class UpdateUserView(RestrictedUserAccessMixin, messages_views.SuccessMessageMixin, generic_views.UpdateView):
     model = UserModel
     form_class = UpdateUserForm
+    success_message = "The profile was successfully edited!"
     template_name = "accounts/edit_user.html"
 
     def get_success_url(self):
@@ -62,7 +68,7 @@ class UpdateUserView(generic_views.UpdateView):
     #     return context
 
 
-class DeleteUserView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
+class DeleteUserView(RestrictedUserAccessMixin, messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = UserModel
     success_message = "The profile was successfully deleted!"
     template_name = "accounts/delete_user.html"

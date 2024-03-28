@@ -4,10 +4,11 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
 
 from cosmetics_store.products.forms import CreateProductForm, UpdateProductForm
+from cosmetics_store.products.mixin import ProductRestrictionMixin
 from cosmetics_store.products.models import ProductModel
 
 
-class CreateProductView(generic_views.CreateView):
+class CreateProductView(ProductRestrictionMixin, generic_views.CreateView):
     model = ProductModel
     form_class = CreateProductForm
     success_message = "The product was successfully added!"
@@ -23,9 +24,10 @@ class CreateProductView(generic_views.CreateView):
         return form
 
 
-class UpdateProductView(generic_views.UpdateView):
+class UpdateProductView(ProductRestrictionMixin, generic_views.UpdateView):
     model = ProductModel
     form_class = UpdateProductForm
+    success_message = "The product was successfully edited!"
     template_name = "products/edit_product.html"
 
     def get_success_url(self):
@@ -37,7 +39,7 @@ class DetailsProductView(generic_views.DetailView):
     template_name = "products/details_product.html"
 
 
-class DeleteProductView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
+class DeleteProductView(ProductRestrictionMixin, messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ProductModel
     template_name = "products/delete_product.html"
     success_message = "The product was successfully deleted!"

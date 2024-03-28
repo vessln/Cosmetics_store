@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
+from django.db.models import F
 
 from django.views import generic as generic_views, View
 
@@ -18,8 +19,6 @@ from cosmetics_store.products.models import ProductModel
 def remove_empty_order(current_order):
     if current_order.products.count() < 1:
         current_order.delete()
-
-from django.db.models import F
 
 
 @login_required

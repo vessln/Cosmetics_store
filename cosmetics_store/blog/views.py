@@ -1,14 +1,16 @@
 from django.contrib.messages import views as messages_views
+from django.contrib.auth import mixins as auth_mixins
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 
 from cosmetics_store.blog.forms import CreateArticleForm, UpdateArticleForm
+from cosmetics_store.blog.mixins import OrderRestrictionMixin
 from cosmetics_store.blog.models import ArticleModel
 
 
-class CreateArticleView(generic_views.CreateView):
+class CreateArticleView(OrderRestrictionMixin, generic_views.CreateView):
     model = ArticleModel
     form_class = CreateArticleForm
     template_name = "blog/create_article.html"
@@ -23,7 +25,7 @@ class CreateArticleView(generic_views.CreateView):
         return reverse("details article", kwargs={"pk": self.object.pk})
 
 
-class UpdateArticleView(generic_views.UpdateView):
+class UpdateArticleView(OrderRestrictionMixin, generic_views.UpdateView):
     model = ArticleModel
     form_class = UpdateArticleForm
     template_name = "blog/edit_article.html"
@@ -37,7 +39,7 @@ class DetailsArticleView(generic_views.DetailView):
     template_name = "blog/details_article.html"
 
 
-class DeleteArticleView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
+class DeleteArticleView(OrderRestrictionMixin, messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ArticleModel
     success_message = "The article was successfully deleted!"
     template_name = "blog/delete_article.html"
