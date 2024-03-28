@@ -161,6 +161,11 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
         if current_order:
             current_order.shipping_address = shipping_address
             current_order.is_ordered = True
+
+            for order_product in current_order.products.all():
+                order_product.product.sales_count = F("sales_count") + order_product.quantity
+                order_product.product.save()
+
             current_order.save()
 
         return super().form_valid(form)
@@ -175,26 +180,12 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
             context["current_order"] = current_order
         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     shipping_address_form = UserShippingAddressForm(request.POST, user_profile=request.user.profile)
-    #     # set current order as completed:
-    #     current_order = OrderModel.objects.filter(user=self.request.user, is_ordered=False)[0]
-    #     current_order.shipping_address = shipping_address_form
-    #     current_order.is_ordered = True
-    #     current_order.save()
-
 
 # TODO: make custom mixin: users who haven't active orders cannot access checkout page!
 
-def successful_purchase(request):
+
+class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView):
+    template_name = "orders/thank_you.html"
+
     #TODO: Send an email
-
-    last_completed_order = OrderModel.objects.get(user=request.user, is_ordered=False)
-
-    # increase sales_count of the associated product by the quantity ordered:
-    for order_product in last_completed_order.products.all():
-        order_product.product.sales_count = F("sales_count") + order_product.quantity
-        order_product.product.save()
-
-    return redirect("home page")
 

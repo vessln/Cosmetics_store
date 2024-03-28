@@ -6,6 +6,7 @@ from django.views import generic as generic_views
 from django.urls import reverse_lazy, reverse
 
 from cosmetics_store.accounts.forms import LoginUserForm, RegisterUserForm, UpdateUserForm
+from cosmetics_store.orders.models import OrderModel
 
 UserModel = get_user_model()
 
@@ -38,11 +39,11 @@ class DetailsUserView(auth_mixins.LoginRequiredMixin, generic_views.DetailView):
     model = UserModel
     template_name = "accounts/details_user.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["orders_count"] = self.UserModel.orders.count()
-    #
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["successful_orders"] = OrderModel.objects.filter(user=self.request.user, is_ordered=True).count()
+
+        return context
 
 
 class UpdateUserView(generic_views.UpdateView):
