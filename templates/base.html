@@ -26,7 +26,7 @@
 
 <body>
 
-    <!-- Start Header/Navigation -->
+    <!-- Start Navigation -->
     <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
 
         <div class="container">
@@ -67,8 +67,8 @@
                             <a class="dropdown-item" href="{% url 'logout user' %}">Logout</a>
 
                             {% if user.is_staff or user.is_superuser %}
+                                <a class="dropdown-item" href="{% url 'create product' %}">Add product</a>
                                 <a class="dropdown-item" href="{% url 'create article' %}">Create article</a>
-                                <a class="dropdown-item" href="{% url 'create product' %}">Create product</a>
                             {% endif %}
 
                         {% else %}
@@ -83,7 +83,7 @@
         </div>
 
     </nav>
-    <!-- End Header/Navigation -->
+    <!-- End Navigation -->
 
     <div class="mt-0">
         {% if messages %}
@@ -100,7 +100,7 @@
     {% endblock %}
 
 
-    <!-- Start Footer Section -->
+    <!-- Start Footer -->
     <footer class="footer-section">
         <div class="container relative">
 
@@ -163,13 +163,12 @@
         </div>
     </footer>
 
-    <!-- End Footer Section -->
+    <!-- End Footer -->
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/tiny-slider.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
     <script src="{% static 'js/custom-form.js' %}"></script>
-    <script src="{% static 'js/scrolling-search.js' %}"></script>
     <script src="{% static 'js/remove_alert_messages.js' %}"></script>
 
 </body>

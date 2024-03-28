@@ -19,6 +19,8 @@ def remove_empty_order(current_order):
         current_order.delete()
 
 
+
+
 @login_required
 def add_product_to_cart(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
@@ -167,7 +169,7 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
         return context
 
 
-# TODO: make custom mixin: users who havent active orders cannot access chechout page!
+# TODO: make custom mixin: users who haven't active orders cannot access checkout page!
 
 
 

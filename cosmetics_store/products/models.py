@@ -68,12 +68,20 @@ class ProductModel(models.Model):
         blank=False,
     )
 
-# TODO: make ingredients logic
-    # ingredients = models.TextField(
-    #     max_length=MAX_INGREDIENTS_LENGTH,
-    #     null=False,
-    #     blank=False,
-    # )
+    created_at = models.DateField(
+        auto_now_add=True,
+        null=True,
+        blank=True,
+    )
+
+    sales_count = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True,
+    )
+
+# TODO:
+    #  make ingredients text field
 
     slug = models.SlugField(
         unique=True,

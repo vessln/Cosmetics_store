@@ -10,6 +10,7 @@ from cosmetics_store.products.models import ProductModel
 class CreateProductView(generic_views.CreateView):
     model = ProductModel
     form_class = CreateProductForm
+    success_message = "The product was successfully added!"
     template_name = "products/create_product.html"
 
     def get_success_url(self):
@@ -38,8 +39,8 @@ class DetailsProductView(generic_views.DetailView):
 
 class DeleteProductView(messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ProductModel
-    success_message = "The product was successfully deleted!"
     template_name = "products/delete_product.html"
+    success_message = "The product was successfully deleted!"
     success_url = reverse_lazy("list products")
 
 

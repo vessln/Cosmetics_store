@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="hero-img-wrap">
-                        <img width=90% src="{% static 'images/girl_homepage.png' %}" alt="cosmetics" class="img-fluid">
+                        <img width=85% src="{% static 'images/girl_homepage.png' %}" alt="cosmetics" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -31,33 +31,13 @@
     </div>
 
 
-{#    <style>#}
-{#        /* Add custom styles here */#}
-{#        .image-container {#}
-{#            width: 200px; /* Set the desired width for the image container */#}
-{#            height: 150px; /* Set the desired height for the image container */#}
-{#            background-color: transparent; /* Set white background color */#}
-{#            background-size: contain;#}
-{#            background-repeat: no-repeat;#}
-{#            background-position: center center;#}
-{#            overflow: hidden;#}
-{#        }#}
-{##}
-{#        .image-container img {#}
-{#            width: 100%; /* Ensure image fills the container horizontally */#}
-{#            height: auto; /* Allow browser to calculate height based on original aspect ratio */#}
-{#            display: none; /* Hide the actual image */#}
-{#        }#}
-{#    </style>#}
-
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="image-container" style="background-image: url({% static 'images/girl_homepage.png' %});"></div>
-                </div>
-                <!-- Add more image containers within columns as needed -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="image-container" style="background-image: url({% static 'images/girl_homepage.png' %});"></div>
             </div>
         </div>
+    </div>
 
 
 
@@ -69,7 +49,9 @@
                 <!-- Start Column 1 -->
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                     <h2 class="mb-4 section-title">Best sellers</h2>
-                    <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
+                    <p class="mb-4">
+                        Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+                    </p>
                     <p><a href="../products/list_products.html" class="btn">Explore</a></p>
                 </div>
                 <!-- End Column 1 -->
@@ -78,8 +60,8 @@
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="../orders/my_cart.html">
                         <img src="{% static 'images/product-1.png' %}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
+                        <h3 class="product-title">Product 1</h3>
+                        <strong class="product-price">$20.00</strong>
 
                         <span class="icon-cross">
                             <img src="images/cross.svg" class="img-fluid">
@@ -88,25 +70,11 @@
                 </div>
                 <!-- End Column 2 -->
 
-                <!-- Start Column 3 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="../orders/my_cart.html">
-                        <img src="images/product-2.png" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Kruzo Aero Chair</h3>
-                        <strong class="product-price">$78.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="images/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 3 -->
 
             </div>
         </div>
     </div>
     <!-- End Product Section -->
-
 
     <!-- Start Blog Section -->
     <div class="blog-section">
@@ -116,47 +84,25 @@
                     <h2 class="section-title">Recent Blog</h2>
                 </div>
                 <div class="col-md-6 text-start text-md-end">
-                    <a href="{% url 'list articles' %}" class="more">View All Articles</a>
+                    <h5><a href="{% url 'list articles' %}" class="more">View All Articles</a></h5>
                 </div>
             </div>
 
             <div class="row">
-
+                {% for article in latest_articles %}
                 <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                     <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="{% static 'images/post-1.jpg' %}" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                            </div>
+                    <a href="{% url 'details article' pk=article.pk %}" class="post-thumbnail">
+                        <img width="80%" src="{{ article.article_image.url }}" alt="Image" class="img-fluid"></a>
+                    <div class="post-content-entry">
+                        <h3><a href="{% url 'details article' pk=article.pk %}">{{ article.title }}</a></h3>
+                        <div class="meta">
+                            <span>Published on: <a href="{% url 'details article' pk=article.pk %}">{{ article.published_at|date:"d M Y, h:m" }}</a></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="images/post-2.jpg" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                    <div class="post-entry">
-                        <a href="#" class="post-thumbnail"><img src="images/post-3.jpg" alt="Image" class="img-fluid"></a>
-                        <div class="post-content-entry">
-                            <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                            <div class="meta">
-                                <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
         </div>
