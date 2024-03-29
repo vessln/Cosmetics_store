@@ -4,7 +4,6 @@
 
 {% block main_content %}
 
-
     <div class="container">
         <div class="row py-4 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
@@ -27,7 +26,7 @@
                             {{ form.username }}
                         </div>
                             {% if form.username.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.username.errors %}
                                             <li>{{ error }}</li>
@@ -45,7 +44,7 @@
                             {{ form.email }}
                         </div>
                             {% if form.email.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.email.errors %}
                                             <li>{{ error }}</li>
@@ -64,7 +63,7 @@
                             {{ form.date_of_birth }}
                         </div>
                             {% if form.date_of_birth.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.date_of_birth.errors %}
                                             <li>{{ error }}</li>
@@ -75,7 +74,6 @@
 
 
                         <div class="input-group col-lg-12 mb-4">
-
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-white px-4 border-sm border-right-0">
@@ -83,17 +81,16 @@
                                     </span>
                                 </div>
 
-                                <label for="{{ form.gender.id_for_label }}" class="input-group-text bg-white border-md border-left-0 text-muted">
-                                    Gender:
-                                </label>
+                                <label for="{{ form.gender.id_for_label }}" class="sr-only">Gender:</label>
                                 <select id="{{ form.gender.id_for_label }}" name="{{ form.gender.html_name }}" class="form-select form-control">
-                                {% for value, label in form.gender.field.choices %}
-                                    <option value="{{ value }}" {% if value == form.gender.value %}selected{% endif %}>{{ label }}</option>
-                                {% endfor %}
+                                    {% for value, label in form.gender.field.choices %}
+                                        <option value="{{ value }}" {% if value == form.gender.value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
+                        </div>
                             {% if form.gender.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.gender.errors %}
                                             <li>{{ error }}</li>
@@ -101,8 +98,6 @@
                                     </ul>
                                 </div>
                             {% endif %}
-
-                        </div>
 
                         <div class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
@@ -113,7 +108,7 @@
                             {{ form.phone }}
                         </div>
                         {% if form.phone.errors %}
-                            <div class="alert alert-danger">
+                            <div id="alert-message" class="alert alert-danger" data-type="error">
                                 <ul>
                                     {% for error in form.phone.errors %}
                                         <li>{{ error }}</li>
@@ -131,7 +126,7 @@
                             {{ form.password1 }}
                         </div>
                             {% if form.password1.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.password1.errors %}
                                             <li>{{ error }}</li>
@@ -150,7 +145,7 @@
                         </div>
 
                             {% if form.password2.errors %}
-                                <div class="alert alert-danger">
+                                <div id="alert-message" class="alert alert-danger" data-type="error">
                                     <ul>
                                         {% for error in form.password2.errors %}
                                             <li>{{ error }}</li>
