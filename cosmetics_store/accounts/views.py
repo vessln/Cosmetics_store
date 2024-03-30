@@ -29,8 +29,7 @@ class RegisterUserView(RegistrationAccessMixin, generic_views.CreateView):
 class LoginUserView(auth_views.LoginView):
     template_name = "accounts/login_user.html"
     form_class = LoginUserForm
-
-# TODO - make success url logic !!!
+    success_url = reverse_lazy("home page")
 
 
 @login_required

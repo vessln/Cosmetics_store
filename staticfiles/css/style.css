@@ -34,7 +34,7 @@ span.input-group-text {
 
 .alert-danger ul {
   list-style: none !important;
-  margin-bottom: 0 !important;
+  margin: 0 !important;
   padding-left: 0 !important;
 }
 
