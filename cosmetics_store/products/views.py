@@ -60,11 +60,15 @@ class ListProductsView(generic_views.ListView):
     def searched_category(self):
         return self.request.GET.get("searched_category", None)
 
+    @property
+    def max_price(self):
+        return self.request.GET.get("max_price", None)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["searched_word"] = self.searched_word or ""
         context["searched_category"] = self.searched_category or ""
+        context["max_price"] = self.max_price or ""
 
         return context
 
@@ -81,6 +85,9 @@ class ListProductsView(generic_views.ListView):
         if search_category:
             queryset = ProductModel.objects.filter(category=search_category)
 
+        max_pr = self.max_price
+        if max_pr:
+            queryset = ProductModel.objects.filter(price__lte=max_pr)
 
         return queryset
 

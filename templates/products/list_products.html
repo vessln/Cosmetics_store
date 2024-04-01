@@ -52,16 +52,21 @@
                                 </select>
                             </div>
 
-                        <div class="mb-3">
-{#                            <label for="brand-filter" class="form-label">Brand:</label>#}
-{#                            <select class="form-select form-control" id="brand-filter" name="brand">#}
-{#                          <option value="">Select Brand</option>#}
-{#                                <option value="Nike">Nyx</option>#}
-{#                                <option value="Adidas">Nars</option>#}
-{#                                <option value="Adidas">Dove</option>#}
-{#                            </select>#}
-                        </div>
+{#                            <div class="mb-3">#}
+{#                                <label for="brand-filter" class="form-label">Brand:</label>#}
+{#                                <select class="form-select form-control" id="brand-filter" name="brand">#}
+{#                                    <option value="">Select Brand</option>#}
+{#                                    <option value="Nike">Nyx</option>#}
+{#                                    <option value="Adidas">Nars</option>#}
+{#                                    <option value="Adidas">Dove</option>#}
+{#                                </select>#}
+{#                            </div>#}
 
+                            <div class="mb-3">
+                                <label for="price-range" class="form-label">Max Price:</label>
+                                <div class="fa fa-sliders"> <input type="range" class="form-row" id="price-range" name="max_price" min="0" max="500" step="1" value="0"></div>
+                                <span id="price-value">{{ max_price }}</span>
+                            </div>
 
                         <button type="submit" class="btn btn-primary">Apply Filters</button>
                     </form>
