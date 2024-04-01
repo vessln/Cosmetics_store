@@ -36,9 +36,42 @@
         <div class="container">
             <div class="row">
 
+                <div class="col-md-2">
+
+                    <h3 class="py-3">Filter by:</h3>
+                        <form action="{% url 'list products' %}" class="row g-2" method="get">
+
+                            <div class="mb-3">
+                                <label for="category-filter" class="form-label">Category:</label>
+                                <select class="form-select" id="category-filter" name="searched_category">
+                                    <option value="">All</option>
+                                    <option value="Make-up">Make-up</option>
+                                    <option value="Skin care">Skin care</option>
+                                    <option value="Hair care">Hair care</option>
+                                    <option value="Personal Care">Personal Care</option>
+                                </select>
+                            </div>
+
+                        <div class="mb-3">
+{#                            <label for="brand-filter" class="form-label">Brand:</label>#}
+{#                            <select class="form-select form-control" id="brand-filter" name="brand">#}
+{#                          <option value="">Select Brand</option>#}
+{#                                <option value="Nike">Nyx</option>#}
+{#                                <option value="Adidas">Nars</option>#}
+{#                                <option value="Adidas">Dove</option>#}
+{#                            </select>#}
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </form>
+                </div>
+
+            <div class="col-md-9">
+
                 {% if not object_list %}
 
-                    <p>There are no products.</p>
+                    <p>There are such products.</p>
 
                 {% else %}
 
@@ -71,6 +104,8 @@
             </div>
 
         {% endif %}
+
+        </div>
 
 {#        <h3 class="text-center">#}
 {#            {% if paginator.num_pages > 1 %}#}

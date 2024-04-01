@@ -45,7 +45,7 @@ class DetailsUserView(RestrictedUserAccessMixin, auth_mixins.LoginRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["successful_orders"] = OrderModel.objects.filter(user=self.request.user, is_ordered=True).count()
+        context["count_successful_orders"] = OrderModel.objects.filter(user=self.request.user, is_ordered=True).count()
 
         return context
 

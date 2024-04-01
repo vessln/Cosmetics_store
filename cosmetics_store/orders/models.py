@@ -54,6 +54,12 @@ class OrderModel(models.Model):  # this order store all the products that user w
         auto_now_add=True,
     )
 
+#TODO:
+    # completion_order_date = models.DateField(
+    #     null=True,
+    #     blank=True,
+    # )
+
     is_ordered = models.BooleanField(
         default=False,
         null=False,

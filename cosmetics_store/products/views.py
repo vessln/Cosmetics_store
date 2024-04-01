@@ -56,19 +56,31 @@ class ListProductsView(generic_views.ListView):
     def searched_word(self):
         return self.request.GET.get("searched_word", None)
 
+    @property
+    def searched_category(self):
+        return self.request.GET.get("searched_category", None)
+
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["searched_word"] = self.searched_word or ""
+        context["searched_category"] = self.searched_category or ""
 
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        search = self.searched_word
-        if search:
+
+        search_word = self.searched_word
+        if search_word:
             queryset = ProductModel.objects.filter(
-                Q(title_product__icontains=search) | Q(description__icontains=search)
+                Q(title_product__icontains=search_word) | Q(description__icontains=search_word)
             )
+
+        search_category = self.searched_category
+        if search_category:
+            queryset = ProductModel.objects.filter(category=search_category)
+
 
         return queryset
 

@@ -177,10 +177,8 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
 
         if current_order:
             context["current_order"] = current_order
+
         return context
-
-
-# TODO: make custom mixin: users who haven't active orders cannot access checkout page!
 
 
 class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView):
