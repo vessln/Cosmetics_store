@@ -94,3 +94,11 @@ class UpdateProductForm(FormControlFieldsMixin, forms.ModelForm):
         }
 
 
+class FilterProductForm(forms.Form):
+    category = forms.ChoiceField(label="Category", choices=ProductModel.PRODUCTS_CATEGORIES, widget=forms.RadioSelect, required=False, )
+    brand = forms.CharField(label="Brand", max_length=30, required=False, widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Brand"}) )
+    min_price = forms.DecimalField(label="Min Price", max_digits=5, decimal_places=2, min_value=0, required=False,
+                                   widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "0.00"}))
+    max_price = forms.DecimalField(label="Max Price", max_digits=5, decimal_places=2, min_value=0, required=False,
+                                   widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "999.99"}))
+

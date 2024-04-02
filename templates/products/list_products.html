@@ -18,7 +18,7 @@
                         <form action="{% url 'list products' %}" class="row g-2" method="get">
                             <div class="col-9">
                                 <input id="search-bar" type="text" class="form-control" placeholder="Search"
-                                       name="searched_word" value="{{ searched_word }}">
+                                       name="searched_product" value="{{ searched_product }}">
                             </div>
                             <div class="col-auto">
                                 <button id="search-button" class="btn btn-primary">
@@ -36,41 +36,18 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-md-2">
 
                     <h3 class="py-2">Filters</h3>
-                        <form action="{% url 'list products' %}" class="row g-2" method="get">
 
-                            <div class="mb-4 border-top">
-                                <label for="category-filter" class="form-label fw-bold pt-4">Category:</label>
-                                <select class="form-select form-control" id="category-filter" name="searched_category">
-                                    <option value="">All</option>
-                                    <option value="Make-up">Make-up</option>
-                                    <option value="Skin care">Skin care</option>
-                                    <option value="Hair care">Hair care</option>
-                                    <option value="Personal Care">Personal Care</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="brand-filter" class="form-label fw-bold">Brand:</label>
-                                <input id="search-bar" type="text" class="form-control" placeholder="Brand name"
-                                       name="searched_brand" value="{{ searched_brand }}">
-                            </div>
-
-                           <div class="col-12 mb-4">
-                               <div><label for="price-range" class="form-label fw-bold">Max Price:</label></div>
-                                <div class="fa fa-sliders">
-                                    <input type="range" class="form-row" id="price-range" name="max_price" min="0" max={{ highest_price }} step="0.01" value="500">
-                                </div>
-                                <span class="h5" id="price-value">{{ highest_price }}</span>
-                            </div>
-
+                    <form action="{% url 'list products' %}" method="get">
+                        <b>{{ filter_products.as_p }}</b>
                         <button type="submit" class="btn btn-primary">Apply Filters</button>
                     </form>
+
                 </div>
 
-            <div class="col-md-9">
+            <div class="col-md-10">
 
                 {% if not object_list %}
 

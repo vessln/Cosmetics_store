@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic as generic_views
 
-from cosmetics_store.products.forms import CreateProductForm, UpdateProductForm
+from cosmetics_store.products.forms import CreateProductForm, UpdateProductForm, FilterProductForm
 from cosmetics_store.products.mixin import ProductRestrictionMixin
 from cosmetics_store.products.models import ProductModel
 
@@ -40,7 +40,6 @@ class DetailsProductView(generic_views.DetailView):
     template_name = "products/details_product.html"
 
 
-
 class DeleteProductView(ProductRestrictionMixin, messages_views.SuccessMessageMixin, generic_views.DeleteView):
     model = ProductModel
     template_name = "products/delete_product.html"
@@ -49,56 +48,48 @@ class DeleteProductView(ProductRestrictionMixin, messages_views.SuccessMessageMi
 
 
 class ListProductsView(generic_views.ListView):
-    queryset = ProductModel.objects.all()
+    queryset = ProductModel.objects.order_by("-created_at")
     template_name = "products/list_products.html"
 
     @property
-    def searched_word(self):
-        return self.request.GET.get("searched_word", None)
+    def searched_product(self):
+        return self.request.GET.get("searched_product", None)
 
-    @property
-    def searched_category(self):
-        return self.request.GET.get("searched_category", None)
-
-    @property
-    def searched_brand(self):
-        return self.request.GET.get("searched_brand", None)
-
-    @property
-    def max_price(self):
-        return self.request.GET.get("max_price", None)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["searched_word"] = self.searched_word or ""
-        context["searched_category"] = self.searched_category or ""
-        context["searched_brand"] = self.searched_brand or ""
-        context["max_price"] = self.max_price or ""
-        context["highest_price"] = ProductModel.objects.order_by("-price").values_list("price", flat=True).first()
+        context["searched_product"] = self.request.GET.get("searched_product", None) or ""
+        context["filter_products"] = FilterProductForm(self.request.GET)
+        # context["max_price"] = self.max_price or ""
+        # context["highest_price"] = ProductModel.objects.order_by("-price").values_list("price", flat=True).first()
 
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        search_word = self.searched_word
-        if search_word:
+        search_product = self.request.GET.get("searched_product", None) or ""
+
+        if search_product:
             queryset = ProductModel.objects.filter(
-                Q(title_product__icontains=search_word) | Q(description__icontains=search_word)
-            )
+                Q(title_product__icontains=search_product))
 
-        search_category = self.searched_category
-        if search_category:
-            queryset = ProductModel.objects.filter(category=search_category)
 
-#TODO: brand search dont work ?
-        search_brand = self.searched_brand
-        if search_brand:
-            queryset = ProductModel.objects.filter(brand__icontains=search_brand)
+        form = FilterProductForm(self.request.GET)
+        if form.is_valid():
+            category = form.cleaned_data.get('category')
+            min_price = form.cleaned_data.get('min_price')
+            max_price = form.cleaned_data.get('max_price')
+            brand = form.cleaned_data.get('brand')
 
-        max_pr = self.max_price
-        if max_pr:
-            queryset = ProductModel.objects.filter(price__lte=max_pr)
+            if category:
+                queryset = queryset.filter(category=category)
+            if min_price:
+                queryset = queryset.filter(price__gte=min_price)
+            if max_price:
+                queryset = queryset.filter(price__lte=max_price)
+            if brand:
+                queryset = queryset.filter(brand__icontains=brand)
 
         return queryset
 
