@@ -61,6 +61,10 @@ class ListProductsView(generic_views.ListView):
         return self.request.GET.get("searched_category", None)
 
     @property
+    def searched_brand(self):
+        return self.request.GET.get("searched_brand", None)
+
+    @property
     def max_price(self):
         return self.request.GET.get("max_price", None)
 
@@ -68,7 +72,9 @@ class ListProductsView(generic_views.ListView):
         context = super().get_context_data(*args, **kwargs)
         context["searched_word"] = self.searched_word or ""
         context["searched_category"] = self.searched_category or ""
+        context["searched_brand"] = self.searched_brand or ""
         context["max_price"] = self.max_price or ""
+        context["highest_price"] = ProductModel.objects.order_by("-price").values_list("price", flat=True).first()
 
         return context
 
@@ -84,6 +90,11 @@ class ListProductsView(generic_views.ListView):
         search_category = self.searched_category
         if search_category:
             queryset = ProductModel.objects.filter(category=search_category)
+
+#TODO: brand search dont work ?
+        search_brand = self.searched_brand
+        if search_brand:
+            queryset = ProductModel.objects.filter(brand__icontains=search_brand)
 
         max_pr = self.max_price
         if max_pr:
