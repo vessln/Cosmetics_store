@@ -8,13 +8,13 @@ from django.views import generic as generic_views
 from django.urls import reverse_lazy, reverse
 
 from cosmetics_store.accounts.forms import LoginUserForm, RegisterUserForm, UpdateUserForm
-from cosmetics_store.core.user_mixins import RestrictedUserAccessMixin, RegistrationAccessMixin
+from cosmetics_store.core.user_mixins import RestrictedUserAccessMixin, LogoutRequiredMixin
 from cosmetics_store.orders.models import OrderModel
 
 UserModel = get_user_model()
 
 
-class RegisterUserView(RegistrationAccessMixin, generic_views.CreateView):
+class RegisterUserView(LogoutRequiredMixin, generic_views.CreateView):
     template_name = "accounts/register_user.html"
     form_class = RegisterUserForm
     success_url = reverse_lazy("home page")
@@ -26,7 +26,7 @@ class RegisterUserView(RegistrationAccessMixin, generic_views.CreateView):
         return result
 
 
-class LoginUserView(auth_views.LoginView):
+class LoginUserView(LogoutRequiredMixin, auth_views.LoginView):
     template_name = "accounts/login_user.html"
     form_class = LoginUserForm
     success_url = reverse_lazy("home page")
@@ -39,7 +39,7 @@ def logout_user(request):
     return redirect("home page")
 
 
-class DetailsUserView(RestrictedUserAccessMixin, auth_mixins.LoginRequiredMixin, generic_views.DetailView):
+class DetailsUserView(RestrictedUserAccessMixin, generic_views.DetailView):
     model = UserModel
     template_name = "accounts/details_user.html"
 
