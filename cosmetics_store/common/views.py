@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic as generic_views
 
 from cosmetics_store.blog.models import ArticleModel
+from cosmetics_store.orders.models import OrderModel
 from cosmetics_store.products.models import ProductModel
 
 from django.contrib.auth import get_user_model
@@ -16,12 +17,18 @@ class HomePageView(generic_views.TemplateView):
         context = super().get_context_data(**kwargs)
         context["new_products"] = ProductModel.objects.order_by("-created_at")[:3]
         context["latest_articles"] = ArticleModel.objects.order_by("-published_at")[:3]
-        # context["total_orders"] =
-        context["users"] = UserModel.objects.count()
 
         return context
 
 
 def about(request):
-    return render(request, "common/about.html")
+    total_users = UserModel.objects.count()
+    total_orders = OrderModel.objects.count()
+
+    context = {
+        "total_users": total_users,
+        "total_orders": total_orders,
+    }
+
+    return render(request, "common/about.html", context)
 

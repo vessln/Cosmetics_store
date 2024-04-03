@@ -4,7 +4,6 @@
 
 {% block main_content %}
 
-<!-- Start Hero Section -->
     <div class="hero about">
         <div class="container">
             <div class="row justify-content-between">
@@ -13,23 +12,22 @@
                         <h1>About Us</h1>
                         <p>We are online cosmetics store for makeup, skincare and haircare products.</p>
                         <p>
-                            <a href="#" class="btn btn-secondary me-2">Products</a>
-                            <a href="#" class="btn btn-white-outline">Brands</a>
+                            <a href="{% url 'list products' %}" class="btn btn-secondary me-2">Products</a>
+                            <a href="{% url 'list brands' %}" class="btn btn-white-outline">Brands</a>
                         </p>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="hero-img-wrap">
-                        <img src="" alt="" class="img-fluid">
+                        <p>Registered users: {{ total_users }}</p>
+                        <p>Total orders: {{ total_orders }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!-- End Hero Section -->
 
 
-<!-- Start Why Choose Us Section -->
 <div class="why-choose-section">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -49,8 +47,7 @@
                     In our blog, you can discover the latest trends and news related to the world of cosmetics and
                     beauty, provided directly by the brands. Over time, we will add more brands and lines, expanding our
                     portfolio to meet your demands. If you are a supplier, you can contact us and your products can
-                    easily become part of our portfolio. We are open to your suggestions - feel free to reach out to us
-                    <a href="#"><b>here</b></a>.
+                    easily become part of our portfolio. Feel free to reach out to us at <b>sales@bestbeauty.com</b>.
                 </p>
 
                 <div class="row my-5">
@@ -89,7 +86,6 @@
         </div>
     </div>
 </div>
-<!-- End Why Choose Us Section -->
 
 
 <!-- Start Testimonial Slider -->

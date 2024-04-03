@@ -30,7 +30,6 @@
         </div>
     </div>
 
-
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-4">
@@ -39,38 +38,32 @@
         </div>
     </div>
 
-
-
-		<!-- Start Product Section -->
+    <!-- Start Product Section -->
     <div class="product-section">
         <div class="container">
             <div class="row">
 
-                <!-- Start Column 1 -->
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                    <h2 class="mb-4 section-title">Best sellers</h2>
+                    <h2 class="mb-4 section-title">Newest products</h2>
                     <p class="mb-4">
-                        Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+                        Discover newest cosmetics product to enhance your beauty routine from hottest brands at Best Beauty.
                     </p>
-                    <p><a href="../products/list_products.html" class="btn">Explore</a></p>
+                    <p><a href="{% url 'list products' %}" class="btn">Explore</a></p>
                 </div>
-                <!-- End Column 1 -->
 
-                <!-- Start Column 2 -->
+                {% for product in new_products %}
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="../orders/my_cart.html">
-                        <img src="{% static 'images/product-1.png' %}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Product 1</h3>
-                        <strong class="product-price">$20.00</strong>
+                    <a class="product-item" href="{% url 'details product' slug=product.slug %}">
+                        <img src="{{ product.image_product.url }}" alt="product" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">{{ product.title_product }}</h3>
+                        <strong class="product-price">${{ product.price }}</strong>
 
                         <span class="icon-cross">
-                            <img src="images/cross.svg" class="img-fluid">
+                            <img src="{% static 'images/cross.svg' %}" class="img-fluid" alt="">
                         </span>
                     </a>
                 </div>
-                <!-- End Column 2 -->
-
-
+                {% endfor %}
             </div>
         </div>
     </div>

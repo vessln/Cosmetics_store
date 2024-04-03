@@ -166,6 +166,7 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
         current_order = OrderModel.objects.filter(user=self.request.user, is_ordered=False).first()
         if current_order:
             current_order.shipping_address = shipping_address
+            current_order.completion_order_date = timezone.now().date()
             current_order.is_ordered = True
 
             for order_product in current_order.products.all():
