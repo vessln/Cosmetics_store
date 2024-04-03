@@ -55,7 +55,6 @@ class ListProductsView(generic_views.ListView):
     def searched_product(self):
         return self.request.GET.get("searched_product", None)
 
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["searched_product"] = self.request.GET.get("searched_product", None) or ""
@@ -77,10 +76,10 @@ class ListProductsView(generic_views.ListView):
 
         form = FilterProductForm(self.request.GET)
         if form.is_valid():
-            category = form.cleaned_data.get('category')
-            min_price = form.cleaned_data.get('min_price')
-            max_price = form.cleaned_data.get('max_price')
-            brand = form.cleaned_data.get('brand')
+            category = form.cleaned_data.get("category")
+            min_price = form.cleaned_data.get("min_price")
+            max_price = form.cleaned_data.get("max_price")
+            brand = form.cleaned_data.get("brand")
 
             if category:
                 queryset = queryset.filter(category=category)
@@ -96,8 +95,23 @@ class ListProductsView(generic_views.ListView):
 
 class ListBrandsView(generic_views.ListView):
     # return flat list of unique values of the brand field:
-    queryset = ProductModel.objects.order_by("brand").values_list("brand", flat=True).distinct()
+    # queryset = ProductModel.objects.order_by("brand").values_list("brand", flat=True).distinct()
     template_name = "products/list_brands.html"
+
+    def get_queryset(self):
+        queryset = ProductModel.objects.all()
+        searched_brand = self.request.GET.get("brand")
+
+        if searched_brand:
+            queryset = queryset.filter(brand__exact=searched_brand)
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+        context["all_brands"] = ProductModel.objects.order_by("brand").values_list("brand", flat=True).distinct()
+
+        return context
 
 
 
