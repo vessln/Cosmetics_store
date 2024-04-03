@@ -152,6 +152,13 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
         return reverse("thank you")
 
     def form_valid(self, form):
+        if not self.request.user.first_name or not self.request.user.last_name or not self.request.user.phone:
+            messages.info(
+                self.request,
+                "To complete your order you need to provide your first name, last name and phone number.")
+
+            return redirect("edit user", pk=self.request.user.pk)
+
         # set current user who create the order to `user` in UserShippingAddressModel
         form.instance.user = self.request.user
         shipping_address = form.save()
@@ -183,6 +190,13 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
 
 class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView):
     template_name = "orders/thank_you.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["placed_order"] = OrderModel.objects.filter(user=self.request.user, is_ordered=True).last()
+
+        return context
 
     #TODO: Send an email
 

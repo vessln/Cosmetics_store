@@ -63,6 +63,8 @@ class StoreUserModel(auth_models.AbstractUser):
     gender = models.CharField(
         max_length=8,
         choices=GENDER_CHOICES,
+        null=False,
+        blank=False,
     )
 
     def __str__(self):

@@ -49,6 +49,9 @@ class DetailsUserView(RestrictedUserAccessMixin, generic_views.DetailView):
 
         return context
 
+    # TODO:
+    # order history?
+
 
 class UpdateUserView(RestrictedUserAccessMixin, messages_views.SuccessMessageMixin, generic_views.UpdateView):
     model = UserModel

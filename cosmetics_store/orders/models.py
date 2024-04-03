@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from cosmetics_store.accounts.models import UserShippingAddressModel
+from cosmetics_store.orders.helpers import generate_unique_number
+# from cosmetics_store.orders.helpers import generate_unique_number
 from cosmetics_store.products.models import ProductModel
 
 UserModel = get_user_model()
@@ -13,17 +15,17 @@ class OrderProductModel(models.Model):  # acts like a link between products and 
         on_delete=models.CASCADE,
     )
 
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
+
     quantity = models.PositiveIntegerField(
         default=1,
     )
 
     is_ordered = models.BooleanField(
         default=False,
-    )
-
-    user = models.ForeignKey(
-        UserModel,
-        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -54,11 +56,10 @@ class OrderModel(models.Model):  # this order store all the products that user w
         auto_now_add=True,
     )
 
-#TODO:
-    # completion_order_date = models.DateField(
-    #     null=True,
-    #     blank=True,
-    # )
+    completion_order_date = models.DateField(
+        null=True,
+        blank=True,
+    )
 
     is_ordered = models.BooleanField(
         default=False,
@@ -66,10 +67,13 @@ class OrderModel(models.Model):  # this order store all the products that user w
         blank=False,
     )
 
+    order_id = models.IntegerField(
+        default=generate_unique_number(),
+        null=True,
+        blank=True,
+    )
+
     total_sum = models.FloatField(
         default=0.0,
     )
-
-
-
 

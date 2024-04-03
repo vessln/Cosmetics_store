@@ -61,7 +61,6 @@ class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
 
         self.fields["username"].widget.attrs["readonly"] = "readonly"
         self.fields["email"].widget.attrs["readonly"] = "readonly"
-        self.fields["date_of_birth"].widget.attrs["readonly"] = "readonly"
 
     class Meta(auth_forms.UserChangeForm.Meta):
         model = UserModel
@@ -70,6 +69,8 @@ class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
         widgets = {
             "first_name": forms.TextInput(attrs={"placeholder": "Enter your first name"}),
             "last_name": forms.TextInput(attrs={"placeholder": "Enter your last name"}),
+            "date_of_birth": forms.DateInput(attrs={"placeholder": "Birth date: YYYY-MM-DD"}),
+            "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
         }
 
 

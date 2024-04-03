@@ -12,7 +12,8 @@
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-check mb-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"></svg>
               </span>
               <h2 class="display-3 text-black">Thank you!</h2>
-              <p class="lead mb-5">Your order was successfully completed!</p>
+              <p class="lead my-4">Your order was successfully completed!</p>
+              <p class="lead mb-5">Order ID: <span class="fw-bold">{{ placed_order.order_id }}</span></p>
               <p><a href="{% url 'list products' %}" class="btn btn-sm btn-outline-black">Back to shop</a></p>
             </div>
           </div>
