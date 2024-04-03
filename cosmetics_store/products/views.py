@@ -94,8 +94,6 @@ class ListProductsView(generic_views.ListView):
 
 
 class ListBrandsView(generic_views.ListView):
-    # return flat list of unique values of the brand field:
-    # queryset = ProductModel.objects.order_by("brand").values_list("brand", flat=True).distinct()
     template_name = "products/list_brands.html"
 
     def get_queryset(self):

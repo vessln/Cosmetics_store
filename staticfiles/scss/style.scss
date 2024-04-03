@@ -168,6 +168,15 @@ span.input-group-text {
 .dropdown-toggle::after {
     display: none !important;}
 
+.list-unstyled li a:hover {
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+	.fa-star {
+    	color: $primary !important;
+  }
+}
+
+
 // Hero 
 .hero {
 	background: $primary;
@@ -700,7 +709,7 @@ span.input-group-text {
 
 // Footer Section
 .footer-section {
-	padding: 80px 0;
+	padding: 20px 0;
 	background: $white;
 	.relative {
 		position: relative;
@@ -754,7 +763,6 @@ span.input-group-text {
 		}
 	}
 
-
 	.links-wrap {
 		margin-top: 0;
 		@media (min-width: $lg) {
@@ -762,7 +770,8 @@ span.input-group-text {
 		}
 		ul {
 			li {
-				margin-bottom: 10px;
+				margin-bottom: 16px;
+				font-size: 16px;
 			}
 		}
 	}
@@ -778,7 +787,7 @@ span.input-group-text {
 	}
 	.custom-social {
 		li {
-			margin: 2px;
+			margin: 2px 7px 2px 2px;
 			display: inline-block;
 			a {
 				width: 40px;

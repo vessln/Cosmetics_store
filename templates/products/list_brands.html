@@ -12,7 +12,6 @@
                 <div class="row mt-4">
                 {% for brand in all_brands %}
                 <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-{#                    <h4 class="text-uppercase">A</h4>#}
                     <ul class="list-unstyled mb-0">
                         <li>
                             <a href="{% url 'list products' %}?brand={{ brand }}" class="text-black"><i class="fa-regular fa-star"></i> {{ brand }}</a>
