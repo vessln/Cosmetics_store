@@ -35,8 +35,11 @@ def add_product_to_cart(request, slug):
     if uncompleted_order_qs.exists():
         uncompleted_order = uncompleted_order_qs.first()
         if uncompleted_order.products.filter(product__slug=product.slug).exists():
-            order_product.quantity += 1
-            order_product.save()
+            if order_product.quantity >= 10:
+                messages.info(request, "You have reached the maximum amount of this product.")
+            else:
+                order_product.quantity += 1
+                order_product.save()
 
             if request.path.endswith("/add-to-cart/"):
                 messages.info(request, f"{order_product.product.title_product} was added to your cart.")

@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 from cosmetics_store.accounts.models import UserShippingAddressModel
@@ -22,6 +23,7 @@ class OrderProductModel(models.Model):  # acts like a link between products and 
 
     quantity = models.PositiveIntegerField(
         default=1,
+        validators=[MaxValueValidator(10),]
     )
 
     is_ordered = models.BooleanField(

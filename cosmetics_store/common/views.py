@@ -24,10 +24,12 @@ class HomePageView(generic_views.TemplateView):
 def about(request):
     total_users = UserModel.objects.count()
     total_orders = OrderModel.objects.count()
+    total_products = ProductModel.objects.count()
 
     context = {
         "total_users": total_users,
         "total_orders": total_orders,
+        "total_products": total_products,
     }
 
     return render(request, "common/about.html", context)

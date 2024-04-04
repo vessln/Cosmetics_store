@@ -80,8 +80,11 @@ class ProductModel(models.Model):
         blank=True,
     )
 
-# TODO:
-    #  make ingredients text field
+    ingredients = models.TextField(
+        max_length=MAX_INGREDIENTS_LENGTH,
+        null=False,
+        blank=False,
+    )
 
     slug = models.SlugField(
         unique=True,
@@ -99,11 +102,6 @@ class ProductModel(models.Model):
 
     def __str__(self):
         return self.title_product
-
-    # ingredients = models.ManyToManyField(
-    #     Ingredient,
-    #     on_delete=models.DO_NOTHING,
-    # )
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
