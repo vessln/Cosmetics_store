@@ -7,8 +7,9 @@
     <div class="container">
         <div class="row py-4 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                <img width="90%" src="{% static 'images/login_grl.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
                 <h1>Edit profile details</h1>
+                <img width="80%" src="{% static 'images/login_grl.png' %}" alt="girl" class="img-fluid mb-3 d-none d-md-block">
+
             </div>
 
             <div class="col-md-7 col-lg-6 ml-auto">
@@ -97,6 +98,18 @@
                                 </ul>
                             </div>
                         {% endif %}
+
+{#                        {% if request.user.is_superuser %}#}
+{#                            <h4 class="text-center my-3 pb-3">Changes that the admin could make:</h4>#}
+{#                            <div class="col-12">#}
+{#                                <label>Make user: Moderator</label>#}
+{#                                {{ form.is_staff }}#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <label>Make user: Administrator</label>#}
+{#                                {{ form.is_superuser }}#}
+{#                            </div>#}
+{#                        {% endif %}#}
 
                     </div>
 

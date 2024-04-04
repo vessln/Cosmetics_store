@@ -81,16 +81,19 @@ class UserShippingAddressModel(models.Model):
         StoreUserModel,
         on_delete=models.CASCADE,
     )
+
     country = models.CharField(
         max_length=MAX_COUNTRY_LENGTH,
         null=False,
         blank=False,
     )
+
     city = models.CharField(
         max_length=MAX_CITY_LENGTH,
         null=False,
         blank=False,
     )
+
     street_address = models.CharField(
         max_length=MAX_STREET_LENGTH,
         null=False,

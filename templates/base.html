@@ -47,7 +47,7 @@
                     <li><a class="nav-link" href="{% url 'list articles' %}">Blog</a></li>
                 </ul>
 
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and not user.is_staff %}
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li><a style="color: white" class="nav-link" href="{% url 'my cart' %}">
                         <i class="fas fa-shopping-cart"></i> {{ request.user|count_products }} </a>

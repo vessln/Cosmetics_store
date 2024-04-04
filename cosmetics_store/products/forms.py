@@ -8,7 +8,7 @@ from cosmetics_store.products.models import ProductModel
 
 
 class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
-    fields_requiring_form_control = ("title_product", "category", "brand", "price", "description", )
+    fields_requiring_form_control = ("title_product", "category", "brand", "price", "description", "ingredients")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,7 +16,7 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
 
     class Meta:
         model = ProductModel
-        fields = ("title_product", "category", "brand", "price", "image_product", "description", )
+        fields = ("title_product", "category", "brand", "price", "image_product", "description", "ingredients")
 
         widgets = {
             "title_product": forms.TextInput(attrs={"placeholder": "Title of the product"}),
@@ -25,8 +25,9 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
             "price": forms.NumberInput(attrs={"placeholder": "Price:  00.00"}),
             "description": forms.Textarea(attrs={
                 "placeholder": "Write a product description...",
-                "rows": 8,
-                "cols": 55,
+            }),
+            "ingredients": forms.Textarea(attrs={
+                "placeholder": "Write write all ingredients of this product...",
             }),
         }
 
@@ -41,17 +42,20 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
 
         # makes brand's name UPPERCASE
         instance.brand = self.cleaned_data["brand"].upper()
-        # makes title_product's name UPPERCASE
-        instance.title_product = self.cleaned_data["title_product"].upper()
+        # makes title_product's first letter UPPERCASE
+        instance.title_product = self.cleaned_data["title_product"][0].upper()
 
+        # GPT helps:
         image = self.cleaned_data["image_product"]
         img = Image.open(image)
         # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
-        img.thumbnail((400, 400))
+        img.thumbnail((500, 500))
 
         # creates temporary object for the image, which is stored in memory, not on disk
         buffer = BytesIO()
-        img.save(buffer, format="JPEG")
+        img.save(buffer, format="JPEG" if image.name.lower().endswith(".jpg") else "PNG")
+        buffer.seek(0)
+        # img.save(buffer, format="JPEG")
         # ensures that all data from the Beginning of the buffer will be ridden (pointer is moved to the beginning):
         buffer.seek(0)
 
@@ -60,7 +64,7 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
             buffer,
             None,
             f"{image.name.split('.')[0]}_resized.jpg",
-            "image/jpeg",   # MIME type
+            "image/jpeg",  # MIME type
             buffer.getbuffer().nbytes,
             None
         )
@@ -82,7 +86,7 @@ class UpdateProductForm(FormControlFieldsMixin, forms.ModelForm):
 
     class Meta:
         model = ProductModel
-        fields = ("title_product", "brand", "price", "description",)
+        fields = ("title_product", "brand", "price", "description", "ingredients")
 
         error_messages = {
             "price": {
@@ -91,14 +95,50 @@ class UpdateProductForm(FormControlFieldsMixin, forms.ModelForm):
             "description": {
                 "required": "Please, write a product description. This field is required.",
             },
+            "ingredients": {
+                "required": "Please, write a product description. This field is required.",
+            },
         }
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.title_product = self.cleaned_data["title_product"]
+        instance.brand = self.cleaned_data["brand"].upper()
+
+        if commit:
+            instance.save()
+        return instance
 
 
 class FilterProductForm(forms.Form):
-    category = forms.ChoiceField(label="Category", choices=ProductModel.PRODUCTS_CATEGORIES, widget=forms.RadioSelect, required=False, )
-    brand = forms.CharField(label="Brand", max_length=30, required=False, widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Brand"}) )
-    min_price = forms.DecimalField(label="Min Price", max_digits=5, decimal_places=2, min_value=0, required=False,
-                                   widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "0.00"}))
-    max_price = forms.DecimalField(label="Max Price", max_digits=5, decimal_places=2, min_value=0, required=False,
-                                   widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "999.99"}))
+    category = forms.ChoiceField(
+        label="Category",
+        choices=ProductModel.PRODUCTS_CATEGORIES,
+        widget=forms.RadioSelect,
+        required=False,
+    )
+
+    brand = forms.CharField(
+        label="Brand",
+        max_length=30,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Brand"})
+    )
+
+    min_price = forms.DecimalField(
+        label="Min Price",
+        max_digits=5,
+        decimal_places=2,
+        min_value=0,
+        required=False,
+        widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "0.00"})
+    )
+
+    max_price = forms.DecimalField(
+        label="Max Price",
+        max_digits=5,
+        decimal_places=2,
+        min_value=0,
+        required=False,
+        widget=forms.NumberInput(attrs={"step": "0.01", "class": "form-control", "placeholder": "999.99"}))
 

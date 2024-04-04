@@ -5,17 +5,6 @@ from django.utils.text import slugify
 UserModel = get_user_model()
 
 
-# class Ingredient(models.Model):
-#     MAX_NAME_LENGTH = 30
-#
-#     name = models.CharField(
-#         MAX_NAME_LENGTH=30,
-#     )
-#     description = models.TextField(
-#         max_length=MAX_DESCRIPTION_LENGTH,
-#     )
-
-
 class ProductModel(models.Model):
     PRODUCTS_CATEGORIES = [
         ("Make-up", "Make-up"),

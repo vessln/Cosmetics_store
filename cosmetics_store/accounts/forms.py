@@ -64,13 +64,15 @@ class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
 
     class Meta(auth_forms.UserChangeForm.Meta):
         model = UserModel
-        fields = ("username", "email", "date_of_birth", "first_name", "last_name", "phone",)
+        fields = ("username", "email", "date_of_birth", "first_name", "last_name", "phone", "is_staff", "is_superuser")
 
         widgets = {
             "first_name": forms.TextInput(attrs={"placeholder": "Enter your first name"}),
             "last_name": forms.TextInput(attrs={"placeholder": "Enter your last name"}),
             "date_of_birth": forms.DateInput(attrs={"placeholder": "Birth date: YYYY-MM-DD"}),
             "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
+            # "is_staff": forms.RadioSelect(),
+            # "is_superuser": forms.RadioSelect(),
         }
 
 

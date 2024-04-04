@@ -20,7 +20,7 @@ class CreateProductView(ProductRestrictionMixin, generic_views.CreateView):
 
     def form_valid(self, form):  # set currently authenticated user who create the product to `manager`
         form = super().form_valid(form)
-        form.object.manager = self.request.user
+        self.object.manager = self.request.user
         self.object.save()
         return form
 
