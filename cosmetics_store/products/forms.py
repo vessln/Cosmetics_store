@@ -43,7 +43,7 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
         # makes brand's name UPPERCASE
         instance.brand = self.cleaned_data["brand"].upper()
         # makes title_product's first letter UPPERCASE
-        instance.title_product = self.cleaned_data["title_product"][0].upper()
+        instance.title_product = self.cleaned_data["title_product"].capitalize()
 
         # GPT helps:
         image = self.cleaned_data["image_product"]

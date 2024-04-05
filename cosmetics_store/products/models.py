@@ -82,7 +82,7 @@ class ProductModel(models.Model):
         editable=False,
     )
 
-    manager = models.ForeignKey(
+    user = models.ForeignKey(
         UserModel,
         on_delete=models.DO_NOTHING,
         null=True,

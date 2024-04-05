@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main_content %}
+
+    <div class="untree_co-section">
+        <div class="container">
+
+            <div class="col-md-12">
+		          <div class="row mb-5">
+		            <div class="col-md-12">
+		              <h2 class="h3 mb-4 text-black">Placed orders:</h2>
+                        <hr>
+                        <div class="site-blocks-table">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="product-name">order id</th>
+                                    <th class="product-name">date</th>
+                                    <th class="product-name">all products</th>
+                                    <th class="product-total">Total price</th>
+                                    <th class="product-name">User details</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for order in all_placed_orders %}
+                                    <tr>
+                                        <td><h6> order id </h6></td>
+                                        <td><h6> 11.12.2023</h6></td>
+                                        <td><h6> product title - quantity </h6></td>
+                                        <td><h6>$ 450</h6></td>
+                                        <td>
+                                            <div class="border p-3">
+                                              <h3 class="h6 mb-0">
+                                                  <a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button"
+                                                     aria-expanded="false" aria-controls="collapsecheque">User details:&nbsp;
+                                                      <i class="fa-solid fa-angle-down"></i></a>
+                                              </h3>
+                                              <div class="collapse" id="collapsecheque">
+                                                <div class="py-2"><p class="mb-0">user names, adress, notes</p></div>
+                                              </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+
+                  </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

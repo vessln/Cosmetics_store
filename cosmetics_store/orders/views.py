@@ -10,6 +10,7 @@ from django.db.models import F
 
 from django.views import generic as generic_views, View
 
+from cosmetics_store.core.user_mixins import PageRestrictionMixin
 from cosmetics_store.orders.forms import UserShippingAddressForm
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
@@ -188,4 +189,18 @@ class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView
         return context
 
     #TODO: Send an email
+
+
+class CurrentProcessingOrders(PageRestrictionMixin, generic_views.TemplateView):
+    template_name = "orders/order_processing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["all_placed_orders"] = OrderModel.objects.filter(is_ordered=True).order_by("-completion_order_date")
+
+        return context
+
+
+
 

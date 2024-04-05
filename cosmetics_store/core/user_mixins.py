@@ -1,9 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import mixins as auth_mixins
 from django.shortcuts import redirect
 
 
-class RestrictedUserAccessMixin(LoginRequiredMixin):
+class RestrictedUserAccessMixin(auth_mixins.LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser and request.user.pk != kwargs["pk"]:
             messages.info(request, "You have not access to this page!")
@@ -21,6 +21,11 @@ class LogoutRequiredMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
+class PageRestrictionMixin(auth_mixins.LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_staff or request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
 
+        return redirect("home page")
 
 

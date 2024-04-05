@@ -15,7 +15,7 @@ class UserShippingAddressModelAdmin(admin.ModelAdmin):
 @admin.register(OrderProductModel)
 class OrderProductAdmin(admin.ModelAdmin):
     list_display = ("product", "quantity", "is_ordered", "user")
-    fields = ("quantity")
+    fields = ("quantity", )
     list_filter = ("product", "quantity", "user")
     ordering = ("user",)
     search_fields = ("product", "quantity", "user")
@@ -23,8 +23,8 @@ class OrderProductAdmin(admin.ModelAdmin):
 
 @admin.register(OrderModel)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user", "shipping_address", "products", "completion_order_date", "is_ordered", "order_id", "total_sum")
+    list_display = ("user", "shipping_address", "completion_order_date", "is_ordered", "order_id", "total_sum")
     fields = ("order_id", "total_sum")
-    list_filter = ("user", "products", "is_ordered", "total_sum")
+    list_filter = ("user", "is_ordered", "total_sum")
     ordering = ("completion_order_date", )
-    search_fields = ("user", "products", "completion_order_date", "is_ordered")
+    search_fields = ("user", "completion_order_date", "is_ordered")

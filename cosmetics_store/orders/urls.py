@@ -1,7 +1,7 @@
 from django.urls import path
 
 from cosmetics_store.orders.views import add_product_to_cart, remove_product_from_cart, \
-    decrease_product_quantity_in_cart, MyCartView, CheckoutView, SuccessfulOrder
+    decrease_product_quantity_in_cart, MyCartView, CheckoutView, SuccessfulOrder, CurrentProcessingOrders
 
 urlpatterns = (
     path("<slug:slug>/add-to-cart/", add_product_to_cart, name="add to cart"),
@@ -10,5 +10,6 @@ urlpatterns = (
     path("my-cart/", MyCartView.as_view(), name="my cart"),
     path("checkout/", CheckoutView.as_view(), name="checkout"),
     path("thank-you/", SuccessfulOrder.as_view(), name="thank you"),
+    path("orders-for-processing/", CurrentProcessingOrders.as_view(), name="processing orders"),
 
 )
