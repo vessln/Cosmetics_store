@@ -2,12 +2,46 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator
 from django.db import models
 
-from cosmetics_store.accounts.models import UserShippingAddressModel
 from cosmetics_store.orders.helpers import generate_unique_number
-# from cosmetics_store.orders.helpers import generate_unique_number
 from cosmetics_store.products.models import ProductModel
 
 UserModel = get_user_model()
+
+
+class UserShippingAddressModel(models.Model):
+    MAX_COUNTRY_LENGTH = 30
+    MAX_CITY_LENGTH = 50
+    MAX_STREET_LENGTH = 30
+    MAX_NOTES_LENGTH = 100
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
+
+    country = models.CharField(
+        max_length=MAX_COUNTRY_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    city = models.CharField(
+        max_length=MAX_CITY_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    street_address = models.CharField(
+        max_length=MAX_STREET_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    notes = models.TextField(
+        max_length=MAX_NOTES_LENGTH,
+        null=True,
+        blank=True,
+    )
 
 
 class OrderProductModel(models.Model):  # acts like a link between products and order

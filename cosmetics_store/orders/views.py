@@ -10,7 +10,7 @@ from django.db.models import F
 
 from django.views import generic as generic_views, View
 
-from cosmetics_store.accounts.forms import UserShippingAddressForm
+from cosmetics_store.orders.forms import UserShippingAddressForm
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
 
@@ -76,6 +76,7 @@ def remove_product_from_cart(request, slug):
                 user=request.user,
                 is_ordered=False
             ).first()
+            uncompleted_order.products.remove(order_product)
             order_product.delete()
             messages.info(request, "The product was removed from your cart.")
             remove_empty_order(uncompleted_order)
@@ -126,26 +127,6 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             return render(self.request, "orders/my_cart.html")
 
-    # def form_valid(self, form):
-    #     # Get the product slug from the form or any other source
-    #     product_slug = form.cleaned_data["product_slug"]
-    #
-    #     # Retrieve the product object based on the slug
-    #     product = get_object_or_404(ProductModel, slug=product_slug)
-    #
-    #     # Retrieve the OrderProductModel instance based on the current user and product
-    #     order_product, created = OrderProductModel.objects.get_or_create(
-    #         user=self.request.user,
-    #         product=product,
-    #         defaults={'quantity': 0}  # Set a default value for quantity if the instance is newly created
-    #     )
-    #accounts_storeusermodel_user_permissions
-    #     # Update the quantity of the OrderProductModel instance
-    #     order_product.quantity += form.cleaned_data["quantity"]
-    #
-    #     # Save the updated OrderProductModel instance
-    #     order_product.save()
-
 
 class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
     form_class = UserShippingAddressForm
@@ -171,6 +152,10 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
             current_order.shipping_address = shipping_address
             current_order.completion_order_date = timezone.now().date()
             current_order.is_ordered = True
+
+            current_orderproduct = OrderProductModel.objects.filter(user=self.request.user, is_ordered=False).first()
+            current_orderproduct.is_ordered = True
+            current_orderproduct.save()
 
             for order_product in current_order.products.all():
                 order_product.product.sales_count = F("sales_count") + order_product.quantity

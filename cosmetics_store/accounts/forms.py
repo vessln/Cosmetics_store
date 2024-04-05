@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 
-from cosmetics_store.accounts.models import UserShippingAddressModel
 from cosmetics_store.core.mixins import FormControlFieldsMixin
 
 UserModel = get_user_model()
@@ -71,27 +70,8 @@ class UpdateUserForm(FormControlFieldsMixin, auth_forms.UserChangeForm):
             "last_name": forms.TextInput(attrs={"placeholder": "Enter your last name"}),
             "date_of_birth": forms.DateInput(attrs={"placeholder": "Birth date: YYYY-MM-DD"}),
             "phone": forms.TextInput(attrs={"placeholder": "0*********"}),
-            # "is_staff": forms.RadioSelect(),
-            # "is_superuser": forms.RadioSelect(),
         }
 
 
-class UserShippingAddressForm(FormControlFieldsMixin, forms.ModelForm):
-    fields_requiring_form_control = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._make_fields_form_control()
-
-    class Meta:
-        model = UserShippingAddressModel
-        fields = ("country", "city", "street_address", "notes", )
-
-        widgets = {
-            "country": forms.TextInput(attrs={"placeholder": "Country", }),
-            "city": forms.TextInput(attrs={"placeholder": "City", }),
-            "street_address": forms.TextInput(attrs={"placeholder": "Street, №", }),
-            "notes": forms.Textarea(attrs={"placeholder": "Write your notes...", "rows": 3, }),
-        }
 
 

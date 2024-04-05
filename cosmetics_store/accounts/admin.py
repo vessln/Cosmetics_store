@@ -11,3 +11,6 @@ class StoreUserModelAdmin(admin.ModelAdmin):
     list_filter = ("username", "gender", "is_staff", "is_superuser")
     ordering = ("username", "first_name")
     search_fields = ("username", "first_name", "last_name", "phone", "is_staff", "is_superuser")
+
+
+
