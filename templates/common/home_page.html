@@ -44,14 +44,14 @@
             <div class="row">
 
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                    <h2 class="mb-4 section-title">Newest products</h2>
+                    <h2 class="mb-4 section-title">Best sellers:</h2>
                     <p class="mb-4">
                         Discover newest cosmetics product to enhance your beauty routine from hottest brands at Best Beauty.
                     </p>
                     <p><a href="{% url 'list products' %}" class="btn">Explore</a></p>
                 </div>
 
-                {% for product in new_products %}
+                {% for product in best_sellers %}
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="{% url 'details product' slug=product.slug %}">
                         <img src="{{ product.image_product.url }}" alt="product" class="img-fluid product-thumbnail">

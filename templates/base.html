@@ -42,21 +42,39 @@
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item"><a class="nav-link" href="{% url 'home page' %}">Home</a></li>
                     <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                    <li><a class="nav-link" href="{% url 'list products' %}">Products</a></li>
-                    <li><a class="nav-link" href="{% url 'list brands' %}">Brands</a></li>
+{#                    <li><a class="nav-link" href="{% url 'list products' %}">Products</a></li>#}
+{#                    <li><a class="nav-link" href="{% url 'list brands' %}">Brands</a></li>#}
+
+                    <li><div class="nav-item dropdown">
+                        <a href="" class="nav-link" data-bs-toggle="dropdown">Shop</a>
+                        <div class="dropdown-menu shop">
+                            <a href="{% url 'list products' %}" class="dropdown-item shop">Products</a>
+                            <a href="{% url 'list brands' %}" class="dropdown-item shop">Brands</a>
+                        </div>
+                    </div>
+                    </li>
+
                     <li><a class="nav-link" href="{% url 'list articles' %}">Blog</a></li>
                 </ul>
 
-                {% if user.is_authenticated and not user.is_staff %}
-                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                    <li><a style="color: white" class="nav-link" href="{% url 'my cart' %}">
-                        <i class="fas fa-shopping-cart"></i> {{ request.user|count_products }} </a>
-                    </li>
-                </ul>
+                {% if user.is_authenticated or user.is_superuser %}
+                        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                            <li><a style="color: white" class="nav-link" href="{% url 'my cart' %}">
+                                <i class="fas fa-shopping-cart"></i> {{ request.user|count_products }}</a>
+                            </li>
+                        </ul>
+                    {% if user.is_staff or user.is_superuser %}
+                        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                            <li><a style="color: white" class="nav-link" href="{% url 'processing orders' %}">
+                                <i class="fas fa-list-check"></i></a>
+                            </li>
+                        </ul>
+                    {% endif %}
                 {% endif %}
 
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                <div class="dropdown navbar-nav mb-2 mb-md-0 ms-1">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <a class="nav-link" href="#collapsecheque"><img src="{% static 'images/user.svg' %}" alt="user"></a>
                     </button>
                     <ul class="dropdown-menu user" aria-labelledby="dropdownMenuButton">

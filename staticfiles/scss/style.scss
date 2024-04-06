@@ -71,6 +71,14 @@ span.input-group-text {
     width: 8.2rem;
 }
 
+.dropdown-item-shop {
+	color: $primary !important;
+	font-weight: 500;
+}
+.dropdown-item-shop:hover {
+	background-color: ($primary, 0.3) !important;
+}
+
 .custom-navbar {
 	background: $primary!important;
 	padding-top: 20px;
@@ -139,7 +147,7 @@ span.input-group-text {
 		margin-left: 0!important;
 		flex-direction: row;
 		@media (min-width: $md) {
-			margin-left: 40px!important;
+			margin-left: 25px!important;
 		}
 		li {
 			margin-left: 0;
@@ -153,11 +161,11 @@ span.input-group-text {
 
 
 .dropdown-item {
-	color: $primary;
+	color: $primary !important;
 	font-weight: 500;
 }
 .dropdown-item:hover {
-	background-color: ($primary, 0.3);
+	background-color: ($primary, 0.3) !important;
 }
 
 .dropdown-menu-user{

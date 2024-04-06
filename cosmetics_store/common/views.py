@@ -15,7 +15,7 @@ class HomePageView(generic_views.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["new_products"] = ProductModel.objects.order_by("-created_at")[:3]
+        context["best_sellers"] = ProductModel.objects.order_by("-sales_count")[:3]
         context["latest_articles"] = ArticleModel.objects.order_by("-published_at")[:3]
 
         return context
