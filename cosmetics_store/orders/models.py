@@ -12,7 +12,7 @@ class UserShippingAddressModel(models.Model):
     MAX_COUNTRY_LENGTH = 30
     MAX_CITY_LENGTH = 50
     MAX_STREET_LENGTH = 30
-    MAX_NOTES_LENGTH = 100
+    MAX_NOTES_LENGTH = 50
 
     user = models.ForeignKey(
         UserModel,
@@ -79,7 +79,7 @@ class OrderModel(models.Model):  # this order store all the products that user w
 
     shipping_address = models.ForeignKey(
         UserShippingAddressModel,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
