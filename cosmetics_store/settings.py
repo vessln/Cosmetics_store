@@ -17,6 +17,7 @@ SECRET_KEY = 'django-insecure--*_w@i9p3l79j+8f&eu0q^kwv51u(-p@(i3$p)@r^0^%7x*9_h
 DEBUG = False
 
 ALLOWED_HOSTS = ["bestbeauty.azurewebsites.net"]
+CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
 
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(" ")
 # CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
@@ -33,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
 
     'cosmetics_store.common',
     'cosmetics_store.accounts',
@@ -129,7 +129,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "staticfiles/"
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
