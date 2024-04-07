@@ -11,8 +11,8 @@
 // Create SCSS variables
 $white: #ffffff;
 $black: #000000;
-$primary: #de5d83;
-$secondary: #fad9da;
+$primary: #FFE4E8;
+$secondary: #FFE4E8;
 $dark: #2f2f2f;
 $light: #dce5e4;
 $lighter: #eff2f1;
@@ -46,9 +46,9 @@ body {
 a {
 	text-decoration: none;
 	transition: .3s all ease;
-	color: $dark;
+	color: $dark !important;
 	&:hover {
-		color: $dark;
+		color: $primary !important;
 		text-decoration: none;
 	}
 	&.more {
@@ -72,11 +72,19 @@ span.input-group-text {
 }
 
 .dropdown-item-shop {
-	color: $primary !important;
+	color: $black !important;
 	font-weight: 500;
 }
 .dropdown-item-shop:hover {
 	background-color: ($primary, 0.3) !important;
+}
+
+.nav-link {
+	color: $black !important;
+}
+
+.nav-link:hover {
+	font-weight: bold !important;
 }
 
 .custom-navbar {
@@ -107,7 +115,7 @@ span.input-group-text {
 			a {
 				font-weight: 500;
 				font-size: 16px;
-				color: $white!important;
+				color: $black !important;
 				opacity: .7;
 				transition: .3s all ease;
 				position: relative;
@@ -118,7 +126,7 @@ span.input-group-text {
 						bottom: 0;
 						left: 8px;
 						right: 8px;
-						background: $primary;
+						background: #2f2f2f;
 						height: 5px;
 						opacity: 1;
 						visibility: visible;
@@ -161,14 +169,14 @@ span.input-group-text {
 
 
 .dropdown-item {
-	color: $primary !important;
+	color: $black !important;
 	font-weight: 500;
 }
 .dropdown-item:hover {
-	background-color: ($primary, 0.3) !important;
+	background-color: ($primary, 0.7) !important;
 }
 
-.dropdown-menu-user{
+.dropdown-menu-user {
     min-width: 7rem;
 	text-align: center;
 }
@@ -180,14 +188,14 @@ span.input-group-text {
     font-weight: 600 !important;
     font-size: 1.1rem !important;
 	.fa-star {
-    	color: $primary !important;
+    	color: $black !important;
   }
 }
 
 
 // Hero 
 .hero {
-	background: $primary;
+	background: transparent;
 	padding: calc(4rem - 30px) 0 0 0;
 	@media (min-width: $md) {
 		padding: calc(4rem - 25px) 0 2rem 0;
@@ -790,7 +798,7 @@ span.input-group-text {
 			font-size: 32px;
 			font-weight: 500;
 			text-decoration: none;
-			color: $primary;
+			color: $black;
 		}
 	}
 	.custom-social {
@@ -803,12 +811,12 @@ span.input-group-text {
 				text-align: center;
 				line-height: 40px;
 				display: inline-block;
-				background: $white;
-				color: $primary;
+				background: $primary;
+				color: $black;
 				border-radius: 50%;
 				&:hover {
 					background: $primary;
-					color: $white;
+					color: $black;
 				}
 			}
 		}

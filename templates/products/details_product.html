@@ -51,7 +51,7 @@
     {% if request.user.is_staff or request.user.is_superuser %}
         <p class="mb-5">
             <a href="{% url 'edit product' slug=object.slug %}" class="btn btn-secondary me-2">Edit product</a>
-            <a href="{% url 'delete product' slug=object.slug %}" class="btn btn-white-outline">Delete product</a>
+            <a href="{% url 'delete product' slug=object.slug %}" class="btn btn-secondary">Delete product</a>
         </p>
     {% endif %}
 
