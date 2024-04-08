@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="text-center w-100">
-                        <button type="submit" class="btn btn-primary btn-block py-2">Edit Product</button>
+                        <button type="submit" class="btn btn-secondary btn-block py-2">Edit Product</button>
                     </div>
 
                     {% csrf_token %}
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <a  href="{% url 'details product' slug=object.slug %}" class="btn btn-primary btn-block py-2">Go back</a>
+                    <a  href="{% url 'details product' slug=object.slug %}" class="btn btn-secondary btn-block py-2">Go back</a>
                 </div>
 
             </div>

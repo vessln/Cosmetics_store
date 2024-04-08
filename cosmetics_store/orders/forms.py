@@ -1,7 +1,7 @@
 from django import forms
 
 from cosmetics_store.core.mixins import FormControlFieldsMixin
-from cosmetics_store.orders.models import UserShippingAddressModel
+from cosmetics_store.orders.models import UserShippingAddressModel, OrderModel
 
 
 class UserShippingAddressForm(FormControlFieldsMixin, forms.ModelForm):
@@ -20,4 +20,15 @@ class UserShippingAddressForm(FormControlFieldsMixin, forms.ModelForm):
             "city": forms.TextInput(attrs={"placeholder": "City", }),
             "street_address": forms.TextInput(attrs={"placeholder": "Street, №", }),
             "notes": forms.Textarea(attrs={"placeholder": "Write your notes...", "rows": 3, }),
+        }
+
+
+class SentOrderForm(forms.ModelForm):
+    fields_requiring_form_control = "__all__"
+
+    class Meta:
+        model = OrderModel
+        fields = ("is_sent",)
+        widgets = {
+           "is_sent": forms.RadioSelect(choices=((True, "Yes"), (False, "No"))),
         }

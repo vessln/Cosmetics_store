@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="text-center w-100">
-                        <button type="submit" class="btn btn-primary btn-block py-2">Edit Article</button>
+                        <button type="submit" class="btn btn-secondary btn-block py-2">Edit Article</button>
                     </div>
 
                     {% csrf_token %}
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <a  href="{% url 'details article' pk=object.pk %}" class="btn btn-primary btn-block py-2">Go back</a>
+                    <a  href="{% url 'details article' pk=object.pk %}" class="btn btn-secondary btn-block py-2">Go back</a>
                 </div>
 
             </div>

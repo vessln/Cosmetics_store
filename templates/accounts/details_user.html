@@ -14,9 +14,15 @@
                     <img src="{% static 'images/user-male.png' %}" alt="girl" class="img-fluid mb-3 d-inline-block d-md-block">
                 {% endif %}
                 <div class="input-group-prepend col-lg-11">
-                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                        <i class="fa fa-id text-muted">Total orders:</i></span>
-                    <span class="input-group-text bg-white px-4 border-md border-right-0">{{ count_successful_orders }}</span>
+                    {% if count_successful_orders > 0 %}
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <i class="fa fa-id text-muted">Total orders:</i></span>
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">{{ count_successful_orders }}</span>
+                    {% endif %}
+
+                    {% if user.is_staff or user.is_superuser %}
+                        <a href="{% url 'processing orders' %}" class="btn btn-secondary me-2 mt-5">Check placed orders</a>
+                    {% endif %}
                 </div>
 
             </div>
@@ -46,14 +52,18 @@
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"> First Name: </i>
                             </span>
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">{{ object.first_name }}</span>
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                {% if object.first_name %} {{ object.first_name }} {% else %} - {% endif %}
+                            </span>
                         </div>
 
                         <div class="input-group-prepend p-1">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"> Last Name: </i>
                             </span>
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">{{ object.last_name }}</span>
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                {% if object.first_name is not None %} {{ object.last_name }} {% else %} - {% endif %}
+                            </span>
                         </div>
                     </div>
 
@@ -62,7 +72,9 @@
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-calendar text-muted"> Birth date: </i>
                             </span>
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">{{ object.date_of_birth }}</span>
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                 {% if object.birth_date is not None %} {{ object.birth_date }} {% else %} - {% endif %}
+                            </span>
                         </div>
 
                         <div class="input-group-prepend p-1">
@@ -78,7 +90,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <a href="{% url 'edit user' pk=request.user.pk %}" class="btn btn-primary btn-block py-2">Edit</a>
+                    <a href="{% url 'edit user' pk=request.user.pk %}" class="btn btn-secondary btn-block py-2">Edit</a>
                 </div>
 
                 <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -86,7 +98,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <a  href="{% url 'delete user' pk=request.user.pk %}" class="btn btn-primary btn-block py-2">Delete</a>
+                    <a href="{% url 'delete user' pk=request.user.pk %}" class="btn btn-secondary btn-block py-2">Delete</a>
                 </div>
 
             </div>

@@ -99,22 +99,10 @@
                             </div>
                         {% endif %}
 
-{#                        {% if request.user.is_superuser %}#}
-{#                            <h4 class="text-center my-3 pb-3">Changes that the admin could make:</h4>#}
-{#                            <div class="col-12">#}
-{#                                <label>Make user: Moderator</label>#}
-{#                                {{ form.is_staff }}#}
-{#                            </div>#}
-{#                            <div class="col-12">#}
-{#                                <label>Make user: Administrator</label>#}
-{#                                {{ form.is_superuser }}#}
-{#                            </div>#}
-{#                        {% endif %}#}
-
                     </div>
 
                     <div class="text-center w-100">
-                        <button type="submit" class="btn btn-primary btn-block py-2">Edit</button>
+                        <button type="submit" class="btn btn-secondary btn-block py-2">Edit</button>
                     </div>
 
                     {% csrf_token %}
@@ -125,7 +113,7 @@
                 </div>
 
                 <div class="text-center w-100">
-                    <a  href="{% url 'details user' pk=request.user.pk %}" class="btn btn-primary btn-block py-2">Go back</a>
+                    <a  href="{% url 'details user' pk=request.user.pk %}" class="btn btn-secondary btn-block py-2">Go back</a>
                 </div>
 
             </div>

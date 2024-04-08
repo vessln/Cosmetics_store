@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import mixins as auth_mixins
+from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,10 +10,15 @@ from django.db.models import F
 
 from django.views import generic as generic_views, View
 
-from cosmetics_store.core.user_mixins import PageRestrictionMixin
-from cosmetics_store.orders.forms import UserShippingAddressForm
+from cosmetics_store.core.decorator import restricted_staff_users
+from cosmetics_store.core.user_mixins import PageRestrictionMixin, RestrictedStaffUsers
+from cosmetics_store.orders.forms import UserShippingAddressForm, SentOrderForm
+from cosmetics_store.orders.helpers import generate_unique_number
 from cosmetics_store.orders.models import OrderProductModel, OrderModel
 from cosmetics_store.products.models import ProductModel
+
+
+UserModel = get_user_model()
 
 
 # if order is empty -> remove it:
@@ -22,6 +27,7 @@ def remove_empty_order(current_order):
         current_order.delete()
 
 
+@restricted_staff_users
 @login_required
 def add_product_to_cart(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
@@ -59,6 +65,7 @@ def add_product_to_cart(request, slug):
     return redirect("details product", slug=slug)
 
 
+@restricted_staff_users
 @login_required
 def remove_product_from_cart(request, slug):
     # get a product:
@@ -89,6 +96,7 @@ def remove_product_from_cart(request, slug):
     return redirect("my cart")
 
 
+@restricted_staff_users
 @login_required
 def decrease_product_quantity_in_cart(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
@@ -116,7 +124,7 @@ def decrease_product_quantity_in_cart(request, slug):
             return redirect("my cart")
 
 
-class MyCartView(auth_mixins.LoginRequiredMixin, View):
+class MyCartView(RestrictedStaffUsers, View):
     def get(self, *args, **kwargs):
         try:
             current_order = OrderModel.objects.get(user=self.request.user, is_ordered=False)
@@ -129,7 +137,7 @@ class MyCartView(auth_mixins.LoginRequiredMixin, View):
             return render(self.request, "orders/my_cart.html")
 
 
-class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
+class CheckoutView(RestrictedStaffUsers, generic_views.FormView):
     form_class = UserShippingAddressForm
     template_name = "orders/checkout.html"
 
@@ -152,6 +160,9 @@ class CheckoutView(auth_mixins.LoginRequiredMixin, generic_views.FormView):
         if current_order:
             current_order.shipping_address = shipping_address
             current_order.completion_order_date = timezone.now().date()
+            current_order.order_id = (f"{self.request.user.username[:2]}"
+                                      f"{generate_unique_number()}"
+                                      f"{self.request.user.pk}")
             current_order.is_ordered = True
 
             current_orderproduct = OrderProductModel.objects.filter(user=self.request.user, is_ordered=False).first()
@@ -191,15 +202,33 @@ class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView
     #TODO: Send an email
 
 
-class CurrentProcessingOrders(PageRestrictionMixin, generic_views.TemplateView):
+class CurrentProcessingOrders(PageRestrictionMixin, generic_views.FormView):
     template_name = "orders/order_processing.html"
+    form_class = SentOrderForm
+
+    def get_success_url(self):
+        return reverse("home page")
+
+    def get_order(self):
+        orders = OrderModel.objects.filter(is_ordered=True, is_sent=False).order_by("-completion_order_date")
+        if orders.exists():
+            return orders.first()
+        return None
+
+    def form_valid(self, form):
+        order = self.get_order()
+        if order:
+            order.is_sent = form.cleaned_data["is_sent"]
+            order.save()
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["all_placed_orders"] = OrderModel.objects.filter(is_ordered=True).order_by("-completion_order_date")
+        context["first_placed_order"] = self.get_order
 
         return context
+
 
 
 

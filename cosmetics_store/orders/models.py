@@ -72,6 +72,8 @@ class OrderProductModel(models.Model):  # acts like a link between products and 
 
 
 class OrderModel(models.Model):  # this order store all the products that user was added in shopping card
+    MAX_ID_LENGTH = 15
+
     user = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
@@ -103,8 +105,14 @@ class OrderModel(models.Model):  # this order store all the products that user w
         blank=False,
     )
 
-    order_id = models.IntegerField(
-        default=generate_unique_number(),
+    order_id = models.CharField(
+        max_length=MAX_ID_LENGTH,
+        null=True,
+        blank=True,
+    )
+
+    is_sent = models.BooleanField(
+        default=False,
         null=True,
         blank=True,
     )

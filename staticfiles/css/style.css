@@ -171,16 +171,16 @@ a {
 
 .hero {
   background: transparent;
-  padding: calc(4rem - 30px) 0 0 0; }
+  padding: calc(2rem - 30px) 0 0 0; }
   @media (min-width: 768px) {
     .hero {
-      padding: calc(4rem - 25px) 0 2rem 0; } }
+      padding: calc(4rem - 25px) 0 4rem 0; } }
   @media (min-width: 992px) {
     .hero {
-      padding: calc(6rem - 25px) 0 2rem 0; } }
+      padding: calc(5rem - 25px) 0 4rem 0; } }
   @media (min-width: 1200px) {
     .hero {
-      padding: calc(8rem - 25px) 0 8rem 0; } }
+      padding: calc(6rem - 25px) 0 4rem 0; } }
   .hero .intro-excerpt {
     position: relative;
     z-index: 4; }
@@ -193,7 +193,7 @@ a {
     margin-bottom: 30px; }
     @media (min-width: 1400px) {
       .hero h1 {
-        font-size: 52px; } }
+        font-size: 48px; } }
   .hero p {
     color: black;
     font-size: 20px;
@@ -289,7 +289,7 @@ img {
   color: black; }
 
 .product-section {
-  padding: 5rem 0; }
+  padding: 5rem 0 3rem 0; }
   .product-section .product-item {
     text-align: center;
     text-decoration: none;
@@ -598,7 +598,7 @@ img {
   padding: 1rem 0 5rem 0 !important; }
 
 .blog-section {
-  padding: 4rem 0 5rem 0; }
+  padding: 3rem 0 3rem 0; }
   .articles {
     padding-left: 7%;
   	padding-bottom: 2%; }
@@ -677,7 +677,7 @@ img {
       .footer-section .links-wrap {
         margin-top: 54px; } }
     .footer-section .links-wrap ul li {
-      margin-bottom: 16px;
+      margin-bottom: 25px;
       font-size: 16px;}
   .footer-section .footer-logo-wrap {
     padding-top: 16px;  }

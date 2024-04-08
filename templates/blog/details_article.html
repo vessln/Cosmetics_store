@@ -26,12 +26,12 @@
             </div>
         </div>
 
-{#    {% if request.user.is_staff or request.user.is_superuser %}#}
+    {% if request.user.is_staff or request.user.is_superuser %}
         <p class="mb-5">
             <a href="{% url 'edit article' pk=object.pk %}" class="btn btn-secondary me-2">Edit article</a>
             <a href="{% url 'delete article' pk=object.pk %}" class="btn btn-secondary">Delete article</a>
         </p>
-{#    {% endif %}#}
+    {% endif %}
 
     </div>
 

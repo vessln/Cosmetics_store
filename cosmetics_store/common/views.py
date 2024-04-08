@@ -17,6 +17,7 @@ class HomePageView(generic_views.TemplateView):
         context = super().get_context_data(**kwargs)
         context["best_sellers"] = ProductModel.objects.order_by("-sales_count")[:3]
         context["latest_articles"] = ArticleModel.objects.order_by("-published_at")[:3]
+        context["unprocessed_orders_count"] = OrderModel.objects.filter(is_sent=False).count()
 
         return context
 

@@ -59,8 +59,6 @@ class ListProductsView(generic_views.ListView):
         context = super().get_context_data(*args, **kwargs)
         context["searched_product"] = self.request.GET.get("searched_product", None) or ""
         context["filter_products"] = FilterProductForm(self.request.GET)
-        # context["max_price"] = self.max_price or ""
-        # context["highest_price"] = ProductModel.objects.order_by("-price").values_list("price", flat=True).first()
 
         return context
 

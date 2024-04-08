@@ -7,9 +7,9 @@
     <div class="hero">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <div class="intro-excerpt">
-                        <h1>
+                        <h1 class="py-3">
                             Welcome to Best Beauty{% if user.is_authenticated %}, {{ user.username }} {% endif %}
                         </h1>
                         <p class="mb-4">
@@ -21,19 +21,70 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img width=80% src="{% static 'images/girl_homepage.png' %}" alt="cosmetics" class="img-fluid">
+
+
+             <div class="col-lg-8">
+                 <div class="testimonial-section before-footer-section mt-0">
+                    <div class="container">
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="testimonial-slider-wrap text-center">
+
+                                    <div id="testimonial-nav">
+                                        <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+                                        <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+                                    </div>
+
+                                    <div class="testimonial-slider">
+
+                                        <div class="item">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-8 mx-auto">
+                                                    <div class="testimonial-block text-center">
+                                                        <a href="{% url 'list products' %}?category=Skin+care">
+                                                            <img class="img-fluid" src="{% static 'images/hp_slider1.png' %}" alt="">
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-8 mx-auto">
+                                                    <div class="testimonial-block text-center">
+                                                        <a href="{% url 'list products' %}?category=Hair+care">
+                                                            <img class="img-fluid" src="{% static 'images/hp_slider3.png' %}" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="item">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-8 mx-auto">
+                                                    <div class="testimonial-block text-center">
+                                                        <a href="{% url 'list products' %}?category=Personal+Care">
+                                                            <img class="img-fluid" src="{% static 'images/ph_slider2.png' %}" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="image-container" style="background-image: url({% static 'images/girl_homepage.png' %});"></div>
+             </div>
+
             </div>
         </div>
     </div>
@@ -46,7 +97,7 @@
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                     <h2 class="mb-4 section-title">Best sellers:</h2>
                     <p class="mb-4">
-                        Discover newest cosmetics product to enhance your beauty routine from hottest brands at Best Beauty.
+                        Discover newest cosmetics product to enhance your beauty routine from the hottest brands at Best Beauty.
                     </p>
                     <p><a href="{% url 'list products' %}" class="btn">Explore</a></p>
                 </div>

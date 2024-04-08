@@ -29,3 +29,13 @@ class PageRestrictionMixin(auth_mixins.LoginRequiredMixin):
         return redirect("home page")
 
 
+class RestrictedStaffUsers(auth_mixins.LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if ((request.user.is_authenticated and not request.user.is_staff) or
+                (request.user.is_authenticated and request.user.is_superuser)):
+            return super().dispatch(request, *args, **kwargs)
+
+        else:
+            messages.info(request, "You have no permission to access this page!")  # 403
+            return redirect("home page")
+

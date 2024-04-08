@@ -20,11 +20,9 @@
                     <h5 class="article-title text-muted">Category: {{ object.category }}</h5>
                     <h5 class="article-title">${{ object.price }}</h5>
 
-                    {% if not request.user.is_staff %}
                     <p class="mb-5">
                         <a href="{% url 'add to cart' slug=object.slug %}" class="btn btn-secondary me-2">Add to cart</a>
                     </p>
-                    {% endif %}
 
                     <div class="mt-4">
                         <div class="meta">
