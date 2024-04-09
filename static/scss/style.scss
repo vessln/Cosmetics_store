@@ -192,19 +192,18 @@ span.input-group-text {
   }
 }
 
-
 // Hero 
 .hero {
 	background: transparent;
-	padding: calc(4rem - 30px) 0 0 0;
+	padding: calc(2rem - 30px) 0 0 0;
 	@media (min-width: $md) {
-		padding: calc(4rem - 25px) 0 2rem 0;
+		padding: calc(4rem - 25px) 0 4rem 0;
 	}
 	@media (min-width: $lg) {
-		padding: calc(6rem - 25px) 0 2rem 0;
+		padding: calc(5rem - 25px) 0 4rem 0;
 	}
 	@media (min-width: $xl) {
-		padding: calc(8rem - 25px) 0 8rem 0;
+		padding: calc(6rem - 25px) 0 4rem 0;
 	}
 	
 	.intro-excerpt {
@@ -221,7 +220,7 @@ span.input-group-text {
 		margin-bottom: 30px;
 
 		@media (min-width: $xxl) {
-			font-size: 52px;
+			font-size: 48px;
 		}
 	}
 	p {
@@ -332,7 +331,7 @@ span.input-group-text {
 	color: $dark;
 }
 .product-section {
-	padding: 5rem 0;
+	padding: 5rem 0 3rem 0;
 
 	.product-item {
 		text-align: center;
@@ -681,7 +680,7 @@ span.input-group-text {
 	padding: 7rem 0 12rem 0!important;
 }
 .blog-section {
-	padding: 4rem 0 5rem 0;
+	padding: 3rem 0 3rem 0;
 	  	.articles {
     		padding-left: 7%;
 			padding-bottom: 2%;
@@ -786,7 +785,7 @@ span.input-group-text {
 		}
 		ul {
 			li {
-				margin-bottom: 16px;
+				margin-bottom: 25px;
 				font-size: 16px;
 			}
 		}
