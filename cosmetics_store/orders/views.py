@@ -199,8 +199,6 @@ class SuccessfulOrder(auth_mixins.LoginRequiredMixin, generic_views.TemplateView
 
         return context
 
-    #TODO: Send an email
-
 
 class CurrentProcessingOrders(PageRestrictionMixin, generic_views.FormView):
     template_name = "orders/order_processing.html"
