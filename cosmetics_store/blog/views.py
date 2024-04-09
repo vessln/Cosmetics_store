@@ -49,7 +49,7 @@ class DeleteArticleView(PageRestrictionMixin, messages_views.SuccessMessageMixin
 class ListArticlesView(generic_views.ListView):
     queryset = ArticleModel.objects.order_by("-published_at")
     template_name = "blog/list_articles.html"
-    # paginate_by = 3
+    paginate_by = 1
 
     @property
     def searched_word(self):

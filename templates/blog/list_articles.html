@@ -67,23 +67,30 @@
 
         {% endif %}
 
-{#        <h3 class="text-center">#}
-{#            {% if paginator.num_pages > 1 %}#}
-{#                {% if page_obj.has_previous %}#}
-{#                    <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>#}
-{#                {% else %}#}
-{#                    <a>&lt;</a>#}
-{#                {% endif %}#}
-{##}
-{#                {{ page_obj.number }} / {{ paginator.num_pages }}#}
-{##}
-{#                {% if page_obj.has_next %}#}
-{#                    <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">&gt;</a>#}
-{#                {% else %}#}
-{#                    <a>&gt;</a>#}
-{#                {% endif %}#}
-{#            {% endif %}#}
-{#        </h3>#}
+        <h5 class="text-center">
+            {% if paginator.num_pages > 1 %}
+                {% if page_obj.has_previous %}
+                    <a class="fa fw-bold form" href="?page={{ page_obj.previous_page_number }}&search={{ search }}"><i class="fa-solid fa-angle-left"></i></a>
+                {% else %}
+                    <a><i class="fa-solid fa-angle-left"></i></a>
+                {% endif %}
+
+                 {% for page_number in paginator.page_range %}
+                    {% if page_number == page_obj.number %}
+                        <span class="fa fw-bold">{{ page_number }}</span>
+                    {% else %}
+                        <a href="?page={{ page_number }}&search={{ search }}">{{ page_number }}</a>
+                    {% endif %}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}&search={{ search }}"><i class="fa-solid fa-angle-right"></i></a>
+                {% else %}
+                    <a><i class="fa-solid fa-angle-right"></i></a>
+                {% endif %}
+            {% endif %}
+        </h5>
 
     </div>
 

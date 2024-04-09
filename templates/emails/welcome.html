@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestBeauty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffefef;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 7px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #2c3034;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.5;
+            padding-bottom: 20px;
+        }
+
+        .text-container {
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            font-weight: 600;
+            padding: 12px 20px;
+            background-color: #FFE4E8;
+            color: #333;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        .button:hover {
+            background-color: rgba(222,93,131, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to BestBeauty, {{ user.username }}!</h1>
+
+        <div class="text-container">
+            <p>Thank you for registering. We're excited to have you on board!</p>
+            <p><a href="https://bestbeauty.azurewebsites.net/" class="button">Get Started</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
