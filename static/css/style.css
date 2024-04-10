@@ -72,6 +72,19 @@ a {
 	background-color: #fad9da; !important;
 }
 
+.navbar-brand .my-logo {
+  width: 12% !important;
+  height: auto;
+  @media (max-width: 992px) {
+		width: 18% !important;
+		height: auto;
+	}
+  @media (max-width: 768px) {
+    width: 24% !important;
+    height: auto;
+  }
+}
+
 .custom-navbar {
   background: #FFE4E8 !important;
   padding-top: 20px;
@@ -247,6 +260,9 @@ img {
   overflow: hidden;
 }
 
+.my-logo {
+  font-size: 0.2em;
+}
 
 .btn {
   font-weight: 600;

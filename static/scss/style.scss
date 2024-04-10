@@ -87,6 +87,19 @@ span.input-group-text {
 	font-weight: bold !important;
 }
 
+.navbar-brand .my-logo {
+	width: 12% !important;
+	height: auto;
+	@media (max-width: $lg) {
+		width: 18% !important;
+		height: auto;
+	}
+	@media (max-width: $md) {
+		width: 24% !important;
+		height: auto;
+	}
+}
+
 .custom-navbar {
 	background: $primary!important;
 	padding-top: 20px;
