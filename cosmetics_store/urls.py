@@ -15,7 +15,7 @@ urlpatterns = [
     path("shop/", include("cosmetics_store.products.urls")),
     path("orders/", include("cosmetics_store.orders.urls")),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
