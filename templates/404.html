@@ -5,7 +5,8 @@
 {% block main_content %}
 
     <div class="container mt-5">
-        <h1>Page not found!</h1>
+        <h1 class="mb-4">Page not found!</h1>
+        <a class="btn btn-secondary" href="{% url 'list products' %}">Back to Shop</a>
     </div>
 
 {% endblock %}

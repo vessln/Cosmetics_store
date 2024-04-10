@@ -49,7 +49,7 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
         image = self.cleaned_data["image_product"]
         img = Image.open(image)
         # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
-        img.thumbnail((500, 500))
+        img.thumbnail((800, 800))
 
         # creates temporary object for the image, which is stored in memory, not on disk
         buffer = BytesIO()
