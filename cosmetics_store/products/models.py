@@ -17,7 +17,7 @@ class ProductModel(models.Model):
     MAX_TYPE_LENGTH = 25
     MAX_BRAND_LENGTH = 20
     MAX_DESCRIPTION_LENGTH = 800
-    MAX_INGREDIENTS_LENGTH = 300
+    MAX_INGREDIENTS_LENGTH = 400
 
     title_product = models.CharField(
         max_length=MAX_TITLE_LENGTH,

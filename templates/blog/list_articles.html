@@ -21,7 +21,7 @@
                                        name="searched_word" value="{{ searched_word }}">
                             </div>
                             <div class="col-auto">
-                                <button id="search-button" class="btn btn-primary">
+                                <button id="search-button" class="btn btn-secondary">
                                     <span class="fa fa-search"></span>
                                 </button>
                             </div>
@@ -70,7 +70,8 @@
         <h5 class="text-center">
             {% if paginator.num_pages > 1 %}
                 {% if page_obj.has_previous %}
-                    <a class="fa fw-bold form" href="?page={{ page_obj.previous_page_number }}&search={{ search }}"><i class="fa-solid fa-angle-left"></i></a>
+                    <a class="fa fw-bold form" href="?page={{ page_obj.previous_page_number }}&search={{ search }}">
+                        <i class="fa-solid fa-angle-left"></i></a>
                 {% else %}
                     <a><i class="fa-solid fa-angle-left"></i></a>
                 {% endif %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffefef;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 7px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        h1, h3 {
+            text-align: center;
+            color: black;
+            margin: 20px 0 20px 0;
+        }
+        p {
+            color: black;
+            padding: 10px;
+        }
+        .order-details {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .order-details th,
+        .order-details td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        .order-details th {
+            background-color: #FFE4E8;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Best Beauty</h1>
+        <h3>Order Confirmation:</h3>
+        <p>Thank you for your order, {{ user.username }}!</p>
+        <p>Your order details:</p>
+        <p>Order ID: {{ order.order_id }}</p>
+        <table class="order-details">
+            <thead>
+                <tr>
+                    <th><b>Product</b></th>
+                    <th><b>Quantity</b></th>
+                    <th><b>Price</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ordered_product in order.products.all %}
+                <tr>
+                    <td>{{ ordered_product.product.title_product }}</td>
+                    <td>{{ ordered_product.quantity }}</td>
+                    <td>${{ ordered_product.product.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total Price: <b>${{ order.total_sum }}</b></p>
+    </div>
+</body>
+</html>

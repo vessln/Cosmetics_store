@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from cosmetics_store import settings
-from cosmetics_store.accounts.utils import send_email
+from cosmetics_store.core.utils import send_email
 
 UserModel = get_user_model()
 

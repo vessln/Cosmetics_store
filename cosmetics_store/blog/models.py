@@ -7,7 +7,7 @@ UserModel = get_user_model()
 
 
 class ArticleModel(models.Model):
-    MAX_TITLE_LENGTH = 50
+    MAX_TITLE_LENGTH = 60
     MIN_TITLE_LENGTH = 3
 
     MAX_DESCRIPTION_LENGTH = 3000
