@@ -4,7 +4,7 @@
 
 {% block main_content %}
 
-    <div class="container mt-4 mb-4">
+    <div class="container mt-5 mb-4">
         <div class="row">
             <div class="col-md-6">
                 <div class="article-text">
@@ -28,8 +28,8 @@
 
     {% if request.user.is_staff or request.user.is_superuser %}
         <p class="mb-5">
-            <a href="{% url 'edit article' pk=object.pk %}" class="btn btn-secondary me-2">Edit article</a>
-            <a href="{% url 'delete article' pk=object.pk %}" class="btn btn-secondary">Delete article</a>
+            <a href="{% url 'edit article' pk=object.pk %}" class="btn btn-secondary me-2">Edit Article</a>
+            <a href="{% url 'delete article' pk=object.pk %}" class="btn btn-secondary">Delete Article</a>
         </p>
     {% endif %}
 

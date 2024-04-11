@@ -735,6 +735,8 @@ span.input-group-text {
 	}
 }
 
+.
+
 // Footer Section
 .footer-section {
 	padding: 20px 0;
@@ -770,7 +772,7 @@ span.input-group-text {
 			font-family: $font-family;
 			&:active, &:focus {
 				outline: none;
-				border-color: $primary;
+				border-color: $primary !important;
 				box-shadow: 0 1px 4px 0 rgba($black, .2);
 			}
 			&::-webkit-input-placeholder {

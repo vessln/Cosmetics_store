@@ -15,13 +15,13 @@
             </div>
 
             <div class="col-md-6">
-                <div class="article-text">
-                    <h2 class="article-title"><b>{{ object.brand }}</b> {{ object.title_product }}</h2>
+                <div class="article-text pt-5">
+                    <h2 class="article-title"><b>{{ object.brand }}</b>&nbsp; {{ object.title_product }}</h2>
                     <h5 class="article-title text-muted">Category: {{ object.category }}</h5>
                     <h5 class="article-title">${{ object.price }}</h5>
 
                     <p class="mb-5">
-                        <a href="{% url 'add to cart' slug=object.slug %}" class="btn btn-secondary me-2">Add to cart</a>
+                        <a href="{% url 'add to cart' slug=object.slug %}" class="btn btn-secondary me-2">Add to Cart</a>
                     </p>
 
                     <div class="mt-4">
@@ -48,8 +48,8 @@
 
     {% if request.user.is_staff or request.user.is_superuser %}
         <p class="mb-5">
-            <a href="{% url 'edit product' slug=object.slug %}" class="btn btn-secondary me-2">Edit product</a>
-            <a href="{% url 'delete product' slug=object.slug %}" class="btn btn-secondary">Delete product</a>
+            <a href="{% url 'edit product' slug=object.slug %}" class="btn btn-secondary me-2">Edit Product</a>
+            <a href="{% url 'delete product' slug=object.slug %}" class="btn btn-secondary">Delete Product</a>
         </p>
     {% endif %}
 

@@ -81,7 +81,7 @@ class OrderModel(models.Model):  # this order store all the products that user w
 
     shipping_address = models.ForeignKey(
         UserShippingAddressModel,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
     )

@@ -24,7 +24,7 @@ class OrderProductAdmin(admin.ModelAdmin):
 @admin.register(OrderModel)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("user", "shipping_address", "completion_order_date", "is_ordered", "order_id", "total_sum")
-    fields = ("order_id", "total_sum")
+    fields = ("order_id", "is_sent", "total_sum")
     list_filter = ("user", "is_ordered", "total_sum")
     ordering = ("completion_order_date", )
     search_fields = ("user", "completion_order_date", "is_ordered")
