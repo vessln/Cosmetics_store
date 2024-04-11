@@ -48,7 +48,7 @@
                         <div class="post-entry">
                             <a href="{% url 'details article' pk=article.pk %}" class="post-thumbnail">
                                 <div class="img-wrapper-article">
-                                    <img src="{{ article.article_image.url }}" alt="article image" class="img-fluid">
+                                    <img src="{{ article.article_image }}" alt="article image" class="img-fluid">
                                 </div>
                             </a>
                             <div class="post-content-entry">
@@ -82,7 +82,7 @@
                     {% else %}
                         <a href="?page={{ page_number }}&search={{ search }}">{{ page_number }}</a>
                     {% endif %}
-                    {% if not forloop.last %}, {% endif %}
+                    {% if not forloop.last %}| {% endif %}
                 {% endfor %}
 
                 {% if page_obj.has_next %}

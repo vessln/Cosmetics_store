@@ -15,4 +15,3 @@ def count_products(user):
     return ""
 
 
-

@@ -16,25 +16,26 @@
                           {% if not first_placed_order %}
                               <h2 class="h3 mb-4 text-black">There is no placed orders.</h2>
                           {% else %}
-                              <h2 class="h3 mb-4 text-black">Placed orders:</h2>
+                              <h2 class="h3 mb-4 text-black">Placed order:</h2>
                               <hr>
                               <div class="site-blocks-table">
                               <table class="table">
                                   <thead>
                                   <tr>
-                                      <th class="product-name">Order ID</th>
-                                      <th class="product-name">Date</th>
+                                      <th class="product-name">Order details</th>
                                       <th class="product-name">Ordered products</th>
                                       <th class="product-total">Total price</th>
-                                      <th class="product-name">Customer details</th>
-                                      <th class="product-name">Sent</th>
+                                      <th class="product-name">Address details</th>
+                                      <th class="product-name">Customer notes</th>
                                   </tr>
                                   </thead>
                                   <tbody>
 
                                       <tr>
-                                          <td><h6>{{ first_placed_order.order_id}}</h6></td>
-                                          <td><h6>{{ first_placed_order.completion_order_date }}</h6></td>
+                                          <td>
+                                              <h6><b>ID:</b> {{ first_placed_order.order_id}}</h6>
+                                              <h6><b>Date:</b> {{ first_placed_order.completion_order_date }}</h6>
+                                          </td>
                                           <td><h6>{{ first_placed_order|join_product_quantity }}</h6>
                                           </td>
                                           <td><h6>${{ first_placed_order.total_sum }}</h6></td>
@@ -46,19 +47,47 @@
                                               <h6 class="ps-5">Address:
                                                   {{ first_placed_order.shipping_address.country }},
                                                   {{ first_placed_order.shipping_address.city }},
-                                                  {{ order.shipping_address.street_address }}
+                                                  {{ first_placed_order.shipping_address.street_address }}
                                               </h6>
                                           </td>
                                           <td>
-                                              <form action="{% url 'processing orders' %}" method="post">
-                                                  {{ form.as_p }}
-                                                  {% csrf_token %}
-                                                  <button class="btn btn-secondary btn-sm" type="submit">Submit</button>
-                                              </form>
+                                              <div class="border p-3 mb-3">
+                                                  <h6 class="h6 mb-0">
+                                                      <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button"
+                                                         aria-expanded="false" aria-controls="collapsebank">Notes: &nbsp;
+                                                      <i class="fa-solid fa-angle-down"></i></a>
+                                                  </h6>
+                                                  <div class="collapse" id="collapsebank">
+                                                    <div class="py-2">
+                                                      <p class="mb-0">{{ first_placed_order.shipping_address.notes }}</p>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                          </td>
                                       </tr>
 
                                   </tbody>
                               </table>
+
+                              <div class="row">
+                              <div class="col-md-9"></div>
+
+                              <div class="col-md-3 mt-4">
+                                  <div class="row mb-5">
+                                    <div class="col-md-12">
+                                      <h4 class="h3 mb-3 text-black">Confirmation of processed order</h4>
+                                      <div class="p-3 p-lg-5 border bg-white">
+                                          <form action="{% url 'processing orders' %}" method="post">
+                                              {{ form }}
+                                              {% csrf_token %}
+                                              <div class="text-center mt-4" style="background-color: #FFE4E8; border-radius: 30px">
+                                                  <button class="btn btn-secondary" type="submit">Processing</button>
+                                              </div>
+                                          </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
 
                           {% endif %}
                         </div>

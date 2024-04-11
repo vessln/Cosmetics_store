@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 
 class CustomBaseArticleForm(FormControlFieldsMixin, forms.ModelForm):
-    fields_requiring_form_control = ("title", "description",)
+    fields_requiring_form_control = ("title", "description", "article_image")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -20,6 +20,7 @@ class CustomBaseArticleForm(FormControlFieldsMixin, forms.ModelForm):
 
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "Title of the article"}),
+            "article_image": forms.URLInput(attrs={"placeholder": "URL of the image"}),
             "author": forms.HiddenInput(),
 
             "description": forms.Textarea(attrs={
@@ -48,6 +49,7 @@ class CreateArticleForm(CustomBaseArticleForm):
 
 
 class UpdateArticleForm(CustomBaseArticleForm):
+    fields_requiring_form_control = ("title", "description")
     CustomBaseArticleForm.Meta.exclude = ("article_image", "author")
 
     # class Meta:

@@ -63,7 +63,7 @@
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-5">
                                     <a class="product-item" href="{% url 'details product' slug=product.slug %}">
-                                        <img src="{{ product.image_product.url }}" class="img-fluid product-thumbnail" alt="product">
+                                        <img src="{{ product.image_product }}" class="img-fluid product-thumbnail" alt="product">
                                         <h3 class="product-title">{{ product.title_product }}</h3>
                                         <h4 class="product-title text-muted">{{ product.brand }}</h4>
                                         <strong class="product-price">{{ product.price }}$</strong>

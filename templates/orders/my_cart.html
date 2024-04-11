@@ -50,9 +50,9 @@
                       {% for order_product in object.products.all %}
                           <tr>
                               <td class="product-thumbnail">
-                                  <img width="40%" src="{{ order_product.product.image_product.url }}" alt="Image" class="img-fluid">
+                                  <img width="40%" src="{{ order_product.product.image_product }}" alt="Image" class="img-fluid">
                               </td>
-                              <td><h6>{{ order_product.product.title_product}}</h6></td>
+                              <td><h6>{{ order_product.product.title_product }}</h6></td>
                               <td><h6>${{ order_product.product.price }}</h6></td>
                               <td>
                                   <div class="input-group-append">

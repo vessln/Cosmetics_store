@@ -8,7 +8,7 @@ from cosmetics_store.products.models import ProductModel
 
 
 class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
-    fields_requiring_form_control = ("title_product", "category", "brand", "price", "description", "ingredients")
+    fields_requiring_form_control = ("title_product", "category", "brand", "price", "image_product", "description", "ingredients")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,6 +23,7 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
             "category": forms.RadioSelect(choices=ProductModel.PRODUCTS_CATEGORIES, ),
             "brand": forms.TextInput(attrs={"placeholder": "Brand of the product"}),
             "price": forms.NumberInput(attrs={"placeholder": "Price:  00.00"}),
+            "image_product": forms.URLInput(attrs={"placeholder": "URL of the image"}),
             "description": forms.Textarea(attrs={
                 "placeholder": "Write a product description...",
             }),
@@ -45,29 +46,29 @@ class CreateProductForm(FormControlFieldsMixin, forms.ModelForm):
         # makes title_product's first letter UPPERCASE
         instance.title_product = self.cleaned_data["title_product"].capitalize()
 
-        # GPT helps:
-        image = self.cleaned_data["image_product"]
-        img = Image.open(image)
-        # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
-        img.thumbnail((800, 800))
-
-        # creates temporary object for the image, which is stored in memory, not on disk
-        buffer = BytesIO()
-        img.save(buffer, format="JPEG" if image.name.lower().endswith(".jpg") else "PNG")
-        buffer.seek(0)
-        # img.save(buffer, format="JPEG")
-        # ensures that all data from the Beginning of the buffer will be ridden (pointer is moved to the beginning):
-        buffer.seek(0)
-
-        # updates the instance's image field with the new resized image
-        instance.image_product = InMemoryUploadedFile(
-            buffer,
-            None,
-            f"{image.name.split('.')[0]}_resized.jpg",
-            "image/jpeg",  # MIME type
-            buffer.getbuffer().nbytes,
-            None
-        )
+        # # GPT helps:
+        # image = self.cleaned_data["image_product"]
+        # img = Image.open(image)
+        # # thumbnail() calculates an appropriate thumbnail size to preserve the aspect of the image and resizes it:
+        # img.thumbnail((800, 800))
+        #
+        # # creates temporary object for the image, which is stored in memory, not on disk
+        # buffer = BytesIO()
+        # img.save(buffer, format="JPEG" if image.name.lower().endswith(".jpg") else "PNG")
+        # buffer.seek(0)
+        # # img.save(buffer, format="JPEG")
+        # # ensures that all data from the Beginning of the buffer will be ridden (pointer is moved to the beginning):
+        # buffer.seek(0)
+        #
+        # # updates the instance's image field with the new resized image
+        # instance.image_product = InMemoryUploadedFile(
+        #     buffer,
+        #     None,
+        #     f"{image.name.split('.')[0]}_resized.jpg",
+        #     "image/jpeg",  # MIME type
+        #     buffer.getbuffer().nbytes,
+        #     None
+        # )
 
         if commit:
             instance.save()

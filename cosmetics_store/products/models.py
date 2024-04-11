@@ -18,6 +18,7 @@ class ProductModel(models.Model):
     MAX_BRAND_LENGTH = 20
     MAX_DESCRIPTION_LENGTH = 800
     MAX_INGREDIENTS_LENGTH = 400
+    MAX_URL_LENGTH = 1000
 
     title_product = models.CharField(
         max_length=MAX_TITLE_LENGTH,
@@ -45,8 +46,8 @@ class ProductModel(models.Model):
         blank=False,
     )
 
-    image_product = models.ImageField(
-        upload_to="products_image/",
+    image_product = models.URLField(
+        max_length=MAX_URL_LENGTH,
         null=False,
         blank=False,
     )

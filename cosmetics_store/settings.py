@@ -12,16 +12,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--*_w@i9p3l79j+8f&eu0q^kwv51u(-p@(i3$p)@r^0^%7x*9_h'
 
 
-DEBUG = False
+# DEBUG = False
 
-# DEBUG = True
+DEBUG = True
 
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['bestbeauty.azurewebsites.net', ]
-
-CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
+# ALLOWED_HOSTS = ['bestbeauty.azurewebsites.net', ]
+#
+# CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
 
 
 # Application definition

@@ -9,9 +9,9 @@ UserModel = get_user_model()
 class ArticleModel(models.Model):
     MAX_TITLE_LENGTH = 60
     MIN_TITLE_LENGTH = 3
-
     MAX_DESCRIPTION_LENGTH = 3000
     MIN_DESCRIPTION_LENGTH = 20
+    MAX_URL_LENGTH = 1000
 
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
@@ -31,8 +31,8 @@ class ArticleModel(models.Model):
         blank=False,
     )
 
-    article_image = models.ImageField(
-        upload_to="article_image/",
+    article_image = models.URLField(
+        max_length=MAX_URL_LENGTH,
         null=False,
         blank=False,
     )
