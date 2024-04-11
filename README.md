@@ -1,8 +1,12 @@
-<h2><img src="images_for_readme/logo.png" width="5%"/> Best Beauty</h2>
+<h1><img src="images_for_readme/logo.png" width="5%"/> Best Beauty</h1>
 
 <h3> Try it here: https://bestbeauty.azurewebsites.net/ </h3>
 
-<p>This application represents basic cosmetics store. Best Beauty is online retailer offering cosmetics products including of skin care, hair care, personal care and beauty products of different brands. </p> 
+<p>
+    Best Beauty is cosmetics web application, designed as a platform akin to cosmetics retailers. It provides online shopping, where users can browse, search, and purchase cosmetics products including of skin care, hair care, personal care and beauty products of different brands.
+    In addition, this platform includes an informative blog section, where users can access a variety of articles. 
+</p> 
+
 <h3>Features:</h3>
 <ul>
   <li>
@@ -10,9 +14,19 @@
   </li>
   <li>
     <strong>User management:</strong> It has 2 groups of administration: manager and admin. Managers have rights to create, read, update and delete Articles and Products. Managers can process orders, but they are restricted to add products in cart and place orders. They cant edit or delete other users. Admins have full CRUD rights.
-    </li>
+  </li>
+<li>
+    <strong>Articles:</strong> search functionality, pagination.
+</li>
+<li>
+    <strong>Products:</strong> search functionality, filters based on categories, brands, max price, min price, add product in cart.
+</li>
+
+<li>
+    <strong>Orders:</strong> cart details, change quantity of products, checkout page with shipping details form, page for order processing.
+</li>
   <li>
-     <strong>Technologies:</strong> Python, Django, HTML, CSS, JS, Azure. 
+     <strong>Technologies:</strong> Python, Django, HTML, CSS, JS, Bootstrap, Azure. 
   </li>
 </ul>
 
