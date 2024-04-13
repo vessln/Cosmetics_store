@@ -1,4 +1,4 @@
-<h1><img src="images_for_readme/logo.png" width="5%"/> Best Beauty</h1>
+<h1><img src="images_for_readme/logo.png" width="4%"/> Best Beauty</h1>
 
 <h3> Try it here: https://bestbeauty.azurewebsites.net/ </h3>
 
@@ -35,6 +35,13 @@
 <h5>Home page:</h5>
 <div>
   <img src="images_for_readme/home_page.png"/>
+</div>
+
+<hr>
+
+<h5>All products:</h5>
+<div>
+  <img src="images_for_readme/list products.png"/>
 </div>
 
 <hr>
