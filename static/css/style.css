@@ -397,7 +397,7 @@ img {
 .feature {
   margin-bottom: 30px; }
   .feature .icon {
-    display: inline-block;
+    display: inline;
     position: relative;
     margin-bottom: 20px; }
     .feature .icon:before {
@@ -406,7 +406,7 @@ img {
       height: 33px;
       position: absolute;
       background: #fad9da;
-      opacity: 0.5;
+      opacity: 0.3;
       border-radius: 50%;
       right: -8px;
       bottom: 0; }

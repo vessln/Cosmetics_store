@@ -447,7 +447,7 @@ span.input-group-text {
 .feature {
 	margin-bottom: 30px;
 	.icon {
-		display: inline-block;
+		display: inline;
 		position: relative;
 		margin-bottom: 20px;
 
@@ -456,7 +456,7 @@ span.input-group-text {
 			width: 33px;
 			height: 33px;
 			position: absolute;
-			background: rgba($primary, .2);
+			background: rgba($primary, .3);
 			border-radius: 50%;
 			right: -8px;
 			bottom: 0;
@@ -735,6 +735,8 @@ span.input-group-text {
 	}
 }
 
+.
+
 // Footer Section
 .footer-section {
 	padding: 20px 0;
@@ -770,7 +772,7 @@ span.input-group-text {
 			font-family: $font-family;
 			&:active, &:focus {
 				outline: none;
-				border-color: $primary;
+				border-color: $primary !important;
 				box-shadow: 0 1px 4px 0 rgba($black, .2);
 			}
 			&::-webkit-input-placeholder {
