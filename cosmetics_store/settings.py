@@ -9,21 +9,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 
-SECRET_KEY = 'django-insecure--*_w@i9p3l79j+8f&eu0q^kwv51u(-p@(i3$p)@r^0^%7x*9_h'
-
+# SECRET_KEY = 'django-insecure--*_w@i9p3l79j+8f&eu0q^kwv51u(-p@(i3$p)@r^0^%7x*9_h'
+SECRET_KEY = os.getenv('SECRET_KEY', None)
 
 DEBUG = False
-
-# DEBUG = True
-#
-# ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = ['bestbeauty.azurewebsites.net', ]
 
 CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,10 +80,10 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get("POSTGRES_DB"),
-            "USER": os.environ.get("POSTGRES_USER"),
-            "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-            "HOST": os.environ.get("POSTGRES_HOST"),
+            "NAME": os.environ.get("POSTGRES_DB", None),
+            "USER": os.environ.get("POSTGRES_USER", None),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", None),
+            "HOST": os.environ.get("POSTGRES_HOST", None),
             "PORT": os.environ.get("POSTGRES_PORT"),
         }
     }
@@ -129,13 +123,14 @@ STATICFILES_DIRS = [
     BASE_DIR / "staticfiles/"
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / "static"
 
+# directory where uploaded files will be stored
+MEDIA_ROOT = BASE_DIR / "mediafiles"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-
+# url prefix to serve uploaded files
 MEDIA_URL = "/media/"
 
 
@@ -151,5 +146,5 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", None)
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", None)
