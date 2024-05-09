@@ -27,8 +27,8 @@ def remove_empty_order(current_order):
         current_order.delete()
 
 
-@restricted_staff_users
 @login_required
+@restricted_staff_users
 def add_product_to_cart(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
     order_product, created = OrderProductModel.objects.get_or_create(
@@ -65,8 +65,8 @@ def add_product_to_cart(request, slug):
     return redirect("details product", slug=slug)
 
 
-@restricted_staff_users
 @login_required
+@restricted_staff_users
 def remove_product_from_cart(request, slug):
     # get a product:
     product = get_object_or_404(ProductModel, slug=slug)
