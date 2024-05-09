@@ -96,8 +96,8 @@ def remove_product_from_cart(request, slug):
     return redirect("my cart")
 
 
-@restricted_staff_users
 @login_required
+@restricted_staff_users
 def decrease_product_quantity_in_cart(request, slug):
     product = get_object_or_404(ProductModel, slug=slug)
     uncompleted_order_qs = OrderModel.objects.filter(user=request.user, is_ordered=False)
