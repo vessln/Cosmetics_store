@@ -141,6 +141,7 @@ AUTH_USER_MODEL = "accounts.StoreUserModel"
 
 
 LOGIN_REDIRECT_URL = "home page"
+LOGIN_URL = "login user"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
