@@ -1,6 +1,5 @@
 <h1><img src="images_for_readme/logo.png" width="4%"/> Best Beauty</h1>
 
-<h3> Try it here: https://bestbeauty.azurewebsites.net/ </h3>
 
 <p>
     Best Beauty is cosmetics web application, designed as a platform akin to cosmetics retailers. It provides online shopping, where users can browse, search, and purchase cosmetics products including of skin care, hair care, personal care and beauty products of different brands.
