@@ -25,7 +25,7 @@
     <strong>Orders:</strong> cart details, change quantity of products, checkout page with shipping details form, page for order processing.
 </li>
   <li>
-     <strong>Technologies:</strong> Python, Django, DB, HTML, CSS, Bootstrap, Azure. 
+     <strong>Technologies:</strong> Python, Django, SQL, HTML, CSS, JavaScript, Azure. 
   </li>
 </ul>
 
