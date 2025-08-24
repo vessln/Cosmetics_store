@@ -13,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', None)
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['bestbeauty.azurewebsites.net', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'bestbeauty.azurewebsites.net', ]
 
 CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
 
