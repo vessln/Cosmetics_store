@@ -2,7 +2,7 @@
 
 
 <p>
-    Best Beauty is cosmetics web application, designed as a platform akin to cosmetics retailers. It provides online shopping, where users can browse, search, and purchase cosmetics products including of skin care, hair care, personal care and beauty products of different brands.
+    Best Beauty is cosmetics web application, with Responsive Web Design. It provides online shopping, where users can browse, search, and purchase cosmetics products including of skin care, hair care, personal care and beauty products of different brands.
     In addition, this platform includes an informative blog section, where users can access a variety of articles. 
 </p> 
 
@@ -25,7 +25,7 @@
     <strong>Orders:</strong> cart details, change quantity of products, checkout page with shipping details form, page for order processing.
 </li>
   <li>
-     <strong>Technologies:</strong> Python, Django, SQL, HTML, CSS, JavaScript, Azure. 
+     <strong>Technologies:</strong> Python, Django Framework, PostgreSQL, HTML, CSS, JavaScript, Azure. 
   </li>
 </ul>
 
