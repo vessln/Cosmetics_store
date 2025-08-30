@@ -6,6 +6,16 @@
     In addition, this platform includes an informative blog section, where users can access a variety of articles. 
 </p> 
 
+<h3>Technologies</h3>
+<ul>
+    <li><strong>Python</strong></li>
+    <li><strong>Django Framework</strong></li>
+    <li><strong>PostgreSQL</strong></li>
+    <li><strong>HTML & CSS</strong></li>
+    <li><strong>JavaScript</strong></li>
+    <li><strong>Azure</strong></li>
+</ul>
+
 <h3>Features:</h3>
 <ul>
   <li>
@@ -24,9 +34,6 @@
 <li>
     <strong>Orders:</strong> cart details, change quantity of products, checkout page with shipping details form, page for order processing.
 </li>
-  <li>
-     <strong>Technologies:</strong> Python, Django Framework, PostgreSQL, HTML, CSS, JavaScript, Azure. 
-  </li>
 </ul>
 
 <hr>
